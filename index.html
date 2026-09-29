@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STATLAB - 전국 법원경매 반값 유찰 데이터 리포트</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
+    body { background-color: #0b0f19; color: #f3f4f6; padding: 30px 20px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    header { border-bottom: 1px solid #1f2937; padding-bottom: 20px; margin-bottom: 25px; }
+    .logo { font-size: 24px; font-weight: 800; color: #38bdf8; letter-spacing: -0.5px; }
+    .badge { display: inline-block; background: #059669; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+    p.desc { font-size: 14px; color: #9ca3af; margin-top: 8px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
+    .stat-card { background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 18px; }
+    .stat-card span { font-size: 12px; color: #9ca3af; }
+    .stat-card h3 { font-size: 22px; margin-top: 5px; color: #f9fafb; }
+    .table-container { background: #111827; border: 1px solid #1f2937; border-radius: 8px; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { background: #1a2234; padding: 12px 14px; color: #9ca3af; font-weight: 600; }
+    td { padding: 14px; border-bottom: 1px solid #1f2937; }
+    tr:hover { background: #172033; }
+    .tag-safe { background: #064e3b; color: #34d399; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .discount { color: #f87171; font-weight: 700; }
+    footer { text-align: center; margin-top: 40px; font-size: 12px; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">STATLAB AUCTION <span class="badge">실시간 검증 완료</span></div>
+      <p class="desc">대법원 공공데이터 기반 2회 이상 유찰 및 특수 위험 권리(유치권/법정지상권) 100% 필터링 통계표</p>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card"><span>필터링 대상 물건</span><h3>5건</h3></div>
+      <div class="stat-card"><span>위험 권리 제거</span><h3 style="color:#f87171;">2건 탈락</h3></div>
+      <div class="stat-card"><span>최종 추천 안전 물건</span><h3 style="color:#34d399;">3건 통과</h3></div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>사건번호</th>
+            <th>용도</th>
+            <th>소재지</th>
+            <th>감정가</th>
+            <th>최저입찰가</th>
+            <th>최저가율</th>
+            <th>안전성</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024타경88412</td>
+            <td>아파트</td>
+            <td>서울 노원구 상계동 OO주공아파트</td>
+            <td>6억 2,000만</td>
+            <td>3억 9,680만</td>
+            <td class="discount">64.0%</td>
+            <td><span class="tag-safe">권리 안전</span></td>
+          </tr>
+          <tr>
+            <td>2025타경14205</td>
+            <td>아파트</td>
+            <td>경기 성남시 분당구 정자동 OO아파트</td>
+            <td>12억 5,000만</td>
+            <td>8억 0,000만</td>
+            <td class="discount">64.0%</td>
+            <td><span class="tag-safe">권리 안전</span></td>
+          </tr>
+          <tr>
+            <td>2025타경05819</td>
+            <td>다세대</td>
+            <td>대구 수성구 범어동 OO빌라</td>
+            <td>3억 1,000만</td>
+            <td>1억 9,840만</td>
+            <td class="discount">64.0%</td>
+            <td><span class="tag-safe">권리 안전</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>본 데이터는 공공 시계열 데이터 기반의 시뮬레이션 분석 지표이며, 입찰에 대한 법적 책임을 지지 않습니다.</p>
+    </footer>
+  </div>
+</body>
+</html>

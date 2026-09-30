@@ -28,12 +28,12 @@
     .status-badge { background: rgba(16, 185, 129, 0.12); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 14px; }
     .sub-title { font-size: 12.5px; color: var(--text-muted); line-height: 1.45; }
 
-    /* 법적 고지 필수 상단 배너 */
+    /* 법적 고지 상단 바 */
     .legal-notice-bar { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; color: #fbbf24; }
     .legal-notice-bar strong { color: #fff; }
     .legal-btn-link { background: transparent; border: 1px solid #f59e0b; color: #f59e0b; padding: 2px 7px; border-radius: 4px; font-size: 10.5px; font-weight: 700; cursor: pointer; margin-left: 6px; }
 
-    /* 가격 대비 배너 (상호명 100% 배제 - 표시광고법 방어) */
+    /* 가격 절감 배너 (상호명 배제) */
     .compare-banner { background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); border: 1px solid #4f46e5; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
     .compare-text { font-size: 11.5px; color: #c7d2fe; line-height: 1.4; }
     .compare-text strong { color: #fff; font-size: 13px; }
@@ -44,6 +44,7 @@
     .summary-card span { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 2px; }
     .summary-card strong { font-size: 16px; font-weight: 800; }
 
+    /* 검색 컨트롤러 */
     .controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
     .search-row { display: flex; gap: 8px; }
     .search-input { flex: 1; background: #0b1120; border: 1px solid #334155; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 13.5px; outline: none; }
@@ -58,7 +59,7 @@
     .tab-btn.btn-caution.active { background: #f59e0b; color: #0b1120; }
     .tab-btn.btn-safe.active { background: #10b981; color: #0b1120; }
 
-    /* 매물 카드 */
+    /* 카드 스타일 */
     .card-list { display: flex; flex-direction: column; gap: 16px; }
     .item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
     
@@ -98,22 +99,22 @@
     .gap-box span { color: var(--primary); display: block; font-weight: 600; }
     .gap-box strong { color: #7dd3fc; font-size: 13px; font-weight: 800; }
 
-    /* 법원 현황조사서 등재사항 요약 박스 (변호사법/공인중개사법 방어) */
+    /* 법원 현황조사서 요약 박스 */
     .investigation-box { background: #0c1424; border: 1px solid #1e293b; border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 11.5px; line-height: 1.5; }
     .investigation-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; color: #cbd5e1; font-weight: 700; }
     .arrears-badge { color: #f87171; font-weight: 800; font-size: 11px; }
-    .document-summary { color: #94a3b8; }
+    .document-summary { color: #94a3b8; word-break: break-all; }
 
-    /* 외부 링크 안내 */
+    /* 정확히 작동하는 3단 바로가기 버튼 */
     .action-links { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 6px; }
-    .link-btn { display: inline-flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 700; padding: 8px 0; border-radius: 6px; text-decoration: none; text-align: center; }
-    .btn-planet { background: #1d4ed8; color: #ffffff; }
+    .link-btn { display: inline-flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 700; padding: 9px 0; border-radius: 6px; text-decoration: none; text-align: center; cursor: pointer; border: none; }
+    .btn-hogang { background: #2563eb; color: #ffffff; }
     .btn-naver { background: #03c75a; color: #ffffff; }
     .btn-court { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; }
 
     .load-more-btn { width: 100%; background: #1e293b; color: #38bdf8; border: 1px solid #334155; padding: 13px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; margin-top: 16px; }
 
-    /* 모달 공통 */
+    /* 팝업 모달 */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 16px; }
     .modal-content { background: #111927; border: 1px solid #334155; border-radius: 14px; max-width: 520px; width: 100%; padding: 22px; max-height: 85vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
@@ -122,6 +123,9 @@
     .clause-block { margin-bottom: 14px; font-size: 11.5px; line-height: 1.6; color: #cbd5e1; }
     .clause-block strong { color: #f8fafc; display: block; margin-bottom: 3px; }
 
+    /* 토스트 알림창 (사건번호 복사 시 표시) */
+    .toast-msg { display: none; position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: rgba(16, 185, 129, 0.95); color: #0b1120; font-size: 12px; font-weight: 800; padding: 10px 18px; border-radius: 20px; z-index: 3000; box-shadow: 0 4px 15px rgba(0,0,0,0.4); text-align: center; }
+
     /* 하단 고정 바 */
     .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(17, 25, 39, 0.96); backdrop-filter: blur(8px); border-top: 1px solid #1e293b; padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; }
     .floating-bar .info span { font-size: 11px; color: var(--text-muted); display: block; }
@@ -129,8 +133,6 @@
     .floating-buy-btn { background: #38bdf8; color: #0b1120; font-size: 13px; font-weight: 900; padding: 10px 18px; border-radius: 8px; text-decoration: none; }
 
     footer { text-align: center; margin-top: 30px; font-size: 10.5px; color: #64748b; line-height: 1.7; border-top: 1px solid #1e293b; padding-top: 20px; }
-    .footer-links { margin-top: 8px; }
-    .footer-link-btn { background: none; border: none; color: #94a3b8; font-size: 10.5px; text-decoration: underline; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -143,13 +145,13 @@
       <p class="sub-title">전국 2회 유찰 법원경매 공문서 전수 필터링 & 시계열 통계 분석 리포트</p>
     </header>
 
-    <!-- 법적 필수 면책 고지 배너 -->
+    <!-- 법적 면책 고지 배너 -->
     <div class="legal-notice-bar">
-      <strong>⚖️ 서비스 성격 및 법적 한계 고지:</strong> 본 서비스는 공공데이터를 기반으로 1차 서류 기재사항을 자동 분류한 정량 통계 소프트웨어이며, 법률 자문이나 매수신청대리 행위를 일체 수행하지 않습니다.
+      <strong>⚖️ 서비스 성격 및 법적 한계 고지:</strong> 본 서비스는 공공데이터를 기반으로 1차 서류 기재사항을 자동 분류한 통계 소프트웨어이며, 개별 권리상담이나 매수신청대리를 일체 수행하지 않습니다.
       <button class="legal-btn-link" onclick="openModal('legalModal')">법적 고지 전문</button>
     </div>
 
-    <!-- 시장 가격 비교 배너 (상호명 배제) -->
+    <!-- 시장 가격 비교 배너 -->
     <div class="compare-banner">
       <div class="compare-text">
         <strong>시중 연 50~90만 원대 고가 유료 경매 서비스 대비</strong><br>
@@ -164,6 +166,7 @@
       <div class="summary-card"><span>1차 서류 통과</span><strong style="color:var(--accent);">422건 분류</strong></div>
     </div>
 
+    <!-- 필터 컨트롤러 -->
     <div class="controls">
       <div class="search-row">
         <input type="text" id="searchInput" class="search-input" placeholder="단지명, 시·군·구, 사건번호 검색" onkeyup="resetAndFilter()">
@@ -191,23 +194,23 @@
       </div>
     </div>
 
+    <!-- 카드 리스트 -->
     <div class="card-list" id="cardList"></div>
 
     <button class="load-more-btn" id="loadMoreBtn" onclick="loadMoreCards()">+ 분석 매물 8개 더보기</button>
 
     <footer>
       <p>
-        <strong>데이터 출처:</strong> 대한민국 법원 법원경매정보(공공데이터 포털) 및 국토교통부 실거래가 공개시스템 API (공공누리 제1유형 준수)<br>
-        <strong>상호:</strong> STATLAB ｜ <strong>서비스 성격:</strong> 통계 데이터 제공 및 소프트웨어 개발 공급<br>
-        STATLAB은 공인중개사법에 따른 부동산 중개 또는 변호사법·민사집행법에 따른 매수신청대리 업무를 수행하지 않으며, 입찰 판단 및 최종 결과에 대한 민·형사상 책임은 전적으로 입찰 당사자에게 귀속됩니다.
+        <strong>데이터 출처:</strong> 대한민국 법원 법원경매정보(공공데이터 포털) 및 국토교통부 실거래가 공개시스템 API<br>
+        STATLAB은 부동산 중개 또는 매수신청대리 업무를 수행하지 않으며, 입찰 판단 및 최종 결과에 대한 책임은 전적으로 입찰 당사자에게 귀속됩니다.
       </p>
-      <div class="footer-links">
-        <button class="footer-link-btn" onclick="openModal('legalModal')">서비스 이용약관 및 법적 면책 조항 전문 보기</button>
-      </div>
     </footer>
   </div>
 
-  <!-- 법적 면책 및 규정 전문 모달 (철통 방어 핵심) -->
+  <!-- 사건번호 자동복사 토스트 알림창 -->
+  <div class="toast-msg" id="toastMsg">사건번호가 복사되었습니다! 검색창에 붙여넣기 하세요.</div>
+
+  <!-- 법적 면책 모달 -->
   <div class="modal-overlay" id="legalModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -216,24 +219,16 @@
       </div>
       <div class="clause-block">
         <strong>제1조 (서비스의 본질 및 비대리성)</strong>
-        STATLAB(이하 '회사')이 제공하는 모든 데이터는 대법원 법원경매정보 및 국토교통부 실거래가 시스템에 공시된 공공데이터를 정량 분석 알고리즘으로 자동 분류한 '단순 정보 제공 및 통계 산출물'입니다. 본 서비스는 공인중개사법상 중개대상물의 알선이나 변호사법·법무사법·민사집행법상의 매수신청대리, 권리분석 자문 행위에 해당하지 않습니다.
+        STATLAB이 제공하는 모든 데이터는 공공데이터를 정량 분석 알고리즘으로 자동 분류한 단순 통계 정보이며, 법률 자문이나 매수신청대리 행위에 해당하지 않습니다.
       </div>
       <div class="clause-block">
         <strong>제2조 (공문서 분석의 한계 및 현장 확인 의무)</strong>
-        본 대시보드의 A등급(서류하자 미등재) 및 B등급(현장점검 요망) 표기는 법원 매각물건명세서 등 '공문서상 표기된 텍스트'만을 기계적으로 대조한 결과입니다. 주민센터 미전입 세입자, 공부상 미등재 유치권, 관리사무소 미납 관리비, 목적물 내부 누수/파손 등은 공문서에 반영되지 않으므로, 이용자는 반드시 입찰 전 현장 답사(임장)를 통해 이를 직접 확인해야 합니다.
-      </div>
-      <div class="clause-block">
-        <strong>제3조 (투자 결과에 대한 책임 면책)</strong>
-        경매 물건의 감정평가액, 최저입찰가, 예상 안전마진, 갭투자금 지표는 과거 공시 시점 기준의 시뮬레이션 지표이며 향후 시세 변동이나 낙찰가를 보장하지 않습니다. 개별 사건의 입찰 결정, 입찰가 산정, 낙찰 후 명도 진행 등 일체의 법률적·재산적 행위의 결과는 전적으로 이용자 본인의 책임하에 수행되며 회사는 이에 대해 어떠한 법적 손해배상 책임도 부담하지 않습니다.
-      </div>
-      <div class="clause-block">
-        <strong>제4조 (지적재산권 및 외부 링크 고지)</strong>
-        본 웹 대시보드에 포함된 외부 사이트(부동산플래닛, 네이버부동산, 대한민국 법원경매) 버튼은 이용자의 편의를 돕기 위한 공식 웹 포털 검색 결과로의 단순 이동(Out-link) 링크이며, 해당 포털 서비스의 지적재산권과 상표권은 각 소유권자에게 있습니다.
+        본 대시보드의 등급 분류는 공문서 기재 텍스트만을 기계적으로 대조한 결과입니다. 미전입 세입자, 체납 관리비, 내부 파손 등은 공문서에 나오지 않으므로 입찰 전 현장 조사가 필수적입니다.
       </div>
     </div>
   </div>
 
-  <!-- 하단 고정 결제 전환 바 -->
+  <!-- 하단 플로팅 결제 바 -->
   <div class="floating-bar">
     <div class="info">
       <span>전국 2회 유찰 공문서 정밀군 422건</span>
@@ -243,7 +238,6 @@
   </div>
 
   <script>
-    // 상업적 이용 및 저작권에 무해한 공공 건축/부동산 사진 샘플
     const realEstatePhotos = [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=80",
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80",
@@ -255,54 +249,55 @@
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=700&q=80"
     ];
 
+    // 정확한 포털 검색을 위한 cleanName(단지 검색용 키워드) 추가
     const auctionDB = [
-      // === 서울 (10) ===
-      { id: 1, img: realEstatePhotos[0], region: "서울", grade: "A", court: "서울북부지법", caseNo: "2024타경88412", aptName: "노원 상계주공 3단지", spec: "58.4㎡ (24평형) ｜ 5층", scale: "1,840세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-14 (10.15)", appraisal: 62000, market: 65000, jeonse: 38000, minBid: 39680, arrears: "체납관리비: 약 24만원(추정)", docSummary: "매각명세서상 선순위 임차인 미표기 ｜ 채무자 점유 등재 ｜ 말소기준 이하 전액 소멸 대상" },
-      { id: 2, img: realEstatePhotos[1], region: "서울", grade: "A", court: "서울서부지법", caseNo: "2024타경91045", aptName: "마포 공덕래미안 4차", spec: "84.9㎡ (34평형) ｜ 11층", scale: "1,164세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-18 (10.19)", appraisal: 145000, market: 142000, jeonse: 85000, minBid: 92800, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 세대 거주 등재 ｜ 등기부등본상 인수 권리 미기재 ｜ 1차 서류 하자 미검출" },
-      { id: 3, img: realEstatePhotos[2], region: "서울", grade: "B", court: "서울남부지법", caseNo: "2024타경10442", aptName: "강서 화곡우장산 아이파크", spec: "74.2㎡ (29평형) ｜ 7층", scale: "2,517세대 매머드급", failRate: "2회 유찰 (64%)", dday: "D-22 (10.23)", appraisal: 81000, market: 83000, jeonse: 52000, minBid: 51840, arrears: "체납관리비: 약 210만원(추정)", docSummary: "⚠️ 직전 매각기일 최고가매수인 대금미납(재매각 사건) 등재 ➔ 미납 사유 및 현장 하자 탐문 필수" },
-      { id: 4, img: realEstatePhotos[3], region: "서울", grade: "A", court: "서울동부지법", caseNo: "2024타경12093", aptName: "강동 암사 현대홈타운", spec: "84.8㎡ (33평형) ｜ 9층", scale: "568세대 중형단지", failRate: "2회 유찰 (64%)", dday: "D-26 (10.27)", appraisal: 94000, market: 92000, jeonse: 58000, minBid: 60160, arrears: "체납관리비: 약 35만원(추정)", docSummary: "채무자 단독 점유 등재 ｜ 법원 현황조사서상 제3자 점유관계 특이사항 미검출" },
-      { id: 5, img: realEstatePhotos[4], region: "서울", grade: "B", court: "서울중앙지법", caseNo: "2025타경01994", aptName: "동작 사당 극동아파트", spec: "59.3㎡ (24평형) ｜ 15층(최상층)", scale: "1,550세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-30 (10.31)", appraisal: 78000, market: 77000, jeonse: 46000, minBid: 49920, arrears: "체납관리비: 약 95만원(추정)", docSummary: "⚠️ 감정평가서 내 천장 결로 및 부분 누수 표기 감지 ➔ 실내 방수 및 인테리어 견적 현장 확인 필수" },
-      { id: 6, img: realEstatePhotos[5], region: "서울", grade: "A", court: "서울동부지법", caseNo: "2024타경14210", aptName: "성동 행당 대림아파트", spec: "59.9㎡ (25평형) ｜ 10층", scale: "3,404세대 매머드급", failRate: "2회 유찰 (64%)", dday: "D-16 (10.17)", appraisal: 92000, market: 90000, jeonse: 53000, minBid: 58880, arrears: "체납관리비: 이상 없음 확인", docSummary: "후순위 임차인 배당요구 완료 기재 ｜ 매각물건명세서상 인수 조건 미표기 확인" },
-      { id: 7, img: realEstatePhotos[6], region: "서울", grade: "B", court: "서울서부지법", caseNo: "2024타경16801", aptName: "은평 불광 미성아파트", spec: "84.9㎡ (33평형) ｜ 4층", scale: "1,340세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-24 (10.25)", appraisal: 74000, market: 72000, jeonse: 41000, minBid: 47360, arrears: "체납관리비: 약 420만원(장기연체)", docSummary: "⚠️ 1년 이상 공용관리비 체납 기록 감지 ➔ 판례에 따른 낙찰자 공용부분 인수액 관리실 사전 조회 요망" },
-      { id: 8, img: realEstatePhotos[7], region: "서울", grade: "A", court: "서울동부지법", caseNo: "2025타경02119", aptName: "송파 가락 쌍용1차", spec: "59.9㎡ (24평형) ｜ 12층", scale: "2,064세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-28 (10.29)", appraisal: 110000, market: 108000, jeonse: 58000, minBid: 70400, arrears: "체납관리비: 약 15만원(추정)", docSummary: "등기부 갑구·을구 인수사항 없음 ｜ 근저당권 말소기준권리로 전액 소멸 분류" },
-      { id: 9, img: realEstatePhotos[0], region: "서울", grade: "A", court: "서울남부지법", caseNo: "2024타경19052", aptName: "양천 목동 신시가지14단지", spec: "71.4㎡ (28평형) ｜ 8층", scale: "3,100세대 매머드급", failRate: "2회 유찰 (64%)", dday: "D-19 (10.20)", appraisal: 158000, market: 160000, jeonse: 72000, minBid: 101120, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 점유 기재 ｜ 대항력 있는 선순위 임차인 미표기 ｜ 1차 통계 통과군" },
-      { id: 10, img: realEstatePhotos[1], region: "서울", grade: "B", court: "서울남부지법", caseNo: "2025타경04431", aptName: "구로 신도림 대림e편한세상", spec: "84.9㎡ (33평형) ｜ 3층", scale: "1,056세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-12 (10.13)", appraisal: 89000, market: 88000, jeonse: 55000, minBid: 56960, arrears: "체납관리비: 약 180만원(추정)", docSummary: "⚠️ 감정서상 발코니 샷시 노후 및 내부 폐기물 다량 적치 표기 ➔ 현장 인도 및 수리 비용 감안 필요" },
+      // 서울 (10)
+      { id: 1, img: realEstatePhotos[0], region: "서울", grade: "A", court: "서울북부지법", caseNo: "2024타경88412", aptName: "노원 상계주공 3단지", cleanName: "상계주공3단지", spec: "58.4㎡ (24평형) ｜ 5층", scale: "1,840세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-14 (10.15)", appraisal: 62000, market: 65000, jeonse: 38000, minBid: 39680, arrears: "체납관리비: 약 24만원(추정)", docSummary: "매각명세서상 선순위 임차인 미표기 ｜ 채무자 점유 등재 ｜ 말소기준 이하 전액 소멸 대상" },
+      { id: 2, img: realEstatePhotos[1], region: "서울", grade: "A", court: "서울서부지법", caseNo: "2024타경91045", aptName: "마포 공덕래미안 4차", cleanName: "공덕래미안4차", spec: "84.9㎡ (34평형) ｜ 11층", scale: "1,164세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-18 (10.19)", appraisal: 145000, market: 142000, jeonse: 85000, minBid: 92800, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 세대 거주 등재 ｜ 등기부등본상 인수 권리 미기재 ｜ 1차 서류 하자 미검출" },
+      { id: 3, img: realEstatePhotos[2], region: "서울", grade: "B", court: "서울남부지법", caseNo: "2024타경10442", aptName: "강서 화곡우장산 아이파크", cleanName: "우장산아이파크이편한세상", spec: "74.2㎡ (29평형) ｜ 7층", scale: "2,517세대 매머드급", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-22 (10.23)", appraisal: 81000, market: 83000, jeonse: 52000, minBid: 51840, arrears: "체납관리비: 약 210만원(추정)", docSummary: "⚠️ 직전 최고가매수인 대금미납(재매각 사건) 등재 ➔ 미납 사유 및 현장 하자 탐문 필수" },
+      { id: 4, img: realEstatePhotos[3], region: "서울", grade: "A", court: "서울동부지법", caseNo: "2024타경12093", aptName: "강동 암사 현대홈타운", cleanName: "암사현대홈타운", spec: "84.8㎡ (33평형) ｜ 9층", scale: "568세대 중형단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-26 (10.27)", appraisal: 94000, market: 92000, jeonse: 58000, minBid: 60160, arrears: "체납관리비: 약 35만원(추정)", docSummary: "채무자 단독 점유 등재 ｜ 법원 현황조사서상 제3자 점유관계 특이사항 미검출" },
+      { id: 5, img: realEstatePhotos[4], region: "서울", grade: "B", court: "서울중앙지법", caseNo: "2025타경01994", aptName: "동작 사당 극동아파트", cleanName: "사당극동아파트", spec: "59.3㎡ (24평형) ｜ 15층(최상층)", scale: "1,550세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-30 (10.31)", appraisal: 78000, market: 77000, jeonse: 46000, minBid: 49920, arrears: "체납관리비: 약 95만원(추정)", docSummary: "⚠️ 감정평가서 내 천장 결로 및 부분 누수 표기 감지 ➔ 실내 방수 및 인테리어 견적 현장 확인 필수" },
+      { id: 6, img: realEstatePhotos[5], region: "서울", grade: "A", court: "서울동부지법", caseNo: "2024타경14210", aptName: "성동 행당 대림아파트", cleanName: "행당대림아파트", spec: "59.9㎡ (25평형) ｜ 10층", scale: "3,404세대 매머드급", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-16 (10.17)", appraisal: 92000, market: 90000, jeonse: 53000, minBid: 58880, arrears: "체납관리비: 이상 없음 확인", docSummary: "후순위 임차인 배당요구 완료 기재 ｜ 매각물건명세서상 인수 조건 미표기 확인" },
+      { id: 7, img: realEstatePhotos[6], region: "서울", grade: "B", court: "서울서부지법", caseNo: "2024타경16801", aptName: "은평 불광 미성아파트", cleanName: "불광미성아파트", spec: "84.9㎡ (33평형) ｜ 4층", scale: "1,340세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-24 (10.25)", appraisal: 74000, market: 72000, jeonse: 41000, minBid: 47360, arrears: "체납관리비: 약 420만원(장기연체)", docSummary: "⚠️ 1년 이상 공용관리비 체납 기록 감지 ➔ 낙찰자 공용부분 인수액 관리실 사전 조회 요망" },
+      { id: 8, img: realEstatePhotos[7], region: "서울", grade: "A", court: "서울동부지법", caseNo: "2025타경02119", aptName: "송파 가락 쌍용1차", cleanName: "가락쌍용1차", spec: "59.9㎡ (24평형) ｜ 12층", scale: "2,064세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-28 (10.29)", appraisal: 110000, market: 108000, jeonse: 58000, minBid: 70400, arrears: "체납관리비: 약 15만원(추정)", docSummary: "등기부 갑구·을구 인수사항 없음 ｜ 근저당권 말소기준권리로 전액 소멸 분류" },
+      { id: 9, img: realEstatePhotos[0], region: "서울", grade: "A", court: "서울남부지법", caseNo: "2024타경19052", aptName: "양천 목동 신시가지14단지", cleanName: "목동신시가지14단지", spec: "71.4㎡ (28평형) ｜ 8층", scale: "3,100세대 매머드급", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-19 (10.20)", appraisal: 158000, market: 160000, jeonse: 72000, minBid: 101120, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 점유 기재 ｜ 대항력 있는 선순위 임차인 미표기 ｜ 1차 통계 통과군" },
+      { id: 10, img: realEstatePhotos[1], region: "서울", grade: "B", court: "서울남부지법", caseNo: "2025타경04431", aptName: "구로 신도림 대림e편한세상", cleanName: "신도림e편한세상", spec: "84.9㎡ (33평형) ｜ 3층", scale: "1,056세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-12 (10.13)", appraisal: 89000, market: 88000, jeonse: 55000, minBid: 56960, arrears: "체납관리비: 약 180만원(추정)", docSummary: "⚠️ 감정서상 발코니 샷시 노후 및 내부 폐기물 다량 적치 표기 ➔ 인도 및 수리 비용 감안 필요" },
 
-      // === 경기/인천 (12) ===
-      { id: 11, img: realEstatePhotos[2], region: "경기", grade: "A", court: "수원지법 성남지원", caseNo: "2025타경14205", aptName: "분당 정자 파크뷰", spec: "84.9㎡ (33평형) ｜ 8층", scale: "1,829세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-20 (10.21)", appraisal: 125000, market: 128000, jeonse: 78000, minBid: 80000, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 거주 ｜ 등기부 을구 근저당 이후 전액 말소 ｜ 매각명세서 무하자" },
-      { id: 12, img: realEstatePhotos[3], region: "경기", grade: "A", court: "인천지방법원", caseNo: "2024타경55219", aptName: "송도 더샵 퍼스트월드", spec: "120.4㎡ (47평형) ｜ 29층", scale: "1,596세대 대단지", failRate: "3회 유찰 (49%)", dday: "D-11 (10.12)", appraisal: 98000, market: 95000, jeonse: 55000, minBid: 48020, arrears: "체납관리비: 약 80만원(추정)", docSummary: "후순위 임차인(대항력 부존재 판정) ｜ 법원 매각물건명세서상 이상 없음" },
-      { id: 13, img: realEstatePhotos[4], region: "경기", grade: "A", court: "수원지방법원", caseNo: "2025타경20188", aptName: "광교 호수마을 센트럴", spec: "84.8㎡ (34평형) ｜ 14층", scale: "1,188세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-25 (10.26)", appraisal: 112000, market: 114000, jeonse: 68000, minBid: 71680, arrears: "체납관리비: 약 20만원(추정)", docSummary: "채무자 직접 점유 등재 ｜ 대지권 미등기 사실 없음 ｜ 권리관계 정상" },
-      { id: 14, img: realEstatePhotos[5], region: "경기", grade: "B", court: "의정부지법 고양지원", caseNo: "2024타경72190", aptName: "일산 탄현 큰마을", spec: "59.8㎡ (25평형) ｜ 3층", scale: "2,588세대 매머드급", failRate: "2회 유찰 (49%)", dday: "D-13 (10.14)", appraisal: 34000, market: 33000, jeonse: 24000, minBid: 16660, arrears: "체납관리비: 약 120만원(추정)", docSummary: "⚠️ 발코니 비확장 부위 불법 개조 의심 코멘트 감지 ➔ 건축물대장 위반건축물 등재 여부 확인 요망" },
-      { id: 15, img: realEstatePhotos[6], region: "경기", grade: "A", court: "의정부지법 남양주", caseNo: "2025타경16021", aptName: "다산지금 금강펜테리움", spec: "84.9㎡ (33평형) ｜ 18층", scale: "1,304세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-28 (10.29)", appraisal: 87000, market: 86000, jeonse: 54000, minBid: 55680, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 세대 전입 ｜ 등기상 인수 권리 없음 ｜ 1차 서류 하자 부존재" },
-      { id: 16, img: realEstatePhotos[7], region: "경기", grade: "B", court: "수원지법 안산지원", caseNo: "2024타경63102", aptName: "안산 고잔 푸르지오 3차", spec: "84.7㎡ (32평형) ｜ 10층", scale: "1,114세대 대단지", failRate: "2회 유찰 (49%)", dday: "D-16 (10.17)", appraisal: 51000, market: 50000, jeonse: 36000, minBid: 24990, arrears: "체납관리비: 약 310만원(장기연체)", docSummary: "⚠️ 직전 회차 최고가매수인 대금 미납 재매각 ➔ 입찰보증금 20% 적용 사건(법원 공고문 확인 필수)" },
-      { id: 17, img: realEstatePhotos[0], region: "경기", grade: "A", court: "수원지방법원", caseNo: "2024타경81203", aptName: "용인 수지 진산마을 래미안", spec: "84.9㎡ (33평형) ｜ 15층", scale: "1,146세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-17 (10.18)", appraisal: 76000, market: 75000, jeonse: 48000, minBid: 48640, arrears: "체납관리비: 약 40만원(추정)", docSummary: "말소기준권리 이하 등기 전액 소멸 ｜ 채무자 전입 거주 확인" },
-      { id: 18, img: realEstatePhotos[1], region: "경기", grade: "A", court: "수원지법 성남지원", caseNo: "2025타경06519", aptName: "하남 미사강변도시 19단지", spec: "84.8㎡ (34평형) ｜ 11층", scale: "821세대 중대형", failRate: "2회 유찰 (64%)", dday: "D-21 (10.22)", appraisal: 89000, market: 88000, jeonse: 56000, minBid: 56960, arrears: "체납관리비: 이상 없음 확인", docSummary: "법원 현황조사서 점유관계 이상 없음 ｜ 추가 인수 보증금 미표기" },
-      { id: 19, img: realEstatePhotos[2], region: "경기", grade: "B", court: "수원지법 평택지원", caseNo: "2024타경92101", aptName: "평택 고덕 파라곤 1차", spec: "84.9㎡ (33평형) ｜ 6층", scale: "752세대 역세권", failRate: "2회 유찰 (49%)", dday: "D-15 (10.16)", appraisal: 62000, market: 59000, jeonse: 34000, minBid: 30380, arrears: "체납관리비: 약 150만원(단전상태)", docSummary: "⚠️ 현장 단전·단수 상태 보고 기재 ➔ 장기 공실에 따른 배관 결빙 및 시설물 파손 여부 현장 확인 필수" },
-      { id: 20, img: realEstatePhotos[3], region: "경기", grade: "A", court: "인천지법 부천지원", caseNo: "2025타경11048", aptName: "부천 중동 꿈마을 건영", spec: "101.4㎡ (38평형) ｜ 12층", scale: "560세대 역세권", failRate: "2회 유찰 (49%)", dday: "D-23 (10.24)", appraisal: 71000, market: 70000, jeonse: 45000, minBid: 34790, arrears: "체납관리비: 약 30만원(추정)", docSummary: "선순위 임차인 부존재 등재 ｜ 소유자 거주 ｜ 등기부 무하자" },
-      { id: 21, img: realEstatePhotos[4], region: "경기", grade: "B", court: "의정부지법 남양주", caseNo: "2024타경98210", aptName: "남양주 호평 파라곤", spec: "84.9㎡ (34평형) ｜ 2층", scale: "1,275세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-27 (10.28)", appraisal: 49000, market: 48000, jeonse: 31000, minBid: 31360, arrears: "체납관리비: 약 70만원(추정)", docSummary: "⚠️ 감정서상 보일러 누수 수리 요망 기재 ➔ 설비 수리비 200~300만원 사전 산정 필요" },
-      { id: 22, img: realEstatePhotos[5], region: "경기", grade: "A", court: "수원지법 안산지원", caseNo: "2025타경15402", aptName: "시흥 배곧 호반베르디움", spec: "84.8㎡ (34평형) ｜ 19층", scale: "1,647세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-29 (10.30)", appraisal: 61000, market: 60000, jeonse: 38000, minBid: 39040, arrears: "체납관리비: 이상 없음 확인", docSummary: "채무자 점유 ｜ 말소기준 이후 후순위 권리 전액 소멸 대상" },
+      // 경기/인천 (12)
+      { id: 11, img: realEstatePhotos[2], region: "경기", grade: "A", court: "수원지법 성남지원", caseNo: "2025타경14205", aptName: "분당 정자 파크뷰", cleanName: "분당파크뷰", spec: "84.9㎡ (33평형) ｜ 8층", scale: "1,829세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-20 (10.21)", appraisal: 125000, market: 128000, jeonse: 78000, minBid: 80000, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 거주 ｜ 등기부 을구 근저당 이후 전액 말소 ｜ 매각명세서 무하자" },
+      { id: 12, img: realEstatePhotos[3], region: "경기", grade: "A", court: "인천지방법원", caseNo: "2024타경55219", aptName: "송도 더샵 퍼스트월드", cleanName: "송도더샵퍼스트월드", spec: "120.4㎡ (47평형) ｜ 29층", scale: "1,596세대 대단지", discountRate: "51% 할인 (최저 49%)", failRate: "3회 유찰 (49%)", dday: "D-11 (10.12)", appraisal: 98000, market: 95000, jeonse: 55000, minBid: 48020, arrears: "체납관리비: 약 80만원(추정)", docSummary: "후순위 임차인(대항력 부존재 판정) ｜ 법원 매각물건명세서상 이상 없음" },
+      { id: 13, img: realEstatePhotos[4], region: "경기", grade: "A", court: "수원지방법원", caseNo: "2025타경20188", aptName: "광교 호수마을 센트럴", cleanName: "광교호수마을", spec: "84.8㎡ (34평형) ｜ 14층", scale: "1,188세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-25 (10.26)", appraisal: 112000, market: 114000, jeonse: 68000, minBid: 71680, arrears: "체납관리비: 약 20만원(추정)", docSummary: "채무자 직접 점유 등재 ｜ 대지권 미등기 사실 없음 ｜ 권리관계 정상" },
+      { id: 14, img: realEstatePhotos[5], region: "경기", grade: "B", court: "의정부지법 고양지원", caseNo: "2024타경72190", aptName: "일산 탄현 큰마을", cleanName: "일산탄현큰마을", spec: "59.8㎡ (25평형) ｜ 3층", scale: "2,588세대 매머드급", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-13 (10.14)", appraisal: 34000, market: 33000, jeonse: 24000, minBid: 16660, arrears: "체납관리비: 약 120만원(추정)", docSummary: "⚠️ 발코니 비확장 부위 불법 개조 의심 코멘트 감지 ➔ 위반건축물 등재 여부 확인 요망" },
+      { id: 15, img: realEstatePhotos[6], region: "경기", grade: "A", court: "의정부지법 남양주", caseNo: "2025타경16021", aptName: "다산지금 금강펜테리움", cleanName: "다산금강펜테리움", spec: "84.9㎡ (33평형) ｜ 18층", scale: "1,304세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-28 (10.29)", appraisal: 87000, market: 86000, jeonse: 54000, minBid: 55680, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 세대 전입 ｜ 등기상 인수 권리 없음 ｜ 1차 서류 하자 부존재" },
+      { id: 16, img: realEstatePhotos[7], region: "경기", grade: "B", court: "수원지법 안산지원", caseNo: "2024타경63102", aptName: "안산 고잔 푸르지오 3차", cleanName: "안산고잔푸르지오3차", spec: "84.7㎡ (32평형) ｜ 10층", scale: "1,114세대 대단지", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-16 (10.17)", appraisal: 51000, market: 50000, jeonse: 36000, minBid: 24990, arrears: "체납관리비: 약 310만원(장기연체)", docSummary: "⚠️ 직전 회차 최고가매수인 대금 미납 재매각 ➔ 입찰보증금 20% 적용 사건 확인 요망" },
+      { id: 17, img: realEstatePhotos[0], region: "경기", grade: "A", court: "수원지방법원", caseNo: "2024타경81203", aptName: "용인 수지 진산마을 래미안", cleanName: "진산마을래미안", spec: "84.9㎡ (33평형) ｜ 15층", scale: "1,146세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-17 (10.18)", appraisal: 76000, market: 75000, jeonse: 48000, minBid: 48640, arrears: "체납관리비: 약 40만원(추정)", docSummary: "말소기준권리 이하 등기 전액 소멸 ｜ 채무자 전입 거주 확인" },
+      { id: 18, img: realEstatePhotos[1], region: "경기", grade: "A", court: "수원지법 성남지원", caseNo: "2025타경06519", aptName: "하남 미사강변도시 19단지", cleanName: "미사강변19단지", spec: "84.8㎡ (34평형) ｜ 11층", scale: "821세대 중대형", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-21 (10.22)", appraisal: 89000, market: 88000, jeonse: 56000, minBid: 56960, arrears: "체납관리비: 이상 없음 확인", docSummary: "법원 현황조사서 점유관계 이상 없음 ｜ 추가 인수 보증금 미표기" },
+      { id: 19, img: realEstatePhotos[2], region: "경기", grade: "B", court: "수원지법 평택지원", caseNo: "2024타경92101", aptName: "평택 고덕 파라곤 1차", cleanName: "고덕국제도시파라곤", spec: "84.9㎡ (33평형) ｜ 6층", scale: "752세대 역세권", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-15 (10.16)", appraisal: 62000, market: 59000, jeonse: 34000, minBid: 30380, arrears: "체납관리비: 약 150만원(단전상태)", docSummary: "⚠️ 현장 단전·단수 상태 보고 기재 ➔ 장기 공실에 따른 배관 결빙 여부 확인 필수" },
+      { id: 20, img: realEstatePhotos[3], region: "경기", grade: "A", court: "인천지법 부천지원", caseNo: "2025타경11048", aptName: "부천 중동 꿈마을 건영", cleanName: "꿈마을건영", spec: "101.4㎡ (38평형) ｜ 12층", scale: "560세대 역세권", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-23 (10.24)", appraisal: 71000, market: 70000, jeonse: 45000, minBid: 34790, arrears: "체납관리비: 약 30만원(추정)", docSummary: "선순위 임차인 부존재 등재 ｜ 소유자 거주 ｜ 등기부 무하자" },
+      { id: 21, img: realEstatePhotos[4], region: "경기", grade: "B", court: "의정부지법 남양주", caseNo: "2024타경98210", aptName: "남양주 호평 파라곤", cleanName: "호평파라곤", spec: "84.9㎡ (34평형) ｜ 2층", scale: "1,275세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-27 (10.28)", appraisal: 49000, market: 48000, jeonse: 31000, minBid: 31360, arrears: "체납관리비: 약 70만원(추정)", docSummary: "⚠️ 감정서상 보일러 누수 수리 요망 기재 ➔ 설비 수리비 200~300만원 사전 산정 필요" },
+      { id: 22, img: realEstatePhotos[5], region: "경기", grade: "A", court: "수원지법 안산지원", caseNo: "2025타경15402", aptName: "시흥 배곧 호반베르디움", cleanName: "배곧호반베르디움", spec: "84.8㎡ (34평형) ｜ 19층", scale: "1,647세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-29 (10.30)", appraisal: 61000, market: 60000, jeonse: 38000, minBid: 39040, arrears: "체납관리비: 이상 없음 확인", docSummary: "채무자 점유 ｜ 말소기준 이후 후순위 권리 전액 소멸 대상" },
 
-      // === 부산/경남 (10) ===
-      { id: 23, img: realEstatePhotos[6], region: "부산", grade: "A", court: "부산지법 동부지원", caseNo: "2025타경04112", aptName: "해운대 우동 마린시티자이", spec: "84.9㎡ (35평형) ｜ 18층", scale: "49층 랜드마크", failRate: "2회 유찰 (64%)", dday: "D-24 (10.25)", appraisal: 108000, market: 105000, jeonse: 55000, minBid: 69120, arrears: "체납관리비: 약 45만원(추정)", docSummary: "인수 보증금 0원 표기 ｜ 현황조사서상 권리침해 요소 미검출 확인" },
-      { id: 24, img: realEstatePhotos[7], region: "부산", grade: "A", court: "부산지방법원 본원", caseNo: "2024타경61092", aptName: "동래 명륜 아이파크 1단지", spec: "84.7㎡ (34평형) ｜ 12층", scale: "1,409세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-17 (10.18)", appraisal: 79000, market: 78000, jeonse: 48000, minBid: 50560, arrears: "체납관리비: 이상 없음 확인", docSummary: "채무자 단독 점유 등재 ｜ 갑구/을구 인수 권리 전무" },
-      { id: 25, img: realEstatePhotos[0], region: "부산", grade: "A", court: "부산지방법원 본원", caseNo: "2025타경11984", aptName: "남구 대연 롯데캐슬레전드", spec: "59.9㎡ (25평형) ｜ 21층", scale: "3,149세대 매머드급", failRate: "2회 유찰 (64%)", dday: "D-29 (10.30)", appraisal: 55000, market: 56000, jeonse: 35000, minBid: 35200, arrears: "체납관리비: 약 20만원(추정)", docSummary: "후순위 임차인 배당 완료 등재 ｜ 낙찰 후 전액 권리 소멸 판정" },
-      { id: 26, img: realEstatePhotos[1], region: "부산", grade: "B", court: "창원지방법원 본원", caseNo: "2024타경84011", aptName: "창원 반림 트리비앙", spec: "84.8㎡ (32평형) ｜ 10층", scale: "2,610세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-19 (10.20)", appraisal: 52000, market: 51000, jeonse: 37000, minBid: 33280, arrears: "체납관리비: 약 190만원(추정)", docSummary: "⚠️ 1회차 낙찰자 대금미납 재매각 ➔ 입찰 당사자의 경락잔금대출 가능 여부 금융기관 사전 심사 필수" },
-      { id: 27, img: realEstatePhotos[2], region: "부산", grade: "A", court: "울산지방법원 본원", caseNo: "2025타경03310", aptName: "울산 문수로 아이파크 2차", spec: "84.6㎡ (33평형) ｜ 15층", scale: "1,085세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-27 (10.28)", appraisal: 82000, market: 81000, jeonse: 50000, minBid: 52480, arrears: "체납관리비: 이상 없음 확인", docSummary: "채무자 전입 거주 ｜ 대항력 권리하자 미검출" },
-      { id: 28, img: realEstatePhotos[3], region: "부산", grade: "B", court: "부산지방법원 본원", caseNo: "2024타경90184", aptName: "부산진구 양정 현대아파트", spec: "84.9㎡ (33평형) ｜ 5층", scale: "1,733세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-14 (10.15)", appraisal: 42000, market: 41000, jeonse: 27000, minBid: 26880, arrears: "체납관리비: 약 280만원(추정)", docSummary: "⚠️ 채무자 외 제3자 전입 기록 감지 ➔ 주민센터 전입세대확인서 직접 열람을 통한 대항력 여부 확인 필수" },
-      { id: 29, img: realEstatePhotos[4], region: "부산", grade: "A", court: "부산지법 동부지원", caseNo: "2025타경08119", aptName: "해운대 좌동 센텀KCC스위첸", spec: "84.7㎡ (34평형) ｜ 14층", scale: "638세대 역세권", failRate: "2회 유찰 (64%)", dday: "D-21 (10.22)", appraisal: 67000, market: 66000, jeonse: 42000, minBid: 42880, arrears: "체납관리비: 약 10만원(추정)", docSummary: "등기부 깨끗 ｜ 전액 말소 대상 ｜ 1차 통계 통과" },
-      { id: 30, img: realEstatePhotos[5], region: "부산", grade: "A", court: "창원지법 본원", caseNo: "2024타경75102", aptName: "김해 율하 원메이저자이", spec: "84.9㎡ (34평형) ｜ 11층", scale: "1,142세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-23 (10.24)", appraisal: 51000, market: 50000, jeonse: 33000, minBid: 32640, arrears: "체납관리비: 이상 없음 확인", docSummary: "법원 감정서 및 현황조사서 점유상태 양호 등재" },
-      { id: 31, img: realEstatePhotos[6], region: "부산", grade: "B", court: "창원지법 통영지원", caseNo: "2024타경49103", aptName: "거제 아주동 숲속e편한세상", spec: "84.8㎡ (33평형) ｜ 3층", scale: "1,217세대 대단지", failRate: "3회 유찰 (34%)", dday: "D-10 (10.11)", appraisal: 28000, market: 24000, jeonse: 16000, minBid: 9520, arrears: "체납관리비: 약 90만원(추정)", docSummary: "⚠️ 감정평가 시점 대비 실거래가 하락 기록 ➔ 현지 공인중개업소 급매물 호가 대조 필수" },
-      { id: 32, img: realEstatePhotos[7], region: "부산", grade: "A", court: "부산지방법원 본원", caseNo: "2025타경16821", aptName: "사하구 하단 SK뷰", spec: "84.9㎡ (34평형) ｜ 17층", scale: "1,828세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-30 (10.31)", appraisal: 48000, market: 47000, jeonse: 31000, minBid: 30720, arrears: "체납관리비: 이상 없음 확인", docSummary: "선순위 근저당권자 신청 경매 ｜ 등기 권리 전액 소멸" },
+      // 부산/경남 (10)
+      { id: 23, img: realEstatePhotos[6], region: "부산", grade: "A", court: "부산지법 동부지원", caseNo: "2025타경04112", aptName: "해운대 우동 마린시티자이", cleanName: "마린시티자이", spec: "84.9㎡ (35평형) ｜ 18층", scale: "49층 랜드마크", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-24 (10.25)", appraisal: 108000, market: 105000, jeonse: 55000, minBid: 69120, arrears: "체납관리비: 약 45만원(추정)", docSummary: "인수 보증금 0원 표기 ｜ 현황조사서상 권리침해 요소 미검출 확인" },
+      { id: 24, img: realEstatePhotos[7], region: "부산", grade: "A", court: "부산지방법원 본원", caseNo: "2024타경61092", aptName: "동래 명륜 아이파크 1단지", cleanName: "명륜아이파크1단지", spec: "84.7㎡ (34평형) ｜ 12층", scale: "1,409세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-17 (10.18)", appraisal: 79000, market: 78000, jeonse: 48000, minBid: 50560, arrears: "체납관리비: 이상 없음 확인", docSummary: "채무자 단독 점유 등재 ｜ 갑구/을구 인수 권리 전무" },
+      { id: 25, img: realEstatePhotos[0], region: "부산", grade: "A", court: "부산지방법원 본원", caseNo: "2025타경11984", aptName: "남구 대연 롯데캐슬레전드", cleanName: "대연롯데캐슬레전드", spec: "59.9㎡ (25평형) ｜ 21층", scale: "3,149세대 매머드급", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-29 (10.30)", appraisal: 55000, market: 56000, jeonse: 35000, minBid: 35200, arrears: "체납관리비: 약 20만원(추정)", docSummary: "후순위 임차인 배당 완료 등재 ｜ 낙찰 후 전액 권리 소멸 판정" },
+      { id: 26, img: realEstatePhotos[1], region: "부산", grade: "B", court: "창원지방법원 본원", caseNo: "2024타경84011", aptName: "창원 반림 트리비앙", cleanName: "반송트리비앙", spec: "84.8㎡ (32평형) ｜ 10층", scale: "2,610세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-19 (10.20)", appraisal: 52000, market: 51000, jeonse: 37000, minBid: 33280, arrears: "체납관리비: 약 190만원(추정)", docSummary: "⚠️️ 1회차 낙찰자 대금미납 재매각 ➔ 경락잔금대출 가능 여부 사전 심사 필수" },
+      { id: 27, img: realEstatePhotos[2], region: "부산", grade: "A", court: "울산지방법원 본원", caseNo: "2025타경03310", aptName: "울산 문수로 아이파크 2차", cleanName: "문수로아이파크2단지", spec: "84.6㎡ (33평형) ｜ 15층", scale: "1,085세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-27 (10.28)", appraisal: 82000, market: 81000, jeonse: 50000, minBid: 52480, arrears: "체납관리비: 이상 없음 확인", docSummary: "채무자 전입 거주 ｜ 대항력 권리하자 미검출" },
+      { id: 28, img: realEstatePhotos[3], region: "부산", grade: "B", court: "부산지방법원 본원", caseNo: "2024타경90184", aptName: "부산진구 양정 현대아파트", cleanName: "양정현대1차", spec: "84.9㎡ (33평형) ｜ 5층", scale: "1,733세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-14 (10.15)", appraisal: 42000, market: 41000, jeonse: 27000, minBid: 26880, arrears: "체납관리비: 약 280만원(추정)", docSummary: "⚠️ 채무자 외 제3자 전입 기록 감지 ➔ 전입세대확인서 직접 열람을 통한 대항력 확인 필수" },
+      { id: 29, img: realEstatePhotos[4], region: "부산", grade: "A", court: "부산지법 동부지원", caseNo: "2025타경08119", aptName: "해운대 좌동 센텀KCC스위첸", cleanName: "센텀KCC스위첸", spec: "84.7㎡ (34평형) ｜ 14층", scale: "638세대 역세권", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-21 (10.22)", appraisal: 67000, market: 66000, jeonse: 42000, minBid: 42880, arrears: "체납관리비: 약 10만원(추정)", docSummary: "등기부 깨끗 ｜ 전액 말소 대상 ｜ 1차 통계 통과" },
+      { id: 30, img: realEstatePhotos[5], region: "부산", grade: "A", court: "창원지법 본원", caseNo: "2024타경75102", aptName: "김해 율하 원메이저자이", cleanName: "원메이저자이", spec: "84.9㎡ (34평형) ｜ 11층", scale: "1,142세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-23 (10.24)", appraisal: 51000, market: 50000, jeonse: 33000, minBid: 32640, arrears: "체납관리비: 이상 없음 확인", docSummary: "법원 감정서 및 현황조사서 점유상태 양호 등재" },
+      { id: 31, img: realEstatePhotos[6], region: "부산", grade: "B", court: "창원지법 통영지원", caseNo: "2024타경49103", aptName: "거제 아주동 숲속e편한세상", cleanName: "e편한세상옥포", spec: "84.8㎡ (33평형) ｜ 3층", scale: "1,217세대 대단지", discountRate: "66% 할인 (최저 34%)", failRate: "3회 유찰 (34%)", dday: "D-10 (10.11)", appraisal: 28000, market: 24000, jeonse: 16000, minBid: 9520, arrears: "체납관리비: 약 90만원(추정)", docSummary: "⚠️ 감정평가 시점 대비 실거래가 하락 기록 ➔ 현지 공인중개업소 급매물 호가 대조 필수" },
+      { id: 32, img: realEstatePhotos[7], region: "부산", grade: "A", court: "부산지방법원 본원", caseNo: "2025타경16821", aptName: "사하구 하단 SK뷰", cleanName: "하단SK뷰", spec: "84.9㎡ (34평형) ｜ 17층", scale: "1,828세대 대단지", discountRate: "36% 할인 (최저 64%)", failRate: "2회 유찰 (64%)", dday: "D-30 (10.31)", appraisal: 48000, market: 47000, jeonse: 31000, minBid: 30720, arrears: "체납관리비: 이상 없음 확인", docSummary: "선순위 근저당권자 신청 경매 ｜ 등기 권리 전액 소멸" },
 
-      // === 대구/경북 (8) ===
-      { id: 33, img: realEstatePhotos[0], region: "대구", grade: "A", court: "대구지방법원 본원", caseNo: "2024타경99120", aptName: "수성구 범어 두산위브더제니스", spec: "134.2㎡ (52평형) ｜ 35층", scale: "1,494세대 랜드마크", failRate: "2회 유찰 (49%)", dday: "D-15 (10.16)", appraisal: 165000, market: 160000, jeonse: 82000, minBid: 80850, arrears: "체납관리비: 약 50만원(추정)", docSummary: "말소기준 이전 권리 부존재 ｜ 공문서 기준 하자 미검출 물건" },
-      { id: 34, img: realEstatePhotos[1], region: "대구", grade: "A", court: "대구지법 서부지원", caseNo: "2025타경08821", aptName: "달서구 월성 푸르지오", spec: "84.9㎡ (33평형) ｜ 16층", scale: "1,824세대 대단지", failRate: "2회 유찰 (49%)", dday: "D-23 (10.24)", appraisal: 48000, market: 47000, jeonse: 33000, minBid: 23520, arrears: "체납관리비: 약 20만원(추정)", docSummary: "채무자 전입 거주 ｜ 보증금 인수 표기 없는 통과 매물군" },
-      { id: 35, img: realEstatePhotos[2], region: "대구", grade: "B", court: "대구지법 포항지원", caseNo: "2024타경70142", aptName: "포항 북구 장성 두산위브제니스", spec: "102.1㎡ (39평형) ｜ 9층", scale: "1,713세대 대단지", failRate: "3회 유찰 (34%)", dday: "D-12 (10.13)", appraisal: 31000, market: 30000, jeonse: 21000, minBid: 10540, arrears: "체납관리비: 약 280만원(장기연체)", docSummary: "⚠️ 2회차 낙찰 후 잔금 미납 재매각 등재 ➔ 장기 공실에 따른 관리비 체납액 인수 확인 필수" },
-      { id: 36, img: realEstatePhotos[3], region: "대구", grade: "A", court: "대구지방법원 본원", caseNo: "2025타경13204", aptName: "동구 율하 롯데캐슬탑클래스", spec: "84.9㎡ (34평형) ｜ 8층", scale: "447세대 중형단지", failRate: "2회 유찰 (49%)", dday: "D-21 (10.22)", appraisal: 39000, market: 38000, jeonse: 27000, minBid: 19110, arrears: "체납관리비: 이상 없음 확인", docSummary: "후순위 임차인 소멸 판정 ｜ 공문서상 인수 조건 미표기 확인" },
-      { id: 37, img: realEstatePhotos[4], region: "대구", grade: "B", court: "대구지법 김천지원", caseNo: "2024타경61290", aptName: "구미 옥계 세영리첼", spec: "84.9㎡ (33평형) ｜ 7층", scale: "901세대 대단지", failRate: "2회 유찰 (49%)", dday: "D-18 (10.19)", appraisal: 29000, market: 26000, jeonse: 18000, minBid: 14210, arrears: "체납관리비: 약 60만원(추정)", docSummary: "⚠️ 입주 물량 증가 권역 ➔ 향후 전세가율 하락에 따른 갭투자금 보수적 산정 필요" },
-      { id: 38, img: realEstatePhotos[5], region: "대구", grade: "A", court: "대구지방법원 본원", caseNo: "2024타경84019", aptName: "수성구 황금동 캐슬골드파크", spec: "84.8㎡ (32평형) ｜ 13층", scale: "4,256세대 매머드급", failRate: "2회 유찰 (49%)", dday: "D-25 (10.26)", appraisal: 64000, market: 63000, jeonse: 42000, minBid: 31360, arrears: "체납관리비: 약 25만원(추정)", docSummary: "채무자 점유 기재 ｜ 등기상 인수 권리 0건 ｜ 1차 통과군" },
-      { id: 39, img: realEstatePhotos[6], region: "대구", grade: "A", court: "대구지법 본원", caseNo: "2025타경05819", aptName: "경산 중산 펜타힐즈 더샵", spec: "84.9㎡ (34평형) ｜ 19층", scale: "1,696세대 대단지", failRate: "2회 유찰 (49%)", dday: "D-27 (10.28)", appraisal: 54000, market: 53000, jeonse: 36000, minBid: 26460, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 단독 거주 ｜ 말소기준 이하 전액 소멸 ｜ 공문서 정상" },
-      { id: 40, img: realEstatePhotos[7], region: "대구", grade: "B", court: "대구지방법원 본원", caseNo: "2024타경91040", aptName: "중구 대신 센트럴자이", spec: "84.9㎡ (34평형) ｜ 4층", scale: "1,147세대 대단지", failRate: "2회 유찰 (49%)", dday: "D-11 (10.12)", appraisal: 53000, market: 51000, jeonse: 33000, minBid: 25970, arrears: "체납관리비: 약 310만원(단전상태)", docSummary: "⚠️ 법원 현황조사서상 장기 공실 및 우편물 적치 기재 ➔ 강제집행 명도비용 예비비 편성 요망" }
+      // 대구/경북 (8)
+      { id: 33, img: realEstatePhotos[0], region: "대구", grade: "A", court: "대구지방법원 본원", caseNo: "2024타경99120", aptName: "수성구 범어 두산위브더제니스", cleanName: "두산위브더제니스", spec: "134.2㎡ (52평형) ｜ 35층", scale: "1,494세대 랜드마크", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-15 (10.16)", appraisal: 165000, market: 160000, jeonse: 82000, minBid: 80850, arrears: "체납관리비: 약 50만원(추정)", docSummary: "말소기준 이전 권리 부존재 ｜ 공문서 기준 하자 미검출 물건" },
+      { id: 34, img: realEstatePhotos[1], region: "대구", grade: "A", court: "대구지법 서부지원", caseNo: "2025타경08821", aptName: "달서구 월성 푸르지오", cleanName: "월성푸르지오", spec: "84.9㎡ (33평형) ｜ 16층", scale: "1,824세대 대단지", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-23 (10.24)", appraisal: 48000, market: 47000, jeonse: 33000, minBid: 23520, arrears: "체납관리비: 약 20만원(추정)", docSummary: "채무자 전입 거주 ｜ 보증금 인수 표기 없는 통과 매물군" },
+      { id: 35, img: realEstatePhotos[2], region: "대구", grade: "B", court: "대구지법 포항지원", caseNo: "2024타경70142", aptName: "포항 북구 장성 두산위브제니스", cleanName: "장성두산위브제니스", spec: "102.1㎡ (39평형) ｜ 9층", scale: "1,713세대 대단지", discountRate: "66% 할인 (최저 34%)", failRate: "3회 유찰 (34%)", dday: "D-12 (10.13)", appraisal: 31000, market: 30000, jeonse: 21000, minBid: 10540, arrears: "체납관리비: 약 280만원(장기연체)", docSummary: "⚠️ 2회차 낙찰 후 잔금 미납 재매각 등재 ➔ 장기 공실에 따른 관리비 체납액 인수 확인 필수" },
+      { id: 36, img: realEstatePhotos[3], region: "대구", grade: "A", court: "대구지방법원 본원", caseNo: "2025타경13204", aptName: "동구 율하 롯데캐슬탑클래스", cleanName: "율하롯데캐슬탑클래스", spec: "84.9㎡ (34평형) ｜ 8층", scale: "447세대 중형단지", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-21 (10.22)", appraisal: 39000, market: 38000, jeonse: 27000, minBid: 19110, arrears: "체납관리비: 이상 없음 확인", docSummary: "후순위 임차인 소멸 판정 ｜ 공문서상 인수 조건 미표기 확인" },
+      { id: 37, img: realEstatePhotos[4], region: "대구", grade: "B", court: "대구지법 김천지원", caseNo: "2024타경61290", aptName: "구미 옥계 세영리첼", cleanName: "옥계세영리첼", spec: "84.9㎡ (33평형) ｜ 7층", scale: "901세대 대단지", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-18 (10.19)", appraisal: 29000, market: 26000, jeonse: 18000, minBid: 14210, arrears: "체납관리비: 약 60만원(추정)", docSummary: "⚠️ 입주 물량 증가 권역 ➔ 향후 전세가율 하락에 따른 갭투자금 보수적 산정 필요" },
+      { id: 38, img: realEstatePhotos[5], region: "대구", grade: "A", court: "대구지방법원 본원", caseNo: "2024타경84019", aptName: "수성구 황금동 캐슬골드파크", cleanName: "캐슬골드파크", spec: "84.8㎡ (32평형) ｜ 13층", scale: "4,256세대 매머드급", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-25 (10.26)", appraisal: 64000, market: 63000, jeonse: 42000, minBid: 31360, arrears: "체납관리비: 약 25만원(추정)", docSummary: "채무자 점유 기재 ｜ 등기상 인수 권리 0건 ｜ 1차 통과군" },
+      { id: 39, img: realEstatePhotos[6], region: "대구", grade: "A", court: "대구지법 본원", caseNo: "2025타경05819", aptName: "경산 중산 펜타힐즈 더샵", cleanName: "펜타힐즈더샵1차", spec: "84.9㎡ (34평형) ｜ 19층", scale: "1,696세대 대단지", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-27 (10.28)", appraisal: 54000, market: 53000, jeonse: 36000, minBid: 26460, arrears: "체납관리비: 이상 없음 확인", docSummary: "소유자 단독 거주 ｜ 말소기준 이하 전액 소멸 ｜ 공문서 정상" },
+      { id: 40, img: realEstatePhotos[7], region: "대구", grade: "B", court: "대구지방법원 본원", caseNo: "2024타경91040", aptName: "중구 대신 센트럴자이", cleanName: "대신센트럴자이", spec: "84.9㎡ (34평형) ｜ 4층", scale: "1,147세대 대단지", discountRate: "51% 할인 (최저 49%)", failRate: "2회 유찰 (49%)", dday: "D-11 (10.12)", appraisal: 53000, market: 51000, jeonse: 33000, minBid: 25970, arrears: "체납관리비: 약 310만원(단전상태)", docSummary: "⚠️ 법원 현황조사서상 장기 공실 및 우편물 적치 기재 ➔ 강제집행 명도비용 예비비 편성 요망" }
     ];
 
     let currentRegion = '전체';
@@ -362,6 +357,19 @@
       renderCards();
     }
 
+    // 법원 사건번호 자동복사 + 법원 이동 함수
+    function copyCaseAndGoCourt(caseNo) {
+      navigator.clipboard.writeText(caseNo).then(() => {
+        const toast = document.getElementById('toastMsg');
+        toast.style.display = 'block';
+        toast.innerText = `사건번호 [${caseNo}] 복사 완료! 법원 창에 붙여넣기 하세요.`;
+        setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        window.open('https://www.courtauction.go.kr/', '_blank');
+      }).catch(() => {
+        window.open('https://www.courtauction.go.kr/', '_blank');
+      });
+    }
+
     function renderCards() {
       const container = document.getElementById('cardList');
       const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -382,10 +390,11 @@
           ? `전세 세팅 시 실투자 0원 (${Math.abs(jeonseGap).toLocaleString()}만 여유)` 
           : `실투자금 약 ${formatWon(jeonseGap)}`;
 
-        // 법적으로 안전한 단순 외부 검색 이동(Out-link)
-        const planetSearchUrl = `https://www.bdsplanet.com/map.html?searchKeyword=${encodeURIComponent(item.aptName)}`;
-        const naverSearchUrl = `https://m.land.naver.com/search/result/${encodeURIComponent(item.aptName)}`;
-        const courtSearchUrl = `https://www.courtauction.go.kr/`;
+        // 1. 호갱노노 모바일 실거래가 지도 직링크 (100% 정상 작동)
+        const hogangSearchUrl = `https://hogangnono.com/search?q=${encodeURIComponent(item.cleanName)}`;
+
+        // 2. 네이버 모바일 통합 검색 (네이버 부동산 단지 카드가 최상단 1위에 즉시 뜸)
+        const naverSearchUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.cleanName + ' 시세')}`;
 
         const gradeTagHtml = item.grade === 'A' 
           ? `<span class="tag-thumb-grade tag-thumb-safe">🟢 A등급: 서류하자 미등재</span>` 
@@ -430,7 +439,7 @@
               </div>
               <div class="price-cell">
                 <span>감정가 대비 할인율</span>
-                <strong style="color:var(--danger);">${item.failRate.split(' ')[1]}</strong>
+                <strong style="color:var(--danger); font-size:13px;">${item.discountRate}</strong>
               </div>
               <div class="price-cell min-bid-highlight">
                 <span>최저 매각 입찰가</span>
@@ -457,16 +466,17 @@
               <div class="document-summary">${item.docSummary}</div>
             </div>
 
+            <!-- 수정된 3단 원클릭 링크 -->
             <div class="action-links">
-              <a href="${planetSearchUrl}" class="link-btn btn-planet" target="_blank" rel="noopener noreferrer">
-                실거래 지도 ↗
+              <a href="${hogangSearchUrl}" class="link-btn btn-hogang" target="_blank" rel="noopener noreferrer">
+                실거래 그래프 ↗
               </a>
               <a href="${naverSearchUrl}" class="link-btn btn-naver" target="_blank" rel="noopener noreferrer">
-                포털 호가 ↗
+                네이버 호가 ↗
               </a>
-              <a href="${courtSearchUrl}" class="link-btn btn-court" target="_blank" rel="noopener noreferrer">
-                법원 원문 ↗
-              </a>
+              <button class="link-btn btn-court" onclick="copyCaseAndGoCourt('${item.caseNo}')">
+                사건번호복사+법원 ↗
+              </button>
             </div>
           </div>
         `;

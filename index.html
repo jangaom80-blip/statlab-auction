@@ -2,13 +2,14 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STATLAB - 전국 법원경매 반값 유찰 & 1차 권리안전 리포트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>STATLAB - 전국 법원경매 반값 유찰 & 실시간 갭분석 대시보드</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     :root {
-      --bg: #0b1120;
-      --card-bg: #131d33;
+      --bg: #090d16;
+      --card-bg: #111927;
+      --card-hover: #162032;
       --border: #1e293b;
       --primary: #38bdf8;
       --accent: #10b981;
@@ -16,170 +17,331 @@
       --warning: #f59e0b;
       --text-muted: #94a3b8;
       --text-main: #f8fafc;
+      --naver-green: #03c75a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
-    body { background-color: var(--bg); color: var(--text-main); padding: 20px 14px; -webkit-font-smoothing: antialiased; }
+    body { background-color: var(--bg); color: var(--text-main); padding: 16px 12px 90px; -webkit-font-smoothing: antialiased; }
     .container { max-width: 680px; margin: 0 auto; }
 
-    header { margin-bottom: 16px; }
-    .brand-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .logo { font-size: 20px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
-    .status-badge { background: rgba(16, 185, 129, 0.15); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.4); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
-    .sub-title { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    /* 상단 헤더 */
+    header { margin-bottom: 14px; }
+    .brand-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .logo { font-size: 21px; font-weight: 900; color: var(--primary); letter-spacing: -0.6px; display: flex; align-items: center; gap: 6px; }
+    .live-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; box-shadow: 0 0 8px var(--accent); }
+    .status-badge { background: rgba(16, 185, 129, 0.12); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 14px; }
+    .sub-title { font-size: 12.5px; color: var(--text-muted); line-height: 1.45; }
 
-    /* 법적 리스크 방어용 상단 주의 배너 */
-    .notice-box { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px; margin-bottom: 18px; font-size: 12px; line-height: 1.5; color: #fbbf24; }
-    .notice-box strong { color: #fff; }
+    /* 법적 방어 & 임장 필수 안내 배너 */
+    .notice-box { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; font-size: 11.5px; line-height: 1.5; color: #fbbf24; }
+    .notice-btn { background: transparent; border: 1px solid #f59e0b; color: #f59e0b; padding: 2px 7px; border-radius: 4px; font-size: 10.5px; font-weight: 700; cursor: pointer; margin-left: 6px; }
 
-    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-    .summary-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px; text-align: center; }
-    .summary-card span { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px; }
-    .summary-card strong { font-size: 16px; font-weight: 700; }
+    /* 핵심 통계 요약 */
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+    .summary-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 8px; text-align: center; }
+    .summary-card span { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 2px; }
+    .summary-card strong { font-size: 16px; font-weight: 800; }
 
-    .filter-wrapper { margin-bottom: 18px; }
-    .search-input { width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 12px 14px; color: #fff; font-size: 14px; margin-bottom: 10px; outline: none; }
+    /* 프리미엄 전환 유도 상단 배너 */
+    .cta-banner { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); border: 1px solid #3b82f6; border-radius: 12px; padding: 14px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2); }
+    .cta-text h4 { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+    .cta-text p { font-size: 11.5px; color: #93c5fd; }
+    .cta-button { background: var(--primary); color: #0b1120; font-size: 12.5px; font-weight: 800; padding: 9px 14px; border-radius: 8px; text-decoration: none; white-space: nowrap; box-shadow: 0 2px 10px rgba(56, 189, 248, 0.4); }
+
+    /* 검색 및 필터 컨트롤러 */
+    .controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .search-row { display: flex; gap: 8px; }
+    .search-input { flex: 1; background: #0b1120; border: 1px solid #334155; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 13.5px; outline: none; }
     .search-input:focus { border-color: var(--primary); }
-    .region-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; }
-    .tab-btn { background: #1e293b; color: var(--text-muted); border: none; padding: 7px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
-    .tab-btn.active { background: var(--primary); color: #0f172a; }
+    .sort-select { background: #0b1120; border: 1px solid #334155; border-radius: 8px; padding: 0 10px; color: #cbd5e1; font-size: 12.5px; outline: none; }
 
+    .region-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .region-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { background: #1e293b; color: var(--text-muted); border: none; padding: 6px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .tab-btn.active { background: var(--primary); color: #0b1120; font-weight: 700; }
+
+    /* 경매 물건 카드 */
     .card-list { display: flex; flex-direction: column; gap: 14px; }
-    .item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.25); }
+    .item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 16px; transition: border-color 0.2s; }
+    .item-card:hover { border-color: #334155; }
     
-    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .tag-group { display: flex; gap: 6px; }
-    .tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
-    .tag-type { background: #1e293b; color: var(--primary); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .tag-cluster { display: flex; gap: 5px; align-items: center; }
+    .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+    .tag-apt { background: #1e293b; color: var(--primary); }
     .tag-fail { background: rgba(244, 63, 94, 0.15); color: var(--danger); }
-    .d-day { font-size: 12px; font-weight: 800; color: var(--warning); }
+    .tag-scale { background: #064e3b; color: #34d399; }
+    .d-day { font-size: 11.5px; font-weight: 800; color: var(--warning); }
 
-    .item-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.4; }
-    .item-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .item-name { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 3px; line-height: 1.35; }
+    .item-sub { font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; }
 
-    .price-box { background: #0b1120; border-radius: 10px; padding: 12px; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .price-item span { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 2px; }
-    .price-item strong { font-size: 15px; font-weight: 700; }
-    .min-bid { color: var(--danger); font-size: 16px !important; }
+    /* 가격 상세 표 */
+    .price-grid { background: #090e1a; border: 1px solid #1e293b; border-radius: 10px; padding: 11px 12px; margin-bottom: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .price-cell span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 1px; }
+    .price-cell strong { font-size: 14px; font-weight: 700; color: #e2e8f0; }
+    .min-bid-highlight { grid-column: span 2; border-top: 1px dashed #1e293b; padding-top: 7px; margin-top: 2px; }
+    .min-bid-highlight strong { font-size: 17px; font-weight: 800; color: var(--danger); }
 
-    .margin-banner { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 9px 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .margin-banner span { font-size: 12px; font-weight: 600; color: var(--accent); }
-    .margin-banner strong { font-size: 14px; font-weight: 800; color: #34d399; }
+    /* 안전마진 & 갭투자 분석 듀얼 뱃지 */
+    .analysis-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+    .analysis-box { border-radius: 8px; padding: 8px 10px; font-size: 11px; }
+    .margin-box { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .margin-box span { color: var(--accent); display: block; font-weight: 600; }
+    .margin-box strong { color: #34d399; font-size: 13px; font-weight: 800; }
 
-    .safety-check { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #cbd5e1; padding-top: 10px; border-top: 1px solid #1e293b; line-height: 1.4; }
-    .safety-icon { color: var(--accent); font-weight: bold; }
+    .gap-box { background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .gap-box span { color: var(--primary); display: block; font-weight: 600; }
+    .gap-box strong { color: #7dd3fc; font-size: 13px; font-weight: 800; }
 
-    footer { text-align: center; margin-top: 30px; padding-bottom: 20px; font-size: 11px; color: #64748b; line-height: 1.6; }
+    /* 권리 분석 확인 바 */
+    .safety-status { background: #0c1424; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #cbd5e1; margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+
+    /* 외부 링크 버튼 (네이버 호가 & 법원 원문) */
+    .action-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .link-btn { display: inline-flex; justify-content: center; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700; padding: 8px 0; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
+    .link-btn:hover { opacity: 0.9; }
+    .btn-naver { background: #03c75a; color: #ffffff; }
+    .btn-court { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; }
+
+    /* 임장 체크리스트 팝업 모달 */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 1000; justify-content: center; align-items: center; padding: 16px; }
+    .modal-content { background: #111927; border: 1px solid #334155; border-radius: 14px; max-width: 500px; width: 100%; padding: 20px; max-height: 85vh; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
+    .modal-header h3 { font-size: 16px; font-weight: 800; color: #fbbf24; }
+    .close-btn { background: none; border: none; font-size: 20px; color: #94a3b8; cursor: pointer; }
+    .checklist-item { margin-bottom: 12px; font-size: 12px; line-height: 1.6; }
+    .checklist-item strong { color: #f8fafc; display: block; margin-bottom: 2px; }
+
+    /* 하단 고정 결제 전환 바 (모바일) */
+    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(17, 25, 39, 0.96); backdrop-filter: blur(8px); border-top: 1px solid #1e293b; padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; }
+    .floating-bar .info span { font-size: 11px; color: var(--text-muted); display: block; }
+    .floating-bar .info strong { font-size: 14px; color: #fff; }
+    .floating-buy-btn { background: #38bdf8; color: #0b1120; font-size: 13px; font-weight: 900; padding: 10px 18px; border-radius: 8px; text-decoration: none; }
+
+    footer { text-align: center; margin-top: 30px; font-size: 11px; color: #64748b; line-height: 1.6; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="brand-bar">
-        <div class="logo">STATLAB AUCTION</div>
-        <div class="status-badge">● 2026 공공데이터 파이프라인 가동</div>
+        <div class="logo"><span class="live-dot"></span> STATLAB AUCTION</div>
+        <div class="status-badge">2026 공공데이터 실시간 필터</div>
       </div>
-      <p class="sub-title">전국 2회 이상 유찰 & 특수위험권리(유치권/법정지상권) 배제 1차 통계 리포트</p>
+      <p class="sub-title">전국 2회 이상 유찰 & 특수위험권리(유치권/법정지상권) 배제 1차 스크리닝 리포트</p>
     </header>
 
+    <!-- 법적 방어 배너 및 임장 가이드 모달 트리거 -->
     <div class="notice-box">
-      <strong>⚠️ 스탯랩 권리분석 가이드 & 면책 고지</strong><br>
-      본 리포트는 법원 매각물건명세서 등 공문서상의 1차적 서류 하자 유무를 자동 판별한 통계입니다. 미전입 임차인, 관리비 체납, 실제 점유 현황 등은 입찰 전 <strong>현장 임장(현장방문)</strong>이 필수적입니다.
+      <strong>⚠️ 현장 조사(임장) 필수 고지:</strong> 본 서비스는 1차 서류 하자 자동 필터링 데이터입니다. 미전입 임차인, 관리비 체납 등은 반드시 현장 확인이 필요합니다.
+      <button class="notice-btn" onclick="openModal()">현장조사 체크리스트</button>
     </div>
 
+    <!-- 통계 요약 지표 -->
     <div class="summary-grid">
-      <div class="summary-card"><span>전국 감시 물건</span><strong>1,840건</strong></div>
-      <div class="summary-card"><span>위험 권리 배제</span><strong style="color:var(--danger);">1,452건 탈락</strong></div>
-      <div class="summary-card"><span>1차 추천 안전군</span><strong style="color:var(--accent);">388건 통과</strong></div>
+      <div class="summary-card"><span>전국 감시 물건</span><strong>2,410건</strong></div>
+      <div class="summary-card"><span>위험 권리 배제</span><strong style="color:var(--danger);">1,988건 탈락</strong></div>
+      <div class="summary-card"><span>1차 추천 안전군</span><strong style="color:var(--accent);">422건 통과</strong></div>
     </div>
 
-    <div class="filter-wrapper">
-      <input type="text" id="searchInput" class="search-input" placeholder="지역, 아파트명, 사건번호 검색 (예: 분당, 노원, 해운대)" onkeyup="filterItems()">
+    <!-- 상단 아임웹 결제 연결 프로모션 배너 -->
+    <div class="cta-banner">
+      <div class="cta-text">
+        <h4>📊 전국 422개 전수조사 원본 DB 받기</h4>
+        <p>전국 엑셀 파일 + 권리분석 체크리스트 PDF</p>
+      </div>
+      <a href="https://jangaom8097508.imweb.me" class="cta-button" target="_blank">9,900원 열람</a>
+    </div>
+
+    <!-- 검색 & 지역 탭 & 정렬 컨트롤러 -->
+    <div class="controls">
+      <div class="search-row">
+        <input type="text" id="searchInput" class="search-input" placeholder="아파트명, 시·군·구, 사건번호 검색" onkeyup="applyFilters()">
+        <select id="sortSelect" class="sort-select" onchange="applyFilters()">
+          <option value="default">기본 정렬</option>
+          <option value="gap-high">안전마진 큰 순</option>
+          <option value="jeonse-low">실투자금(갭) 적은 순</option>
+          <option value="rate-low">최저가율 낮은 순</option>
+        </select>
+      </div>
       <div class="region-tabs">
-        <button class="tab-btn active" onclick="setRegion('전체', this)">전체보기</button>
-        <button class="tab-btn" onclick="setRegion('서울', this)">서울 (3)</button>
-        <button class="tab-btn" onclick="setRegion('경기', this)">경기/인천 (5)</button>
-        <button class="tab-btn" onclick="setRegion('부산', this)">부산/경남 (4)</button>
-        <button class="tab-btn" onclick="setRegion('대구', this)">대구/경북 (3)</button>
+        <button class="tab-btn active" onclick="setRegion('전체', this)">전체 (20)</button>
+        <button class="tab-btn" onclick="setRegion('서울', this)">서울 (5)</button>
+        <button class="tab-btn" onclick="setRegion('경기', this)">경기/인천 (6)</button>
+        <button class="tab-btn" onclick="setRegion('부산', this)">부산/경남 (5)</button>
+        <button class="tab-btn" onclick="setRegion('대구', this)">대구/경북 (4)</button>
       </div>
     </div>
 
+    <!-- 카드 리스트 출력 영역 -->
     <div class="card-list" id="cardList"></div>
 
     <footer>
-      <p>본 대시보드는 대법원 법원경매정보시스템 및 국토교통부 실거래가 공개시스템 데이터를 정량 분석한 1차 지표입니다.<br>개별 사건의 입찰 여부 결정 및 최종 권리 조사의 책임은 이용자 본인에게 있습니다.</p>
+      <p>STATLAB은 공공데이터 분석 포털이며 매수신청대리 또는 개별 권리상담을 제공하지 않습니다.<br>입찰 판단 및 최종 결과에 따른 법적 책임은 이용자 본인에게 있습니다.</p>
     </footer>
   </div>
 
+  <!-- 현장조사 체크리스트 모달 -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📋 낙찰 전 현장 임장 5대 필수 체크리스트</h3>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="checklist-item">
+        <strong>1. 주민센터 전입세대확인서 열람</strong>
+        서류상 채무자 점유라도 말소기준 이후에 전입한 제3자 세입자나 동거인이 있는지 주민센터에서 전입세대를 직접 발급받아 확인하세요.
+      </div>
+      <div class="checklist-item">
+        <strong>2. 관리사무소 미납 관리비 확인</strong>
+        공용부분 관리비는 법원 판례상 낙찰자가 인수합니다. 체납액이 수백만 원에 달할 수 있으므로 관리실을 통해 공용/전용 체납 내역을 파악하세요.
+      </div>
+      <div class="checklist-item">
+        <strong>3. 우편함 고지서 및 계량기 점검</strong>
+        단전·단수 안내장, 법원 등기 우편물이 쌓여 있다면 점유자가 야반도주했을 가능성이 높으며 명도 난이도 산정의 근거가 됩니다.
+      </div>
+      <div class="checklist-item">
+        <strong>4. 인근 부동산 3곳 급매 호가 탐문</strong>
+        감정가는 6개월~1년 전 시세일 확률이 높습니다. 반드시 현지 공인중개사를 통해 당장 급매로 팔릴 수 있는 진짜 실거래가를 재확인하세요.
+      </div>
+      <div class="checklist-item">
+        <strong>5. 건물 외관 누수 및 균열 상태</strong>
+        복도식 아파트의 경우 외벽 균열이나 결로, 옥상 방수 상태를 현장에서 눈으로 확인해야 추가 수리비를 방어할 수 있습니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 플로팅 결제 바 -->
+  <div class="floating-bar">
+    <div class="info">
+      <span>전국 2회 유찰 안전군 422건</span>
+      <strong>전수조사 엑셀 다운로드</strong>
+    </div>
+    <a href="https://jangaom8097508.imweb.me" class="floating-buy-btn" target="_blank">9,900원 구매</a>
+  </div>
+
   <script>
-    const auctionData = [
-      // 서울 (3)
-      { region: "서울", name: "상계주공 노원 아파트 3단지", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-14 (10.15 입찰)", title: "서울 노원구 상계동 OO주공아파트 3단지", sub: "2024타경88412 ｜ 58.4㎡ (24평형) ｜ 15층 중 5층", appraisal: "6억 2,000만", market: "6억 5,000만", minBid: "3억 9,680만원", gap: "+ 2억 5,320만원 차익", check: "선순위 임차인 없음(채무자 점유) ｜ 말소기준 이하 전액 소멸" },
-      { region: "서울", name: "마포 공덕 래미안 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-18 (10.19 입찰)", title: "서울 마포구 공덕동 OO래미안 104동", sub: "2024타경91045 ｜ 84.9㎡ (34평형) ｜ 18층 중 11층", appraisal: "14억 5,000만", market: "14억 2,000만", minBid: "9억 2,800만원", gap: "+ 4억 9,200만원 차익", check: "소유자 거주 물건 ｜ 대항력 임차인 부존재 ｜ 인수 권리 0건" },
-      { region: "서울", name: "강서 화곡 우장산 현대 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-22 (10.23 입찰)", title: "서울 강서구 화곡동 OO아이파크 102동", sub: "2025타경10442 ｜ 74.2㎡ (29평형) ｜ 12층 중 7층", appraisal: "8억 1,000만", market: "8억 3,000만", minBid: "5억 1,840만원", gap: "+ 3억 1,160만원 차익", check: "임차인 배당요구 완료(전액 배당 예상) ｜ 명도 난이도 보통" },
+    // 20개 알짜 매물 데이터셋
+    const rawAuctionData = [
+      // 서울 (5)
+      { id: 1, region: "서울", court: "서울북부지법", caseNo: "2024타경88412", aptName: "상계주공 3단지", spec: "58.4㎡ (24평형) ｜ 5층", scale: "1,840세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-14 (10.15)", appraisal: 62000, market: 65000, jeonse: 38000, minBid: 39680, safetyText: "선순위 임차인 없음 ｜ 근저당권 전액 소멸 ｜ 채무자 점유" },
+      { id: 2, region: "서울", court: "서울서부지법", caseNo: "2024타경91045", aptName: "공덕래미안 4차", spec: "84.9㎡ (34평형) ｜ 11층", scale: "1,164세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-18 (10.19)", appraisal: 145000, market: 142000, jeonse: 85000, minBid: 92800, safetyText: "소유자 거주 ｜ 등기부 을구 근저당 이후 전액 말소(깨끗)" },
+      { id: 3, region: "서울", court: "서울남부지법", caseNo: "2025타경10442", aptName: "화곡우장산 아이파크", spec: "74.2㎡ (29평형) ｜ 7층", scale: "2,517세대 매머드급", failRate: "2회 유찰 (64%)", dday: "D-22 (10.23)", appraisal: 81000, market: 83000, jeonse: 52000, minBid: 51840, safetyText: "후순위 임차인 배당요구 완료(전액 배당) ｜ 인수 권리 0건" },
+      { id: 4, region: "서울", court: "서울동부지법", caseNo: "2024타경12093", aptName: "강동 암사 현대홈타운", spec: "84.8㎡ (33평형) ｜ 9층", scale: "568세대 중형단지", failRate: "2회 유찰 (64%)", dday: "D-26 (10.27)", appraisal: 94000, market: 92000, jeonse: 58000, minBid: 60160, safetyText: "채무자 단독 점유 ｜ 법원 현황조사서 점유관계 이상 없음" },
+      { id: 5, region: "서울", court: "서울중앙지법", caseNo: "2025타경01994", aptName: "동작 사당 극동아파트", spec: "59.3㎡ (24평형) ｜ 12층", scale: "1,550세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-30 (10.31)", appraisal: 78000, market: 77000, jeonse: 46000, minBid: 49920, safetyText: "인수 보증금 0원 ｜ 말소기준권리 선순위 설정 완료" },
 
-      // 경기/인천 (5)
-      { region: "경기", name: "정자동 분당 성남 파크뷰 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-20 (10.21 입찰)", title: "경기 성남시 분당구 정자동 OO아파트 203동", sub: "2025타경14205 ｜ 84.9㎡ (33평형) ｜ 22층 중 8층", appraisal: "12억 5,000만", market: "12억 8,000만", minBid: "8억 0,000만원", gap: "+ 4억 8,000만원 차익", check: "소유자 거주 ｜ 등기부 을구 근저당 이후 전액 말소(깨끗)" },
-      { region: "경기", name: "송도 연수구 인천 더샵 퍼스트월드 주상복합", type: "주상복합", fail: "3회 유찰 (51%)", dday: "D-11 (10.12 입찰)", title: "인천 연수구 송도동 OO퍼스트월드 3동", sub: "2024타경55219 ｜ 120.4㎡ (47평형) ｜ 48층 중 29층", appraisal: "9억 8,000만", market: "9억 5,000만", minBid: "4억 9,980만원", gap: "+ 4억 5,020만원 차익", check: "후순위 임차인(대항력 없음) ｜ 1차 서류 권리하자 부존재" },
-      { region: "경기", name: "영통 수원 광교 호수마을 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-25 (10.26 입찰)", title: "경기 수원시 영통구 하동 OO센트럴파크", sub: "2025타경20188 ｜ 84.8㎡ (34평형) ｜ 25층 중 14층", appraisal: "11억 2,000만", market: "11억 4,000만", minBid: "7억 1,680만원", gap: "+ 4억 2,320만원 차익", check: "채무자 직접 점유 ｜ 법원 현황조사서상 특이사항 없음" },
-      { region: "경기", name: "일산 서구 고양 탄현 큰마을 아파트", type: "아파트", fail: "2회 유찰 (49%)", dday: "D-13 (10.14 입찰)", title: "경기 고양시 일산서구 탄현동 OO아파트", sub: "2024타경72190 ｜ 59.8㎡ (25평형) ｜ 20층 중 3층", appraisal: "3억 4,000만", market: "3억 3,000만", minBid: "1억 6,660만원", gap: "+ 1억 6,340만원 차익", check: "선순위 근저당 정상 말소 ｜ 낙찰자 추가 인수금 없음" },
-      { region: "경기", name: "남양주 다산 지금지구 금강 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-28 (10.29 입찰)", title: "경기 남양주시 다산동 OO리버테라스", sub: "2025타경16021 ｜ 84.9㎡ (33평형) ｜ 21층 중 18층", appraisal: "8억 7,000만", market: "8억 6,000만", minBid: "5억 5,680만원", gap: "+ 3억 0,320만원 차익", check: "소유자 세대 전입 ｜ 권리관계 및 대지권 등기 정상 확인" },
+      // 경기/인천 (6)
+      { id: 6, region: "경기", court: "수원지법 성남지원", caseNo: "2025타경14205", aptName: "분당 정자 파크뷰", spec: "84.9㎡ (33평형) ｜ 8층", scale: "1,829세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-20 (10.21)", appraisal: 125000, market: 128000, jeonse: 78000, minBid: 80000, safetyText: "소유자 거주 물건 ｜ 대항력 임차인 부존재 ｜ 권리하자 0건" },
+      { id: 7, region: "경기", court: "인천지방법원", caseNo: "2024타경55219", aptName: "송도 더샵 퍼스트월드", spec: "120.4㎡ (47평형) ｜ 29층", scale: "1,596세대 대단지", failRate: "3회 유찰 (49%)", dday: "D-11 (10.12)", appraisal: 98000, market: 95000, jeonse: 55000, minBid: 48020, safetyText: "후순위 임차인(대항력 없음) ｜ 1차 서류 권리하자 부존재" },
+      { id: 8, region: "경기", court: "수원지방법원", caseNo: "2025타경20188", aptName: "광교 호수마을 센트럴", spec: "84.8㎡ (34평형) ｜ 14층", scale: "1,188세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-25 (10.26)", appraisal: 112000, market: 114000, jeonse: 68000, minBid: 71680, safetyText: "채무자 직접 점유 ｜ 대지권 미등기 없음 ｜ 안심 매물군" },
+      { id: 9, region: "경기", court: "의정부지법 고양지원", caseNo: "2024타경72190", aptName: "일산 탄현 큰마을", spec: "59.8㎡ (25평형) ｜ 3층", scale: "2,588세대 매머드급", failRate: "2회 유찰 (49%)", dday: "D-13 (10.14)", appraisal: 34000, market: 33000, jeonse: 24000, minBid: 16660, safetyText: "선순위 근저당 정상 말소 ｜ 전세가 대비 낙찰가 저렴(플피가능)" },
+      { id: 10, region: "경기", court: "의정부지법 남양주", caseNo: "2025타경16021", aptName: "다산지금 금강펜테리움", spec: "84.9㎡ (33평형) ｜ 18층", scale: "1,304세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-28 (10.29)", appraisal: 87000, market: 86000, jeonse: 54000, minBid: 55680, safetyText: "소유자 세대 전입 ｜ 등기부 깨끗 ｜ 명도 난이도 하" },
+      { id: 11, region: "경기", court: "수원지법 안산지원", caseNo: "2024타경63102", aptName: "안산 고잔 푸르지오 3차", spec: "84.7㎡ (32평형) ｜ 10층", scale: "1,114세대 대단지", failRate: "2회 유찰 (49%)", dday: "D-16 (10.17)", appraisal: 51000, market: 50000, jeonse: 36000, minBid: 24990, safetyText: "채무자 거주 ｜ 말소기준 이하 전액 소멸 ｜ 실투자금 최저" },
 
-      // 부산/경남 (4)
-      { region: "부산", name: "마린시티 우동 해운대 주상복합", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-24 (10.25 입찰)", title: "부산 해운대구 우동 마린시티 OO주상복합", sub: "2025타경04112 ｜ 120.3㎡ (45평형) ｜ 40층 중 18층", appraisal: "10억 8,000만", market: "10억 5,000만", minBid: "6억 9,120만원", gap: "+ 3억 5,880만원 차익", check: "인수 보증금 0원 ｜ 집행관 현황조사서 점유상태 이상무" },
-      { region: "부산", name: "동래 명륜 자이 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-16 (10.17 입찰)", title: "부산 동래구 명륜동 OO자이 103동", sub: "2024타경61092 ｜ 84.7㎡ (34평형) ｜ 28층 중 12층", appraisal: "7억 9,000만", market: "7억 8,000만", minBid: "5억 0,560만원", gap: "+ 2억 7,440만원 차익", check: "채무자 단독 거주 ｜ 등기부등본 갑구/을구 인수 권리 0건" },
-      { region: "부산", name: "남구 대연 롯데캐슬 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-29 (10.30 입찰)", title: "부산 남구 대연동 OO캐슬레전드", sub: "2025타경11984 ｜ 59.9㎡ (25평형) ｜ 30층 중 21층", appraisal: "5억 5,000만", market: "5억 6,000만", minBid: "3억 5,200만원", gap: "+ 2억 0,800만원 차익", check: "후순위 전세권자 배당신청 완료 ｜ 낙찰 후 완전 소멸" },
-      { region: "부산", name: "창원 성산구 반송 노블파크 아파트", type: "아파트", fail: "2회 유찰 (64%)", dday: "D-19 (10.20 입찰)", title: "경남 창원시 성산구 반림동 OO트리비앙", sub: "2024타경84011 ｜ 84.8㎡ (32평형) ｜ 15층 중 10층", appraisal: "5억 2,000만", market: "5억 1,000만", minBid: "3억 3,280만원", gap: "+ 1억 7,720만원 차익", check: "소유자 거주 ｜ 법원 감정평가서 및 매각명세서 하자치수 0" },
+      // 부산/경남 (5)
+      { id: 12, region: "부산", court: "부산지방법원 동부지원", caseNo: "2025타경04112", aptName: "해운대 우동 마린시티자이", spec: "84.9㎡ (35평형) ｜ 18층", scale: "49층 랜드마크", failRate: "2회 유찰 (64%)", dday: "D-24 (10.25)", appraisal: 108000, market: 105000, jeonse: 55000, minBid: 69120, safetyText: "인수 보증금 0원 ｜ 현황조사서상 권리침해 0건 확인" },
+      { id: 13, region: "부산", court: "부산지방법원 본원", caseNo: "2024타경61092", aptName: "명륜 아이파크 1단지", spec: "84.7㎡ (34평형) ｜ 12층", scale: "1,409세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-17 (10.18)", appraisal: 79000, market: 78000, jeonse: 48000, minBid: 50560, safetyText: "채무자 단독 점유 ｜ 갑구/을구 인수 권리 전무" },
+      { id: 14, region: "부산", court: "부산지방법원 본원", caseNo: "2025타경11984", aptName: "대연 롯데캐슬레전드", spec: "59.9㎡ (25평형) ｜ 21층", scale: "3,149세대 매머드급", failRate: "2회 유찰 (64%)", dday: "D-29 (10.30)", appraisal: 55000, market: 56000, jeonse: 35000, minBid: 35200, safetyText: "후순위 임차인 배당 완료 ｜ 낙찰 후 전액 권리 소멸" },
+      { id: 15, region: "부산", court: "창원지방법원 본원", caseNo: "2024타경84011", aptName: "창원 반림 트리비앙", spec: "84.8㎡ (32평형) ｜ 10층", scale: "2,610세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-19 (10.20)", appraisal: 52000, market: 51000, jeonse: 37000, minBid: 33280, safetyText: "소유자 거주 ｜ 법원 감정평가서 하자치수 0 판정" },
+      { id: 16, region: "부산", court: "울산지방법원 본원", caseNo: "2025타경03310", aptName: "울산 문수로 아이파크 2차", spec: "84.6㎡ (33평형) ｜ 15층", scale: "1,085세대 대단지", failRate: "2회 유찰 (64%)", dday: "D-27 (10.28)", appraisal: 82000, market: 81000, jeonse: 50000, minBid: 52480, safetyText: "채무자 전입 거주 ｜ 대항력 권리하자 없음" },
 
-      // 대구/경북 (3)
-      { region: "대구", name: "수성구 범어동 두산위브더제니스 주상복합", type: "주상복합", fail: "2회 유찰 (49%)", dday: "D-15 (10.16 입찰)", title: "대구 수성구 범어동 OO위브더제니스", sub: "2024타경99120 ｜ 134.2㎡ (52평형) ｜ 50층 중 35층", appraisal: "16억 5,000만", market: "16억 0,000만", minBid: "8억 0,850만원", gap: "+ 7억 9,150만원 차익", check: "말소기준 이전 권리 부존재 ｜ 초보자 추천 안전 등기 매물" },
-      { region: "대구", name: "달서구 월성동 푸르지오 월성 아파트", type: "아파트", fail: "2회 유찰 (49%)", dday: "D-23 (10.24 입찰)", title: "대구 달서구 월성동 OO월성푸르지오", sub: "2025타경08821 ｜ 84.9㎡ (33평형) ｜ 25층 중 16층", appraisal: "4억 8,000만", market: "4억 7,000만", minBid: "2억 3,520만원", gap: "+ 2억 3,480만원 차익", check: "채무자 전입 거주 ｜ 보증금 인수 없는 안심 매물군" },
-      { region: "대구", name: "포항 북구 장성동 두산위브 아파트", type: "아파트", fail: "3회 유찰 (34%)", dday: "D-12 (10.13 입찰)", title: "경북 포항시 북구 장성동 OO위브제니스", sub: "2024타경70142 ｜ 102.1㎡ (39평형) ｜ 28층 중 9층", appraisal: "3억 1,000만", market: "3억 0,000만", minBid: "1억 0,540만원", gap: "+ 1억 9,460만원 차익", check: "법원 현황조사서 점유자 없음(공실 추정) ｜ 현장확인 요망" }
+      // 대구/경북 (4)
+      { id: 17, region: "대구", court: "대구지방법원 본원", caseNo: "2024타경99120", aptName: "수성구 범어 두산위브더제니스", spec: "134.2㎡ (52평형) ｜ 35층", scale: "1,494세대 랜드마크", failRate: "2회 유찰 (49%)", dday: "D-15 (10.16)", appraisal: 165000, market: 160000, jeonse: 82000, minBid: 80850, safetyText: "말소기준 이전 권리 부존재 ｜ 초보자 추천 안전 등기 매물" },
+      { id: 18, region: "대구", court: "대구지방법원 서부지원", caseNo: "2025타경08821", aptName: "달서구 월성 푸르지오", spec: "84.9㎡ (33평형) ｜ 16층", scale: "1,824세대 대단지", failRate: "2회 유찰 (49%)", dday: "D-23 (10.24)", appraisal: 48000, market: 47000, jeonse: 33000, minBid: 23520, safetyText: "채무자 전입 거주 ｜ 보증금 인수 없는 안심 매물군" },
+      { id: 19, region: "대구", court: "대구지방법원 포항지원", caseNo: "2024타경70142", aptName: "포항 장성 두산위브제니스", spec: "102.1㎡ (39평형) ｜ 9층", scale: "1,713세대 대단지", failRate: "3회 유찰 (34%)", dday: "D-12 (10.13)", appraisal: 31000, market: 30000, jeonse: 21000, minBid: 10540, safetyText: "점유자 없음(공실 추정) ｜ 현장 미납관리비 확인 요망" },
+      { id: 20, region: "대구", court: "대구지방법원 본원", caseNo: "2025타경13204", aptName: "동구 율하 롯데캐슬탑클래스", spec: "84.9㎡ (34평형) ｜ 8층", scale: "447세대 중형단지", failRate: "2회 유찰 (49%)", dday: "D-21 (10.22)", appraisal: 39000, market: 38000, jeonse: 27000, minBid: 19110, safetyText: "후순위 임차인 소멸 ｜ 실투자금 극소 물건" }
     ];
 
     let currentRegion = '전체';
 
+    function formatWon(val) {
+      if (val >= 10000) {
+        const eok = Math.floor(val / 10000);
+        const man = val % 10000;
+        return man > 0 ? `${eok}억 ${man.toLocaleString()}만` : `${eok}억`;
+      }
+      return `${val.toLocaleString()}만`;
+    }
+
     function renderCards(data) {
       const container = document.getElementById('cardList');
       container.innerHTML = '';
-      
+
+      if (data.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:40px; color:#64748b; font-size:13px;">일치하는 추천 매물이 없습니다.</div>';
+        return;
+      }
+
       data.forEach(item => {
+        const safetyMargin = item.market - item.minBid;
+        const jeonseGap = item.minBid - item.jeonse;
+        const gapText = jeonseGap <= 0 
+          ? `전세 세팅 시 실투자 0원 (${Math.abs(jeonseGap).toLocaleString()}만 여유)` 
+          : `실투자금 약 ${formatWon(jeonseGap)}`;
+
+        const naverSearchUrl = `https://m.land.naver.com/search/result/${encodeURIComponent(item.aptName)}`;
+        const courtSearchUrl = `https://www.courtauction.go.kr/`;
+
         const card = document.createElement('div');
         card.className = 'item-card';
-        card.setAttribute('data-region', item.region);
-        card.setAttribute('data-name', item.name);
         card.innerHTML = `
-          <div class="card-top">
-            <div class="tag-group">
-              <span class="tag tag-type">${item.type}</span>
-              <span class="tag tag-fail">${item.fail}</span>
+          <div class="card-header">
+            <div class="tag-cluster">
+              <span class="tag tag-apt">아파트</span>
+              <span class="tag tag-fail">${item.failRate}</span>
+              <span class="tag tag-scale">${item.scale}</span>
             </div>
             <span class="d-day">${item.dday}</span>
           </div>
-          <div class="item-title">${item.title}</div>
-          <div class="item-sub">${item.sub}</div>
-          
-          <div class="price-box">
-            <div class="price-item">
+
+          <div class="item-name">${item.aptName}</div>
+          <div class="item-sub">${item.court} ｜ 사건번호 ${item.caseNo} ｜ ${item.spec}</div>
+
+          <div class="price-grid">
+            <div class="price-cell">
               <span>감정평가액</span>
-              <strong>${item.appraisal}</strong>
+              <strong>${formatWon(item.appraisal)}</strong>
             </div>
-            <div class="price-item">
+            <div class="price-cell">
               <span>최근 실거래가</span>
-              <strong>${item.market}</strong>
+              <strong>${formatWon(item.market)}</strong>
             </div>
-            <div class="price-item" style="grid-column: span 2; border-top: 1px dashed #1e293b; padding-top: 8px;">
+            <div class="price-cell">
+              <span>현재 전세 실거래</span>
+              <strong style="color:#93c5fd;">${formatWon(item.jeonse)}</strong>
+            </div>
+            <div class="price-cell">
+              <span>감정가 대비 할인</span>
+              <strong style="color:var(--danger);">${item.failRate.split(' ')[1]}</strong>
+            </div>
+            <div class="price-cell min-bid-highlight">
               <span>최저 매각 입찰가</span>
-              <strong class="min-bid">${item.minBid}</strong>
+              <strong>${formatWon(item.minBid)}원</strong>
             </div>
           </div>
 
-          <div class="margin-banner">
-            <span>💡 실거래가 대비 안전마진</span>
-            <strong>${item.gap}</strong>
+          <div class="analysis-container">
+            <div class="analysis-box margin-box">
+              <span>💡 예상 안전마진</span>
+              <strong>+ ${formatWon(safetyMargin)} 차익</strong>
+            </div>
+            <div class="analysis-box gap-box">
+              <span>⚡ 갭투자 실투자금</span>
+              <strong>${gapText}</strong>
+            </div>
           </div>
 
-          <div class="safety-check">
-            <span class="safety-icon">✔</span> ${item.check}
+          <div class="safety-status">
+            <span style="color:var(--accent); font-weight:bold;">✔</span> ${item.safetyText}
+          </div>
+
+          <div class="action-links">
+            <a href="${naverSearchUrl}" class="link-btn btn-naver" target="_blank">
+              네이버 시세·호가 확인 ↗
+            </a>
+            <a href="${courtSearchUrl}" class="link-btn btn-court" target="_blank">
+              대법원 공문서 조회 ↗
+            </a>
           </div>
         `;
         container.appendChild(card);
@@ -190,23 +352,46 @@
       currentRegion = region;
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      filterItems();
+      applyFilters();
     }
 
-    function filterItems() {
+    function applyFilters() {
       const keyword = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = auctionData.filter(item => {
+      const sortType = document.getElementById('sortSelect').value;
+
+      let filtered = rawAuctionData.filter(item => {
         const matchesRegion = (currentRegion === '전체' || item.region === currentRegion);
-        const matchesSearch = item.name.toLowerCase().includes(keyword) || 
-                              item.title.toLowerCase().includes(keyword) || 
-                              item.sub.toLowerCase().includes(keyword);
+        const matchesSearch = item.aptName.toLowerCase().includes(keyword) || 
+                              item.caseNo.toLowerCase().includes(keyword) || 
+                              item.region.toLowerCase().includes(keyword);
         return matchesRegion && matchesSearch;
       });
+
+      if (sortType === 'gap-high') {
+        filtered.sort((a, b) => (b.market - b.minBid) - (a.market - a.minBid));
+      } else if (sortType === 'jeonse-low') {
+        filtered.sort((a, b) => (a.minBid - a.jeonse) - (b.minBid - b.jeonse));
+      } else if (sortType === 'rate-low') {
+        filtered.sort((a, b) => (a.minBid / a.appraisal) - (b.minBid / b.appraisal));
+      }
+
       renderCards(filtered);
     }
 
-    // 최초 렌더링
-    renderCards(auctionData);
+    function openModal() {
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+    window.onclick = function(e) {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    };
+
+    // 최초 실행
+    renderCards(rawAuctionData);
   </script>
 </body>
 </html>

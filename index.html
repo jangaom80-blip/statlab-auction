@@ -56,7 +56,7 @@
     .tab-btn { background: #131d2e; color: var(--text-muted); border: 1px solid #1e293b; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
     .tab-btn.active { background: var(--primary); color: #060911; border-color: var(--primary); font-weight: 900; }
 
-    /* 프리미엄 매물 카드 (사진 대신 초고밀도 정밀 데이터 뷰) */
+    /* 프리미엄 매물 카드 (사진 없는 고밀도 프롭테크 터미널 뷰) */
     .card-list { display: flex; flex-direction: column; gap: 16px; }
     .item-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
     
@@ -70,7 +70,7 @@
     .item-name { font-size: 17px; font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 3px; }
     .item-meta { font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; }
 
-    /* [핵심] 상단에 시원하게 배치된 360° 현장 로드뷰 다이렉트 배너 버튼 */
+    /* [핵심] 상단에 시원하게 배치된 360° 현장 로드뷰 배너 버튼 */
     .roadview-banner-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; background: linear-gradient(135deg, #064e3b 0%, #022c22 100%); border: 1px solid #059669; padding: 11px 14px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 12px; }
     .roadview-banner-btn span { font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
     .roadview-banner-btn strong { font-size: 11px; color: #6ee7b7; font-weight: 700; }
@@ -89,7 +89,7 @@
     .chart-header strong { color: var(--danger); font-size: 12px; font-weight: 900; }
     .sparkline-svg { width: 100%; height: 68px; display: block; }
 
-    /* [신규 탑재] 유료 프롭테크 전용 정밀 투자 분석 4대 매트릭스 */
+    /* 유료 프롭테크 전용 정밀 투자 분석 4대 매트릭스 */
     .pro-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
     .pro-metric-cell { background: #080d17; border: 1px solid #1a2638; border-radius: 8px; padding: 8px 10px; }
     .pro-metric-cell span { font-size: 10.5px; color: #8896ab; display: block; margin-bottom: 2px; }
@@ -112,7 +112,7 @@
     .doc-arrears { color: #f87171; font-weight: 800; }
     .doc-body { color: #8492a6; word-break: break-all; }
 
-    /* 하단 3단 액션 버튼 (대법원 사건기록 직링크 완벽 복원) */
+    /* [완벽 복원] 하단 3단 액션 버튼 (사건기록 직행) */
     .action-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 6px; }
     .btn-action { display: inline-flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; padding: 10px 0; border-radius: 7px; text-decoration: none; text-align: center; cursor: pointer; border: none; }
     .btn-hogang { background: #1e3a8a; color: #93c5fd; border: 1px solid #2563eb; }
@@ -160,7 +160,7 @@
     </header>
 
     <div class="legal-bar">
-      <span>⚖️ <strong>공공데이터 기반 정량 통계 산출물:</strong> 법률 자문 및 매수신청대리 행위 일체 불가</span>
+      <span>⚖️️ <strong>공공데이터 기반 정량 통계 산출물:</strong> 법률 자문 및 매수신청대리 행위 일체 불가</span>
       <button class="legal-btn" onclick="openModal('legalModal')">약관 전문</button>
     </div>
 
@@ -270,13 +270,10 @@
         market: 140000,
         jeonse: 85000,
         minBid: 91520,
-        // 유료급 정밀 지표 4대장
-        evictionLevel: "🟢 하 (소유자 거주 / 협의 수월)",
+        evictionLevel: "🟢 최하 (소유자 단독 점유 / 명도 수월)",
         targetBidPrice: "약 10억 2,000만 (낙찰가율 71%)",
         jeonseRatio: "60.7% (안전권)",
         takeoverRisk: "0원 (매각명세서 전액 소멸)",
-        loanEstimate: "약 6억 4,000만 (LTV 70%)",
-        taxEstimate: "약 3,100만 원",
         arrears: "체납관리비: 이상 없음 확인",
         docSummary: "소유자 거주 ｜ 등기부 을구 근저당 이후 전액 말소 ｜ 대항력 임차인 부존재 실사건",
         isLocked: false
@@ -301,12 +298,10 @@
         market: 72000,
         jeonse: 45000,
         minBid: 58400,
-        evictionLevel: "🟢 하 (채무자 세대 점유)",
+        evictionLevel: "🟢 최하 (채무자 세대 점유)",
         targetBidPrice: "약 6억 1,000만 (낙찰가율 83%)",
         jeonseRatio: "62.5% (안전권)",
         takeoverRisk: "0원 (선순위 권리 부존재)",
-        loanEstimate: "약 4억 800만 (LTV 70%)",
-        taxEstimate: "약 880만 원",
         arrears: "체납관리비: 이상 없음 확인",
         docSummary: "소유자 거주 등재 ｜ 대항력 있는 선순위 임차인 미표기 ｜ 등기부 무하자 실사건",
         isLocked: false
@@ -331,12 +326,10 @@
         market: 65000,
         jeonse: 42000,
         minBid: 33173,
-        evictionLevel: "🟢 하 (말소기준 이하 전액 소멸)",
+        evictionLevel: "🟢 최하 (말소기준 이하 전액 소멸)",
         targetBidPrice: "약 4억 2,000만 (낙찰가율 62%)",
         jeonseRatio: "64.6% (갭투자 양호)",
         takeoverRisk: "0원 (인수 권리 없음)",
-        loanEstimate: "약 2억 3,200만 (LTV 70%)",
-        taxEstimate: "약 450만 원",
         arrears: "체납관리비: 약 45만원",
         docSummary: "소유자 거주 ｜ 등기부 무하자 ｜ 말소기준권리 이후 전액 소멸 반값 실사건",
         isLocked: false
@@ -361,12 +354,10 @@
         market: 58000,
         jeonse: 37000,
         minBid: 36544,
-        evictionLevel: "🟢 하 (채무자 단독 점유)",
+        evictionLevel: "🟢 최하 (채무자 단독 점유)",
         targetBidPrice: "약 4억 1,000만 (낙찰가율 72%)",
         jeonseRatio: "63.7% (전세가율 안정)",
         takeoverRisk: "0원 (권리 전액 말소)",
-        loanEstimate: "약 2억 5,500만 (LTV 70%)",
-        taxEstimate: "약 550만 원",
         arrears: "체납관리비: 없음",
         docSummary: "채무자 단독 점유 등재 ｜ 갑구/을구 인수 권리 전무 ｜ 2회 유찰 안전 실사건",
         isLocked: false
@@ -396,8 +387,6 @@
         targetBidPrice: "PRO 구독 즉시 열람",
         jeonseRatio: "PRO 전용",
         takeoverRisk: "0원 (권리분석 완료)",
-        loanEstimate: "PRO 구독 즉시 열람",
-        taxEstimate: "PRO 구독 즉시 열람",
         arrears: "PRO 전용 데이터",
         docSummary: "1차 서류 하자 0건 ｜ 예상 안전마진 +7억 2,400만원",
         isLocked: true
@@ -426,8 +415,6 @@
         targetBidPrice: "PRO 구독 즉시 열람",
         jeonseRatio: "PRO 전용",
         takeoverRisk: "0원 (권리분석 완료)",
-        loanEstimate: "PRO 구독 즉시 열람",
-        taxEstimate: "PRO 구독 즉시 열람",
         arrears: "PRO 전용 데이터",
         docSummary: "소유자 거주 ｜ 등기부 깨끗 ｜ 전세 세팅 시 실투자 최소 매물",
         isLocked: true
@@ -555,8 +542,8 @@
         // 3. 네이버 단지 매물 호가 직링크
         const naverLandUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.cleanName + ' 시세')}`;
 
-        // 4. [완벽 복원] 대법원 공식 사건기록 및 공문서 1초 열람 직링크
-        const courtOfficialUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.court + ' ' + item.caseNo)}`;
+        // 4. [판례 오류 원천 차단] 사건번호 경매 공문서 직링크
+        const courtOfficialUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.caseNo + ' 경매')}`;
 
         card.innerHTML = `
           <!-- 상단 뱃지 바 -->
@@ -652,7 +639,7 @@
                 포털 호가 ↗
               </a>
               <a href="${courtOfficialUrl}" class="btn-action btn-court" target="_blank" rel="noopener noreferrer">
-                ⚖️ 대법원 사건기록 열람 ↗
+                ⚖️ 법원 공문서·사건기록 ↗
               </a>
             </div>
           </div>

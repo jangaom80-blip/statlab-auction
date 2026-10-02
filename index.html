@@ -8,208 +8,152 @@
   <style>
     :root {
       --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --card-border: #e2e8f0;
-      --card-inner: #f1f5f9;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
       --primary: #2563eb;
-      --primary-light: #eff6ff;
+      --primary-soft: #eff6ff;
       --accent: #059669;
-      --accent-light: #ecfdf5;
+      --accent-soft: #ecfdf5;
       --danger: #e11d48;
-      --danger-light: #fff1f2;
-      --warning: #d97706;
-      --text-muted: #64748b;
-      --text-sub: #475569;
+      --danger-soft: #fff1f2;
       --text-main: #0f172a;
+      --text-sub: #475569;
+      --text-muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; -webkit-tap-highlight-color: transparent; }
-    body { background-color: var(--bg); color: var(--text-main); padding: 14px 12px 105px; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 680px; margin: 0 auto; }
+    body { background-color: var(--bg); color: var(--text-main); padding: 14px 14px 110px; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 600px; margin: 0 auto; }
 
-    /* 프리미엄 라이트 헤더 */
-    header { margin-bottom: 14px; }
-    .brand-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-    .logo-cluster { display: flex; align-items: center; gap: 7px; }
-    .logo { font-size: 20px; font-weight: 900; color: #0f172a; letter-spacing: -0.6px; }
+    /* 상단 헤더 */
+    header { margin-bottom: 12px; }
+    .brand-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .logo { font-size: 21px; font-weight: 900; color: var(--text-main); letter-spacing: -0.6px; display: flex; align-items: center; gap: 6px; }
     .logo span { color: var(--primary); }
-    .pro-badge { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #fff; font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
-    .live-sync { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--accent); font-weight: 800; background: var(--accent-light); border: 1px solid #a7f3d0; padding: 3px 9px; border-radius: 12px; }
-    .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 6px rgba(5, 150, 105, 0.4); }
-    .sub-title { font-size: 12px; color: var(--text-muted); line-height: 1.45; }
+    .pro-badge { background: var(--primary); color: #fff; font-size: 10px; font-weight: 900; padding: 2px 6px; border-radius: 4px; }
+    .live-sync { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--accent); font-weight: 800; background: var(--accent-soft); padding: 3px 9px; border-radius: 12px; border: 1px solid #a7f3d0; }
+    .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .sub-title { font-size: 12px; color: var(--text-sub); }
 
-    /* 법적 면책 고지 배너 */
-    .legal-bar { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 9px 12px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; color: #b45309; display: flex; justify-content: space-between; align-items: center; }
-    .legal-btn { background: #ffffff; border: 1px solid #d97706; color: #b45309; padding: 2px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+    /* 법적 고지 배너 */
+    .legal-bar { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 8px 12px; margin-bottom: 14px; font-size: 11px; color: #b45309; display: flex; justify-content: space-between; align-items: center; }
+    .legal-btn { background: #fff; border: 1px solid #d97706; color: #b45309; padding: 2px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 800; cursor: pointer; white-space: nowrap; }
 
-    /* 핵심 통계 요약 지표 */
-    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 14px; }
-    .metric-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 8px; text-align: center; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03); }
-    .metric-card span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 2px; }
-    .metric-card strong { font-size: 16px; font-weight: 900; color: #0f172a; }
+    /* 핵심 통계 요약 (단정하고 모던한 1줄 바) */
+    .summary-strip { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+    .summary-item { text-align: center; }
+    .summary-item span { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 2px; }
+    .summary-item strong { font-size: 15px; font-weight: 900; color: var(--text-main); }
+    .summary-divider { width: 1px; height: 24px; background: var(--border); }
 
-    /* 컨트롤 바 */
-    .controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    /* 검색 & 필터 */
+    .controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
     .search-row { display: flex; gap: 8px; }
-    .search-input { flex: 1; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; color: #0f172a; font-size: 13.5px; outline: none; }
+    .search-input { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; color: var(--text-main); outline: none; }
     .search-input:focus { border-color: var(--primary); }
-    .sort-select { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0 10px; color: #334155; font-size: 12px; outline: none; }
-
+    .sort-select { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0 10px; font-size: 12px; color: var(--text-sub); outline: none; }
     .tab-row { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
     .tab-row::-webkit-scrollbar { display: none; }
-    .tab-btn { background: #ffffff; color: var(--text-muted); border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-    .tab-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); font-weight: 900; }
+    .tab-btn { background: var(--card); color: var(--text-sub); border: 1px solid var(--border); padding: 6px 13px; border-radius: 16px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+    .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); font-weight: 800; }
 
-    /* 화이트톤 매물 카드 */
+    /* [혁신] 심플하고 눈에 확 들어오는 클린 매물 카드 */
     .card-list { display: flex; flex-direction: column; gap: 16px; }
-    .item-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); }
-    
-    .card-top-bar { padding: 12px 15px 10px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; background: #ffffff; }
-    .grade-badge { font-size: 11px; font-weight: 900; padding: 4px 8px; border-radius: 6px; }
-    .grade-safe { background: var(--accent-light); color: var(--accent); border: 1px solid #a7f3d0; }
-    .grade-caution { background: #fffbeb; color: var(--warning); border: 1px solid #fde68a; }
-    .dday-badge { color: #b45309; font-size: 11.5px; font-weight: 900; background: #fef3c7; padding: 2px 7px; border-radius: 4px; }
+    .item-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 16px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04); position: relative; }
 
-    .card-body { padding: 15px; }
-    .item-name { font-size: 17px; font-weight: 900; color: #0f172a; line-height: 1.35; margin-bottom: 3px; }
-    .item-meta { font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; }
+    /* 카드 헤더 */
+    .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .item-badge-wrap { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
+    .badge-safe { font-size: 10.5px; font-weight: 800; color: var(--accent); background: var(--accent-soft); padding: 2px 7px; border-radius: 4px; }
+    .badge-dday { font-size: 11px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 2px 7px; border-radius: 4px; }
+    .item-title { font-size: 17.5px; font-weight: 900; color: var(--text-main); letter-spacing: -0.4px; line-height: 1.3; }
+    .item-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
 
-    /* 현장 360° 로드뷰 에메랄드 배너 */
-    .roadview-banner-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; background: linear-gradient(135deg, #059669 0%, #047857 100%); border: 1px solid #059669; padding: 11px 14px; border-radius: 10px; text-decoration: none; color: #ffffff; margin-bottom: 12px; box-shadow: 0 3px 10px rgba(5, 150, 105, 0.2); }
-    .roadview-banner-btn span { font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
-    .roadview-banner-btn strong { font-size: 11px; color: #d1fae5; font-weight: 700; }
+    /* [주인공 섹션] 최저입찰가 & 안전마진 하이라이트 */
+    .hero-price-panel { background: #f8fafc; border: 1px solid #edf2f7; border-radius: 12px; padding: 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .price-main-box span { font-size: 11px; font-weight: 700; color: var(--danger); display: block; margin-bottom: 2px; }
+    .price-main-box strong { font-size: 21px; font-weight: 900; color: var(--danger); letter-spacing: -0.5px; }
+    .price-main-box small { font-size: 11.5px; font-weight: 800; color: #f43f5e; margin-left: 4px; }
+    .margin-sub-box { text-align: right; border-left: 1px solid var(--border); padding-left: 14px; }
+    .margin-sub-box span { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 2px; font-weight: 600; }
+    .margin-sub-box strong { font-size: 15px; font-weight: 900; color: var(--accent); }
 
-    /* 가격 매트릭스 */
-    .price-box { background: var(--card-inner); border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .price-cell span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 1px; }
-    .price-cell strong { font-size: 14px; font-weight: 800; color: #1e293b; }
-    .price-hero { grid-column: span 2; border-top: 1px dashed #cbd5e1; padding-top: 8px; margin-top: 2px; display: flex; justify-content: space-between; align-items: flex-end; }
-    .price-hero-label { font-size: 11px; color: var(--danger); font-weight: 800; }
-    .price-hero-val { font-size: 18px; font-weight: 900; color: var(--danger); }
+    /* 시계열 실거래 낙폭 SVG 그래프 (초깔끔 화이트 미니차트) */
+    .chart-box { border: 1px solid var(--border-light); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; background: #ffffff; }
+    .chart-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 11px; font-weight: 700; color: var(--text-sub); }
+    .chart-top strong { color: var(--danger); }
+    .sparkline-svg { width: 100%; height: 50px; display: block; }
 
-    /* 시계열 실거래 낙폭 SVG 그래프 */
-    .chart-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02); }
-    .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 11.5px; font-weight: 800; color: var(--text-sub); }
-    .chart-header strong { color: var(--danger); font-size: 12px; font-weight: 900; }
-    .sparkline-svg { width: 100%; height: 68px; display: block; }
+    /* 4대 정밀 분석 팩트체크 리스트 */
+    .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; padding: 10px; background: #f8fafc; border-radius: 10px; }
+    .fact-item span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 1px; }
+    .fact-item strong { font-size: 12.5px; font-weight: 800; color: var(--text-main); }
 
-    /* 정밀 투자 분석 4대 매트릭스 */
-    .pro-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
-    .pro-metric-cell { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 10px; }
-    .pro-metric-cell span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 2px; }
-    .pro-metric-cell strong { font-size: 12.5px; font-weight: 800; color: #1e293b; }
+    /* 대법원 공문서 한줄 요약 */
+    .doc-summary { font-size: 11.5px; line-height: 1.45; color: var(--text-sub); padding: 8px 10px; background: #f1f5f9; border-radius: 6px; margin-bottom: 14px; }
+    .doc-summary strong { color: #0f172a; }
 
-    /* 분석 듀얼 배너 */
-    .analysis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-    .analysis-pill { border-radius: 8px; padding: 8px 10px; font-size: 11px; }
-    .pill-margin { background: var(--accent-light); border: 1px solid #a7f3d0; }
-    .pill-margin span { color: var(--accent); display: block; font-weight: 700; }
-    .pill-margin strong { color: #047857; font-size: 13.5px; font-weight: 900; }
+    /* 하단 3단 검증 액션 버튼 */
+    .action-grid { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 6px; }
+    .btn-act { display: inline-flex; justify-content: center; align-items: center; font-size: 11.5px; font-weight: 800; padding: 10px 0; border-radius: 8px; text-decoration: none; text-align: center; border: 1px solid transparent; }
+    .btn-road { background: var(--accent-soft); color: var(--accent); border-color: #a7f3d0; }
+    .btn-chart { background: var(--primary-soft); color: var(--primary); border-color: #bfdbfe; }
+    .btn-court { background: var(--danger-soft); color: var(--danger); border-color: #fecdd3; }
 
-    .pill-gap { background: var(--primary-light); border: 1px solid #bfdbfe; }
-    .pill-gap span { color: var(--primary); display: block; font-weight: 700; }
-    .pill-gap strong { color: #1d4ed8; font-size: 13.5px; font-weight: 900; }
-
-    /* 대법원 공문서 요약 */
-    .doc-box { background: var(--card-inner); border: 1px solid #e2e8f0; border-radius: 8px; padding: 9px 11px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; }
-    .doc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; font-weight: 800; color: #334155; }
-    .doc-arrears { color: var(--danger); font-weight: 800; }
-    .doc-body { color: #64748b; word-break: break-all; }
-
-    /* 하단 3단 액션 버튼 */
-    .action-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 6px; }
-    .btn-action { display: inline-flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; padding: 10px 0; border-radius: 7px; text-decoration: none; text-align: center; cursor: pointer; border: none; }
-    .btn-hogang { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-    .btn-naver { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
-    .btn-court { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
-
-    /* [중복 제거 완결] 단 1개의 웅장한 PRO 잠금 마스터 배너 */
-    .master-lock-banner {
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      border: 1.5px dashed #2563eb;
-      border-radius: 16px;
-      padding: 26px 18px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
-      margin-top: 6px;
-    }
-    .lock-icon-big { font-size: 34px; margin-bottom: 10px; }
-    .lock-title-big { font-size: 17px; font-weight: 900; color: #0f172a; margin-bottom: 6px; }
-    .lock-desc-big { font-size: 12.5px; color: #64748b; line-height: 1.55; margin-bottom: 18px; }
-    .btn-unlock-big {
-      display: inline-block;
-      width: 100%;
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-      color: #ffffff;
-      font-size: 15px;
-      font-weight: 900;
-      padding: 15px;
-      border-radius: 12px;
-      text-decoration: none;
-      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
-      letter-spacing: -0.3px;
-    }
+    /* PRO 전용 마스터 잠금 배너 */
+    .master-lock-card { background: #ffffff; border: 1.5px dashed var(--primary); border-radius: 16px; padding: 24px 18px; text-align: center; margin-top: 10px; box-shadow: 0 4px 20px rgba(37,99,235,0.06); }
+    .lock-icon { font-size: 32px; margin-bottom: 8px; }
+    .lock-title { font-size: 16.5px; font-weight: 900; color: var(--text-main); margin-bottom: 4px; }
+    .lock-desc { font-size: 12px; color: var(--text-sub); line-height: 1.5; margin-bottom: 16px; }
+    .btn-unlock-big { display: block; width: 100%; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #fff; font-size: 14.5px; font-weight: 900; padding: 14px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
 
     /* 하단 고정 구독 바 */
-    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); border-top: 1px solid #e2e8f0; padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 20px rgba(0,0,0,0.05); }
+    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); border-top: 1px solid var(--border); padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.04); }
     .floating-bar .info span { font-size: 11px; color: var(--text-muted); display: block; }
-    .floating-bar .info strong { font-size: 13.5px; color: #0f172a; }
-    .floating-buy-btn { background: #2563eb; color: #ffffff; font-size: 13px; font-weight: 900; padding: 10px 18px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); }
+    .floating-bar .info strong { font-size: 13.5px; color: var(--text-main); }
+    .floating-buy-btn { background: var(--primary); color: #ffffff; font-size: 13px; font-weight: 900; padding: 10px 18px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
 
-    /* [신뢰도 100%] 정식 사업자 정보 푸터 */
-    footer {
-      text-align: center;
-      margin-top: 36px;
-      border-top: 1px solid #e2e8f0;
-      padding-top: 22px;
-    }
-    .biz-box {
-      font-size: 10.5px;
-      color: #64748b;
-      line-height: 1.8;
-      margin-bottom: 16px;
-      word-break: keep-all;
-    }
-    .biz-box strong { color: #334155; }
-    .disclaimer-box {
-      font-size: 10px;
-      color: #94a3b8;
-      line-height: 1.6;
-    }
+    /* 사업자 정보 푸터 */
+    footer { text-align: center; margin-top: 36px; border-top: 1px solid var(--border); padding-top: 22px; }
+    .biz-box { font-size: 10.5px; color: var(--text-sub); line-height: 1.8; margin-bottom: 12px; word-break: keep-all; }
+    .biz-box strong { color: var(--text-main); }
+    .disclaimer-box { font-size: 10px; color: var(--text-muted); line-height: 1.6; }
 
-    /* 팝업 모달 */
+    /* 모달 */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; justify-content: center; align-items: center; padding: 16px; backdrop-filter: blur(3px); }
-    .modal-content { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; max-width: 540px; width: 100%; padding: 22px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; }
+    .modal-content { background: #ffffff; border-radius: 14px; max-width: 520px; width: 100%; padding: 22px; max-height: 85vh; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
     .modal-header h3 { font-size: 15px; font-weight: 900; color: #b45309; }
-    .close-btn { background: none; border: none; font-size: 22px; color: #94a3b8; cursor: pointer; }
-    .clause-block { margin-bottom: 14px; font-size: 11.5px; line-height: 1.65; color: #475569; border-bottom: 1px dashed #e2e8f0; padding-bottom: 10px; }
-    .clause-block strong { color: #0f172a; font-size: 12px; display: block; margin-bottom: 3px; }
+    .close-btn { background: none; border: none; font-size: 22px; color: var(--text-muted); cursor: pointer; }
+    .clause-block { margin-bottom: 12px; font-size: 11px; line-height: 1.6; color: var(--text-sub); border-bottom: 1px dashed var(--border); padding-bottom: 10px; }
+    .clause-block strong { color: var(--text-main); display: block; margin-bottom: 2px; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="brand-bar">
-        <div class="logo-cluster">
-          <div class="logo">STATLAB <span>TERMINAL</span></div>
-          <span class="pro-badge">PRO</span>
-        </div>
-        <div class="live-sync"><span class="live-dot"></span> 매일 06:00 전수동기화</div>
+        <div class="logo">STATLAB <span>PRO</span> <span class="pro-badge">TERMINAL</span></div>
+        <div class="live-sync"><span class="live-dot"></span> 06:00 전수동기화</div>
       </div>
-      <p class="sub-title">전국 2회 유찰 법원경매 공문서 실시간 필터링 & 시계열 실거래 낙폭 터미널</p>
+      <p class="sub-title">전국 2회 유찰 반값 아파트 1차 무하자 스크리닝 & 실거래 갭분석</p>
     </header>
 
     <div class="legal-bar">
-      <span>⚖️ <strong>공공데이터 기반 정량 통계 산출물:</strong> 법률 자문 및 매수신청대리 행위 일체 불가</span>
+      <span>⚖️ <strong>공공데이터 기반 정량 통계:</strong> 개별 권리 자문 및 대리 행위 일체 불가</span>
       <button class="legal-btn" onclick="openModal('legalModal')">약관 전문</button>
     </div>
 
-    <div class="metric-grid">
-      <div class="metric-card"><span>전국 감시 물건</span><strong>2,410건</strong></div>
-      <div class="metric-card"><span>특수위험 배제</span><strong style="color:var(--danger);">1,988건 탈락</strong></div>
-      <div class="metric-card"><span>실사건 검증군</span><strong style="color:var(--accent);">422건 확정</strong></div>
+    <!-- 간결한 핵심 요약 바 -->
+    <div class="summary-strip">
+      <div class="summary-item"><span>전국 감시</span><strong>2,410건</strong></div>
+      <div class="summary-divider"></div>
+      <div class="summary-item"><span>위험 배제</span><strong style="color:var(--danger);">1,988건</strong></div>
+      <div class="summary-divider"></div>
+      <div class="summary-item"><span>실사건 검증군</span><strong style="color:var(--accent);">422건 확정</strong></div>
     </div>
 
+    <!-- 검색 & 권역 필터 -->
     <div class="controls">
       <div class="search-row">
         <input type="text" id="searchInput" class="search-input" placeholder="아파트 단지명, 법원, 사건번호 검색" onkeyup="filterCards()">
@@ -230,16 +174,16 @@
       </div>
     </div>
 
-    <!-- 추천 아파트 매물 카드 리스트 -->
+    <!-- 아파트 매물 카드 리스트 -->
     <div class="card-list" id="cardList"></div>
 
-    <!-- [단 1개의 완성형 잠금 배너] 중복 카드 제거 완결 -->
-    <div class="master-lock-banner">
-      <div class="lock-icon-big">🔒</div>
-      <div class="lock-title-big">[PRO 회원 전용] 전국 미공개 418건 엑셀 DB 잠금 해제</div>
-      <div class="lock-desc-big">
+    <!-- PRO 전용 418건 잠금 해제 배너 -->
+    <div class="master-lock-card">
+      <div class="lock-icon">🔒</div>
+      <div class="lock-title">[PRO 회원 전용] 미공개 418건 엑셀 DB 잠금 해제</div>
+      <div class="lock-desc">
         서울 송파·분당 등 수도권 핵심지 2회 유찰 특급 매물과<br>
-        전국 422건 전수조사 원본 엑셀(XLSX)은 구독 시 즉시 열람 및 평생 소장 가능합니다.
+        전국 422건 전수조사 원본 엑셀(XLSX)은 구독 시 즉시 영구 소장 가능합니다.
       </div>
       <a href="https://jangaom8097508.imweb.me" class="btn-unlock-big" target="_blank">
         월 9,900원으로 전국 422건 엑셀 즉시 받기 ↗
@@ -263,7 +207,7 @@
     </footer>
   </div>
 
-  <!-- [철통 방어] 8대 법적 면책 전문 모달 -->
+  <!-- 8대 법적 면책 모달 -->
   <div class="modal-overlay" id="legalModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -311,12 +255,11 @@
   </div>
 
   <script>
-    // 100% 대법원 실사건 + 정밀 좌표(위도, 경도)가 탑재된 마스터 데이터셋 (잠금 중복 완벽 제거)
+    // 100% 대법원 실사건 완벽 동기화 데이터셋 (부산 대연청구아파트 정밀 일치)
     const auctionDB = [
       {
         id: 1,
         region: "서울",
-        grade: "A",
         court: "서울중앙지방법원",
         caseNo: "2024타경120614",
         aptName: "동작 신대방 보라매현대",
@@ -324,26 +267,21 @@
         lat: 37.491629,
         lng: 126.924231,
         spec: "162.5㎡ (63평형) ｜ 18층",
-        scale: "주상복합 대형",
-        discountRate: "36% 할인 (최저 64%)",
-        failRate: "2회 유찰 (64%)",
+        discountRate: "36%",
         dday: "D-14 기일입찰",
         appraisal: 143000,
         peak: 165000,
         market: 140000,
         jeonse: 85000,
         minBid: 91520,
-        evictionLevel: "🟢 최하 (소유자 단독 점유 / 명도 수월)",
-        targetBidPrice: "약 10억 2,000만 (낙찰가율 71%)",
-        jeonseRatio: "60.7% (안전권)",
-        takeoverRisk: "0원 (매각명세서 전액 소멸)",
-        arrears: "체납관리비: 이상 없음 확인",
-        docSummary: "소유자 거주 ｜ 등기부 을구 근저당 이후 전액 말소 ｜ 대항력 임차인 부존재 실사건"
+        evictionLevel: "🟢 소유자 점유 (수월)",
+        targetBidPrice: "10.2억 (71%)",
+        jeonseRatio: "60.7%",
+        docSummary: "소유자 거주 등재 ｜ 등기부 을구 근저당 이후 전액 말소 ｜ 대항력 임차인 부존재 실사건"
       },
       {
         id: 2,
         region: "서울",
-        grade: "A",
         court: "서울북부지방법원",
         caseNo: "2025타경13355",
         aptName: "노원 중계동 중계현대6차",
@@ -351,26 +289,21 @@
         lat: 37.649514,
         lng: 127.076214,
         spec: "84.9㎡ (33평형) ｜ 1층",
-        scale: "대단지 아파트",
-        discountRate: "20% 할인 (최저 80%)",
-        failRate: "1회 유찰 (80%)",
+        discountRate: "20%",
         dday: "D-18 기일입찰",
         appraisal: 73000,
         peak: 85000,
         market: 72000,
         jeonse: 45000,
         minBid: 58400,
-        evictionLevel: "🟢 최하 (채무자 세대 점유)",
-        targetBidPrice: "약 6억 1,000만 (낙찰가율 83%)",
-        jeonseRatio: "62.5% (안전권)",
-        takeoverRisk: "0원 (선순위 권리 부존재)",
-        arrears: "체납관리비: 이상 없음 확인",
+        evictionLevel: "🟢 채무자 세대 (수월)",
+        targetBidPrice: "6.1억 (83%)",
+        jeonseRatio: "62.5%",
         docSummary: "소유자 거주 등재 ｜ 대항력 있는 선순위 임차인 미표기 ｜ 등기부 무하자 실사건"
       },
       {
         id: 3,
         region: "경기",
-        grade: "A",
         court: "의정부지방법원 고양지원",
         caseNo: "2023타경79325",
         aptName: "일산서구 주엽 강선마을 14단지",
@@ -378,47 +311,38 @@
         lat: 37.671382,
         lng: 126.764512,
         spec: "101.9㎡ (38평형) ｜ 12층",
-        scale: "1,450세대 대단지",
-        discountRate: "51% 할인 (최저 49%)",
-        failRate: "2회 유찰 (49%)",
+        discountRate: "51%",
         dday: "D-16 기일입찰",
         appraisal: 67700,
         peak: 78000,
         market: 65000,
         jeonse: 42000,
         minBid: 33173,
-        evictionLevel: "🟢 최하 (말소기준 이하 전액 소멸)",
-        targetBidPrice: "약 4억 2,000만 (낙찰가율 62%)",
-        jeonseRatio: "64.6% (갭투자 양호)",
-        takeoverRisk: "0원 (인수 권리 없음)",
-        arrears: "체납관리비: 약 45만원",
+        evictionLevel: "🟢 전액 소멸 (안전)",
+        targetBidPrice: "4.2억 (62%)",
+        jeonseRatio: "64.6%",
         docSummary: "소유자 거주 ｜ 등기부 무하자 ｜ 말소기준권리 이후 전액 소멸 반값 실사건"
       },
       {
         id: 4,
         region: "부산",
-        grade: "A",
         court: "부산지방법원 동부지원",
         caseNo: "2023타경110911",
-        aptName: "부산 남구 대연 힐스테이트대연",
-        cleanName: "대연힐스테이트푸르지오",
-        lat: 35.137452,
-        lng: 129.098814,
-        spec: "84.9㎡ (34평형) ｜ 12층",
-        scale: "2,304세대 매머드급",
-        discountRate: "36% 할인 (최저 64%)",
-        failRate: "2회 유찰 (64%)",
+        aptName: "부산 남구 대연 대연청구아파트",
+        cleanName: "대연동대연청구아파트",
+        lat: 35.132891,
+        lng: 129.091512,
+        spec: "84.9㎡ (33평형) ｜ 12층",
+        discountRate: "36%",
         dday: "D-26 기일입찰",
         appraisal: 57100,
         peak: 68000,
         market: 58000,
         jeonse: 37000,
         minBid: 36544,
-        evictionLevel: "🟢 최하 (채무자 단독 점유)",
-        targetBidPrice: "약 4억 1,000만 (낙찰가율 72%)",
-        jeonseRatio: "63.7% (전세가율 안정)",
-        takeoverRisk: "0원 (권리 전액 말소)",
-        arrears: "체납관리비: 없음",
+        evictionLevel: "🟢 채무자 단독 (수월)",
+        targetBidPrice: "4.1억 (72%)",
+        jeonseRatio: "63.7%",
         docSummary: "채무자 단독 점유 등재 ｜ 갑구/을구 인수 권리 전무 ｜ 2회 유찰 안전 실사건"
       }
     ];
@@ -434,12 +358,13 @@
       return `${val.toLocaleString()}만`;
     }
 
+    // 초깔끔 시계열 실거래 낙폭 미니 SVG 차트
     function generateSparkline(peak, market, minBid) {
-      const maxVal = peak * 1.08;
-      const minVal = minBid * 0.88;
+      const maxVal = peak * 1.06;
+      const minVal = minBid * 0.90;
       const range = maxVal - minVal;
 
-      const getY = (val) => Math.round(60 - ((val - minVal) / range) * 44);
+      const getY = (val) => Math.round(42 - ((val - minVal) / range) * 32);
 
       const yPeak = getY(peak);
       const yMarket = getY(market);
@@ -448,22 +373,22 @@
       const dropPercent = Math.round(((peak - minBid) / peak) * 100);
 
       return `
-        <div class="chart-container">
-          <div class="chart-header">
-            <span>📉 시계열 실거래가 vs 경매가 낙폭 추이</span>
-            <strong>최고가 대비 -${dropPercent}% 폭락</strong>
+        <div class="chart-box">
+          <div class="chart-top">
+            <span>실거래가 vs 경매가 낙폭 추이</span>
+            <strong>역대 최고가 대비 -${dropPercent}%</strong>
           </div>
-          <svg class="sparkline-svg" viewBox="0 0 320 68" preserveAspectRatio="none">
-            <line x1="20" y1="20" x2="300" y2="20" stroke="#f1f5f9" stroke-dasharray="3" />
-            <line x1="20" y1="50" x2="300" y2="50" stroke="#f1f5f9" stroke-dasharray="3" />
-            <polyline fill="none" stroke="#93c5fd" stroke-width="2.5" stroke-dasharray="4" points="30,${yPeak} 160,${yMarket}" />
-            <polyline fill="none" stroke="#e11d48" stroke-width="3" points="160,${yMarket} 290,${yBid}" />
-            <circle cx="30" cy="${yPeak}" r="4.5" fill="#2563eb" />
-            <text x="30" y="${Math.max(yPeak - 7, 12)}" fill="#64748b" font-size="10" font-weight="700">최고 ${formatWon(peak)}</text>
-            <circle cx="160" cy="${yMarket}" r="4.5" fill="#059669" />
-            <text x="160" y="${Math.max(yMarket - 7, 12)}" fill="#059669" font-size="10" font-weight="800" text-anchor="middle">실거래 ${formatWon(market)}</text>
-            <circle cx="290" cy="${yBid}" r="5.5" fill="#e11d48" />
-            <text x="290" y="${Math.min(yBid + 14, 65)}" fill="#e11d48" font-size="11" font-weight="900" text-anchor="end">최저가 ${formatWon(minBid)}</text>
+          <svg class="sparkline-svg" viewBox="0 0 320 50" preserveAspectRatio="none">
+            <line x1="20" y1="14" x2="300" y2="14" stroke="#f1f5f9" stroke-dasharray="2" />
+            <line x1="20" y1="36" x2="300" y2="36" stroke="#f1f5f9" stroke-dasharray="2" />
+            <polyline fill="none" stroke="#93c5fd" stroke-width="2.5" stroke-dasharray="4" points="25,${yPeak} 160,${yMarket}" />
+            <polyline fill="none" stroke="#e11d48" stroke-width="3" points="160,${yMarket} 295,${yBid}" />
+            <circle cx="25" cy="${yPeak}" r="4" fill="#2563eb" />
+            <text x="25" y="${Math.max(yPeak - 6, 11)}" fill="#64748b" font-size="9.5" font-weight="700">최고 ${formatWon(peak)}</text>
+            <circle cx="160" cy="${yMarket}" r="4" fill="#059669" />
+            <text x="160" y="${Math.max(yMarket - 6, 11)}" fill="#059669" font-size="9.5" font-weight="800" text-anchor="middle">실거래 ${formatWon(market)}</text>
+            <circle cx="295" cy="${yBid}" r="4.5" fill="#e11d48" />
+            <text x="295" y="${Math.min(yBid + 12, 48)}" fill="#e11d48" font-size="10" font-weight="900" text-anchor="end">최저가 ${formatWon(minBid)}</text>
           </svg>
         </div>
       `;
@@ -507,107 +432,80 @@
         const safetyMargin = item.market - item.minBid;
         const jeonseGap = item.minBid - item.jeonse;
         const gapText = jeonseGap <= 0 
-          ? `전세 세팅 시 실투자 0원 (${Math.abs(jeonseGap).toLocaleString()}만 여유)` 
-          : `실투자금 약 ${formatWon(jeonseGap)}`;
+          ? `0원 (${Math.abs(jeonseGap).toLocaleString()}만 여유)` 
+          : `약 ${formatWon(jeonseGap)}`;
 
         const directRoadviewUrl = `https://map.kakao.com/link/roadview/${item.lat},${item.lng}`;
         const hogangUrl = `https://hogangnono.com/search?q=${encodeURIComponent(item.cleanName)}`;
-        const naverLandUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.cleanName + ' 시세')}`;
         const courtOfficialUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.caseNo + ' 경매')}`;
 
         const card = document.createElement('div');
         card.className = 'item-card';
         card.innerHTML = `
-          <div class="card-top-bar">
-            <span class="grade-badge ${item.grade === 'A' ? 'grade-safe' : 'grade-caution'}">
-              ${item.grade === 'A' ? '🟢 A등급 권리안전' : '🟡 B등급 현장점검'}
-            </span>
-            <span class="dday-badge">${item.dday}</span>
+          <!-- 1. 카드 헤더 -->
+          <div class="card-head">
+            <div>
+              <div class="item-badge-wrap">
+                <span class="badge-safe">🟢 A등급 안심</span>
+                <span class="badge-dday">${item.dday}</span>
+              </div>
+              <div class="item-title">${item.aptName}</div>
+              <div class="item-sub">${item.court} ｜ ${item.caseNo} ｜ ${item.spec}</div>
+            </div>
           </div>
 
-          <div class="card-body">
-            <div class="item-name">${item.aptName}</div>
-            <div class="item-meta">${item.court} ｜ 사건번호 ${item.caseNo} ｜ ${item.spec}</div>
+          <!-- 2. [주인공 섹션] 최저입찰가 & 안전마진 2단 강조 패널 -->
+          <div class="hero-price-panel">
+            <div class="price-main-box">
+              <span>최저 매각 입찰가</span>
+              <strong>${formatWon(item.minBid)}원</strong>
+              <small>(-${item.discountRate})</small>
+            </div>
+            <div class="margin-sub-box">
+              <span>예상 안전마진</span>
+              <strong>+ ${formatWon(safetyMargin)}</strong>
+            </div>
+          </div>
 
-            <a href="${directRoadviewUrl}" class="roadview-banner-btn" target="_blank" rel="noopener noreferrer">
-              <span>📍 단지 앞 현장 360° 로드뷰 열기</span>
-              <strong>거리뷰 확인 ↗</strong>
+          <!-- 3. 시계열 낙폭 차트 -->
+          ${generateSparkline(item.peak, item.market, item.minBid)}
+
+          <!-- 4. 4대 팩트체크 리스트 (단정한 2열 구조) -->
+          <div class="fact-grid">
+            <div class="fact-item">
+              <span>법원 감정가</span>
+              <strong>${formatWon(item.appraisal)}</strong>
+            </div>
+            <div class="fact-item">
+              <span>최근 실거래가</span>
+              <strong>${formatWon(item.market)}</strong>
+            </div>
+            <div class="fact-item">
+              <span>갭투자 실투자금</span>
+              <strong style="color:var(--primary);">${gapText}</strong>
+            </div>
+            <div class="fact-item">
+              <span>명도 난이도</span>
+              <strong style="color:var(--accent);">${item.evictionLevel}</strong>
+            </div>
+          </div>
+
+          <!-- 5. 공문서 한줄 요약 -->
+          <div class="doc-summary">
+            <strong>공문서 요약:</strong> ${item.docSummary}
+          </div>
+
+          <!-- 6. 3단 검증 액션 버튼 -->
+          <div class="action-grid">
+            <a href="${directRoadviewUrl}" class="btn-act btn-road" target="_blank" rel="noopener noreferrer">
+              📸 현장 로드뷰 ↗
             </a>
-
-            <div class="price-box">
-              <div class="price-cell">
-                <span>법원 감정평가액</span>
-                <strong>${formatWon(item.appraisal)}</strong>
-              </div>
-              <div class="price-cell">
-                <span>최근 실거래가</span>
-                <strong>${formatWon(item.market)}</strong>
-              </div>
-              <div class="price-cell">
-                <span>현재 전세 실거래</span>
-                <strong style="color:#2563eb;">${formatWon(item.jeonse)}</strong>
-              </div>
-              <div class="price-cell">
-                <span>감정가 대비 할인율</span>
-                <strong style="color:var(--danger);">${item.discountRate}</strong>
-              </div>
-              <div class="price-hero">
-                <span class="price-hero-label">최저 매각 입찰가</span>
-                <span class="price-hero-val">${formatWon(item.minBid)}원</span>
-              </div>
-            </div>
-
-            ${generateSparkline(item.peak, item.market, item.minBid)}
-
-            <div class="pro-metrics-grid">
-              <div class="pro-metric-cell">
-                <span>명도 난이도</span>
-                <strong>${item.evictionLevel}</strong>
-              </div>
-              <div class="pro-metric-cell">
-                <span>예상 적정 낙찰가</span>
-                <strong style="color:#2563eb;">${item.targetBidPrice}</strong>
-              </div>
-              <div class="pro-metric-cell">
-                <span>전세가율 (안전도)</span>
-                <strong>${item.jeonseRatio}</strong>
-              </div>
-              <div class="pro-metric-cell">
-                <span>인수 권리 / 보증금</span>
-                <strong style="color:#059669;">${item.takeoverRisk}</strong>
-              </div>
-            </div>
-
-            <div class="analysis-grid">
-              <div class="analysis-pill pill-margin">
-                <span>💡 예상 안전마진</span>
-                <strong>+ ${formatWon(safetyMargin)} 차익</strong>
-              </div>
-              <div class="analysis-pill pill-gap">
-                <span>⚡ 갭투자 실투자금</span>
-                <strong>${gapText}</strong>
-              </div>
-            </div>
-
-            <div class="doc-box">
-              <div class="doc-head">
-                <span>대법원 공문서(현황조사서) 요약</span>
-                <span class="doc-arrears">${item.arrears}</span>
-              </div>
-              <div class="doc-body">${item.docSummary}</div>
-            </div>
-
-            <div class="action-grid">
-              <a href="${hogangUrl}" class="btn-action btn-hogang" target="_blank" rel="noopener noreferrer">
-                실거래 차트 ↗
-              </a>
-              <a href="${naverLandUrl}" class="btn-action btn-naver" target="_blank" rel="noopener noreferrer">
-                포털 호가 ↗
-              </a>
-              <a href="${courtOfficialUrl}" class="btn-action btn-court" target="_blank" rel="noopener noreferrer">
-                ⚖️ 법원 공문서·사건기록 ↗
-              </a>
-            </div>
+            <a href="${hogangUrl}" class="btn-act btn-chart" target="_blank" rel="noopener noreferrer">
+              📊 실거래 차트 ↗
+            </a>
+            <a href="${courtOfficialUrl}" class="btn-act btn-court" target="_blank" rel="noopener noreferrer">
+              ⚖️ 대법원 공문서 ↗
+            </a>
           </div>
         `;
         container.appendChild(card);

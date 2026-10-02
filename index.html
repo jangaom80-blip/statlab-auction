@@ -7,143 +7,146 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     :root {
-      --bg: #070a12;
-      --card-bg: #0e1524;
-      --card-border: #1d283a;
-      --card-inner: #090e1a;
-      --primary: #38bdf8;
-      --accent: #10b981;
-      --danger: #f43f5e;
-      --warning: #f59e0b;
-      --text-muted: #8896ab;
-      --text-main: #f8fafc;
-      --naver-green: #03c75a;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --card-inner: #f1f5f9;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #059669;
+      --accent-light: #ecfdf5;
+      --danger: #e11d48;
+      --danger-light: #fff1f2;
+      --warning: #d97706;
+      --text-muted: #64748b;
+      --text-sub: #475569;
+      --text-main: #0f172a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; -webkit-tap-highlight-color: transparent; }
     body { background-color: var(--bg); color: var(--text-main); padding: 14px 12px 105px; -webkit-font-smoothing: antialiased; }
     .container { max-width: 680px; margin: 0 auto; }
 
-    /* 프리미엄 헤더 */
+    /* 프리미엄 라이트 헤더 */
     header { margin-bottom: 14px; }
     .brand-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
     .logo-cluster { display: flex; align-items: center; gap: 7px; }
-    .logo { font-size: 20px; font-weight: 900; color: #fff; letter-spacing: -0.6px; }
+    .logo { font-size: 20px; font-weight: 900; color: #0f172a; letter-spacing: -0.6px; }
     .logo span { color: var(--primary); }
-    .pro-badge { background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color: #fff; font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
-    .live-sync { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--accent); font-weight: 700; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 3px 9px; border-radius: 12px; }
-    .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); }
+    .pro-badge { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #fff; font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
+    .live-sync { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--accent); font-weight: 800; background: var(--accent-light); border: 1px solid #a7f3d0; padding: 3px 9px; border-radius: 12px; }
+    .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 6px rgba(5, 150, 105, 0.4); }
     .sub-title { font-size: 12px; color: var(--text-muted); line-height: 1.45; }
 
     /* 법적 면책 고지 배너 */
-    .legal-bar { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.28); border-radius: 8px; padding: 9px 12px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; color: #fcd34d; display: flex; justify-content: space-between; align-items: center; }
-    .legal-btn { background: transparent; border: 1px solid #f59e0b; color: #f59e0b; padding: 2px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+    .legal-bar { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 9px 12px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; color: #b45309; display: flex; justify-content: space-between; align-items: center; }
+    .legal-btn { background: #ffffff; border: 1px solid #d97706; color: #b45309; padding: 2px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 800; cursor: pointer; white-space: nowrap; }
 
     /* 핵심 통계 요약 지표 */
     .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 14px; }
-    .metric-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 8px; text-align: center; }
+    .metric-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 8px; text-align: center; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03); }
     .metric-card span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 2px; }
-    .metric-card strong { font-size: 16px; font-weight: 900; }
+    .metric-card strong { font-size: 16px; font-weight: 900; color: #0f172a; }
 
     /* 컨트롤 바 */
     .controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
     .search-row { display: flex; gap: 8px; }
-    .search-input { flex: 1; background: var(--card-inner); border: 1px solid #233148; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 13.5px; outline: none; }
+    .search-input { flex: 1; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; color: #0f172a; font-size: 13.5px; outline: none; }
     .search-input:focus { border-color: var(--primary); }
-    .sort-select { background: var(--card-inner); border: 1px solid #233148; border-radius: 8px; padding: 0 10px; color: #cbd5e1; font-size: 12px; outline: none; }
+    .sort-select { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0 10px; color: #334155; font-size: 12px; outline: none; }
 
     .tab-row { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
     .tab-row::-webkit-scrollbar { display: none; }
-    .tab-btn { background: #131d2e; color: var(--text-muted); border: 1px solid #1e293b; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-    .tab-btn.active { background: var(--primary); color: #060911; border-color: var(--primary); font-weight: 900; }
+    .tab-btn { background: #ffffff; color: var(--text-muted); border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+    .tab-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); font-weight: 900; }
 
-    /* 프리미엄 매물 카드 (사진 없는 고밀도 프롭테크 터미널 뷰) */
+    /* 화이트톤 프리미엄 매물 카드 */
     .card-list { display: flex; flex-direction: column; gap: 16px; }
-    .item-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
+    .item-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); }
     
-    .card-top-bar { padding: 14px 15px 10px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #151f30; }
+    .card-top-bar { padding: 12px 15px 10px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; background: #ffffff; }
     .grade-badge { font-size: 11px; font-weight: 900; padding: 4px 8px; border-radius: 6px; }
-    .grade-safe { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
-    .grade-caution { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
-    .dday-badge { color: #fbbf24; font-size: 11.5px; font-weight: 900; }
+    .grade-safe { background: var(--accent-light); color: var(--accent); border: 1px solid #a7f3d0; }
+    .grade-caution { background: #fffbeb; color: var(--warning); border: 1px solid #fde68a; }
+    .dday-badge { color: #b45309; font-size: 11.5px; font-weight: 900; background: #fef3c7; padding: 2px 7px; border-radius: 4px; }
 
     .card-body { padding: 15px; }
-    .item-name { font-size: 17px; font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 3px; }
+    .item-name { font-size: 17px; font-weight: 900; color: #0f172a; line-height: 1.35; margin-bottom: 3px; }
     .item-meta { font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; }
 
-    /* [핵심] 상단에 시원하게 배치된 360° 현장 로드뷰 배너 버튼 */
-    .roadview-banner-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; background: linear-gradient(135deg, #064e3b 0%, #022c22 100%); border: 1px solid #059669; padding: 11px 14px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 12px; }
+    /* 상단 360° 로드뷰 에메랄드 배너 버튼 */
+    .roadview-banner-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; background: linear-gradient(135deg, #059669 0%, #047857 100%); border: 1px solid #059669; padding: 11px 14px; border-radius: 10px; text-decoration: none; color: #ffffff; margin-bottom: 12px; box-shadow: 0 3px 10px rgba(5, 150, 105, 0.2); }
     .roadview-banner-btn span { font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
-    .roadview-banner-btn strong { font-size: 11px; color: #6ee7b7; font-weight: 700; }
+    .roadview-banner-btn strong { font-size: 11px; color: #d1fae5; font-weight: 700; }
 
     /* 가격 매트릭스 */
-    .price-box { background: var(--card-inner); border: 1px solid #1a2536; border-radius: 10px; padding: 12px; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .price-box { background: var(--card-inner); border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .price-cell span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 1px; }
-    .price-cell strong { font-size: 14px; font-weight: 800; color: #e2e8f0; }
-    .price-hero { grid-column: span 2; border-top: 1px dashed #1e293b; padding-top: 8px; margin-top: 2px; display: flex; justify-content: space-between; align-items: flex-end; }
-    .price-hero-label { font-size: 11px; color: #f87171; font-weight: 800; }
+    .price-cell strong { font-size: 14px; font-weight: 800; color: #1e293b; }
+    .price-hero { grid-column: span 2; border-top: 1px dashed #cbd5e1; padding-top: 8px; margin-top: 2px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .price-hero-label { font-size: 11px; color: var(--danger); font-weight: 800; }
     .price-hero-val { font-size: 18px; font-weight: 900; color: var(--danger); }
 
     /* 시계열 실거래 낙폭 SVG 그래프 박스 */
-    .chart-container { background: var(--card-inner); border: 1px solid #1e2a3e; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
-    .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 11.5px; font-weight: 800; color: #94a3b8; }
+    .chart-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02); }
+    .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 11.5px; font-weight: 800; color: var(--text-sub); }
     .chart-header strong { color: var(--danger); font-size: 12px; font-weight: 900; }
     .sparkline-svg { width: 100%; height: 68px; display: block; }
 
     /* 유료 프롭테크 전용 정밀 투자 분석 4대 매트릭스 */
     .pro-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
-    .pro-metric-cell { background: #080d17; border: 1px solid #1a2638; border-radius: 8px; padding: 8px 10px; }
-    .pro-metric-cell span { font-size: 10.5px; color: #8896ab; display: block; margin-bottom: 2px; }
-    .pro-metric-cell strong { font-size: 12.5px; font-weight: 800; color: #f1f5f9; }
+    .pro-metric-cell { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 10px; }
+    .pro-metric-cell span { font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 2px; }
+    .pro-metric-cell strong { font-size: 12.5px; font-weight: 800; color: #1e293b; }
 
     /* 분석 듀얼 배너 */
     .analysis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
     .analysis-pill { border-radius: 8px; padding: 8px 10px; font-size: 11px; }
-    .pill-margin { background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .pill-margin { background: var(--accent-light); border: 1px solid #a7f3d0; }
     .pill-margin span { color: var(--accent); display: block; font-weight: 700; }
-    .pill-margin strong { color: #34d399; font-size: 13.5px; font-weight: 900; }
+    .pill-margin strong { color: #047857; font-size: 13.5px; font-weight: 900; }
 
-    .pill-gap { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .pill-gap { background: var(--primary-light); border: 1px solid #bfdbfe; }
     .pill-gap span { color: var(--primary); display: block; font-weight: 700; }
-    .pill-gap strong { color: #7dd3fc; font-size: 13.5px; font-weight: 900; }
+    .pill-gap strong { color: #1d4ed8; font-size: 13.5px; font-weight: 900; }
 
     /* 대법원 공문서 요약 */
-    .doc-box { background: var(--card-inner); border: 1px solid #1e293b; border-radius: 8px; padding: 9px 11px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; }
-    .doc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; font-weight: 800; color: #cbd5e1; }
-    .doc-arrears { color: #f87171; font-weight: 800; }
-    .doc-body { color: #8492a6; word-break: break-all; }
+    .doc-box { background: var(--card-inner); border: 1px solid #e2e8f0; border-radius: 8px; padding: 9px 11px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; }
+    .doc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; font-weight: 800; color: #334155; }
+    .doc-arrears { color: var(--danger); font-weight: 800; }
+    .doc-body { color: #64748b; word-break: break-all; }
 
-    /* [완벽 복원] 하단 3단 액션 버튼 (사건기록 직행) */
+    /* 하단 3단 액션 버튼 */
     .action-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 6px; }
     .btn-action { display: inline-flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; padding: 10px 0; border-radius: 7px; text-decoration: none; text-align: center; cursor: pointer; border: none; }
-    .btn-hogang { background: #1e3a8a; color: #93c5fd; border: 1px solid #2563eb; }
-    .btn-naver { background: #064e3b; color: #6ee7b7; border: 1px solid #059669; }
-    .btn-court { background: #881337; color: #fecdd3; border: 1px solid #e11d48; }
+    .btn-hogang { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .btn-naver { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .btn-court { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
 
     /* 🔒 PRO 전용 잠금 카드 */
     .locked-card { position: relative; overflow: hidden; }
     .locked-card .card-body { filter: blur(5px); opacity: 0.35; pointer-events: none; }
-    .lock-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(8, 13, 22, 0.88); z-index: 10; padding: 20px; text-align: center; }
+    .lock-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255, 255, 255, 0.88); z-index: 10; padding: 20px; text-align: center; backdrop-filter: blur(2px); }
     .lock-icon { font-size: 32px; margin-bottom: 8px; }
-    .lock-title { font-size: 15.5px; font-weight: 900; color: #fff; margin-bottom: 4px; }
-    .lock-desc { font-size: 11.5px; color: #94a3b8; margin-bottom: 14px; line-height: 1.45; }
-    .btn-unlock { background: var(--primary); color: #060911; font-size: 13px; font-weight: 900; padding: 10px 24px; border-radius: 8px; text-decoration: none; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+    .lock-title { font-size: 15.5px; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
+    .lock-desc { font-size: 11.5px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.45; }
+    .btn-unlock { background: var(--primary); color: #ffffff; font-size: 13px; font-weight: 900; padding: 10px 24px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
 
-    /* 하단 고정 구독 바 */
-    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(13, 19, 31, 0.97); backdrop-filter: blur(10px); border-top: 1px solid #1e293b; padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; }
+    /* 하단 고정 구독 바 (화이트 블러) */
+    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); border-top: 1px solid #e2e8f0; padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 20px rgba(0,0,0,0.05); }
     .floating-bar .info span { font-size: 11px; color: var(--text-muted); display: block; }
-    .floating-bar .info strong { font-size: 13.5px; color: #fff; }
-    .floating-buy-btn { background: #38bdf8; color: #060911; font-size: 13px; font-weight: 900; padding: 10px 18px; border-radius: 8px; text-decoration: none; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+    .floating-bar .info strong { font-size: 13.5px; color: #0f172a; }
+    .floating-buy-btn { background: #2563eb; color: #ffffff; font-size: 13px; font-weight: 900; padding: 10px 18px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); }
 
     /* 팝업 모달 */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 16px; }
-    .modal-content { background: #0d131f; border: 1px solid #233148; border-radius: 14px; max-width: 540px; width: 100%; padding: 22px; max-height: 85vh; overflow-y: auto; }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
-    .modal-header h3 { font-size: 15px; font-weight: 900; color: #fbbf24; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; justify-content: center; align-items: center; padding: 16px; backdrop-filter: blur(3px); }
+    .modal-content { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; max-width: 540px; width: 100%; padding: 22px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; }
+    .modal-header h3 { font-size: 15px; font-weight: 900; color: #b45309; }
     .close-btn { background: none; border: none; font-size: 22px; color: #94a3b8; cursor: pointer; }
-    .clause-block { margin-bottom: 14px; font-size: 11.5px; line-height: 1.65; color: #cbd5e1; border-bottom: 1px dashed #1e293b; padding-bottom: 10px; }
-    .clause-block strong { color: #f8fafc; font-size: 12px; display: block; margin-bottom: 3px; }
+    .clause-block { margin-bottom: 14px; font-size: 11.5px; line-height: 1.65; color: #475569; border-bottom: 1px dashed #e2e8f0; padding-bottom: 10px; }
+    .clause-block strong { color: #0f172a; font-size: 12px; display: block; margin-bottom: 3px; }
 
-    footer { text-align: center; margin-top: 30px; font-size: 10.5px; color: #64748b; line-height: 1.7; border-top: 1px solid #1e293b; padding-top: 20px; }
+    footer { text-align: center; margin-top: 30px; font-size: 10.5px; color: #94a3b8; line-height: 1.7; border-top: 1px solid #e2e8f0; padding-top: 20px; }
   </style>
 </head>
 <body>
@@ -160,7 +163,7 @@
     </header>
 
     <div class="legal-bar">
-      <span>⚖️️ <strong>공공데이터 기반 정량 통계 산출물:</strong> 법률 자문 및 매수신청대리 행위 일체 불가</span>
+      <span>⚖️ <strong>공공데이터 기반 정량 통계 산출물:</strong> 법률 자문 및 매수신청대리 행위 일체 불가</span>
       <button class="legal-btn" onclick="openModal('legalModal')">약관 전문</button>
     </div>
 
@@ -432,7 +435,7 @@
       return `${val.toLocaleString()}만`;
     }
 
-    // 5개년 시계열 실거래 낙폭 SVG 그래프 생성기
+    // 화이트 배경에 맞춘 선명한 5개년 시계열 실거래 낙폭 SVG 그래프
     function generateSparkline(peak, market, minBid) {
       const maxVal = peak * 1.08;
       const minVal = minBid * 0.88;
@@ -453,16 +456,16 @@
             <strong>최고가 대비 -${dropPercent}% 폭락</strong>
           </div>
           <svg class="sparkline-svg" viewBox="0 0 320 68" preserveAspectRatio="none">
-            <line x1="20" y1="20" x2="300" y2="20" stroke="#1d283a" stroke-dasharray="3" />
-            <line x1="20" y1="50" x2="300" y2="50" stroke="#1d283a" stroke-dasharray="3" />
-            <polyline fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4" points="30,${yPeak} 160,${yMarket}" />
-            <polyline fill="none" stroke="#f43f5e" stroke-width="3.5" points="160,${yMarket} 290,${yBid}" />
-            <circle cx="30" cy="${yPeak}" r="4.5" fill="#38bdf8" />
-            <text x="30" y="${Math.max(yPeak - 7, 12)}" fill="#94a3b8" font-size="10" font-weight="700">최고 ${formatWon(peak)}</text>
-            <circle cx="160" cy="${yMarket}" r="4.5" fill="#10b981" />
-            <text x="160" y="${Math.max(yMarket - 7, 12)}" fill="#10b981" font-size="10" font-weight="800" text-anchor="middle">실거래 ${formatWon(market)}</text>
-            <circle cx="290" cy="${yBid}" r="5.5" fill="#f43f5e" />
-            <text x="290" y="${Math.min(yBid + 14, 65)}" fill="#f43f5e" font-size="11" font-weight="900" text-anchor="end">최저가 ${formatWon(minBid)}</text>
+            <line x1="20" y1="20" x2="300" y2="20" stroke="#f1f5f9" stroke-dasharray="3" />
+            <line x1="20" y1="50" x2="300" y2="50" stroke="#f1f5f9" stroke-dasharray="3" />
+            <polyline fill="none" stroke="#93c5fd" stroke-width="2.5" stroke-dasharray="4" points="30,${yPeak} 160,${yMarket}" />
+            <polyline fill="none" stroke="#e11d48" stroke-width="3" points="160,${yMarket} 290,${yBid}" />
+            <circle cx="30" cy="${yPeak}" r="4.5" fill="#2563eb" />
+            <text x="30" y="${Math.max(yPeak - 7, 12)}" fill="#64748b" font-size="10" font-weight="700">최고 ${formatWon(peak)}</text>
+            <circle cx="160" cy="${yMarket}" r="4.5" fill="#059669" />
+            <text x="160" y="${Math.max(yMarket - 7, 12)}" fill="#059669" font-size="10" font-weight="800" text-anchor="middle">실거래 ${formatWon(market)}</text>
+            <circle cx="290" cy="${yBid}" r="5.5" fill="#e11d48" />
+            <text x="290" y="${Math.min(yBid + 14, 65)}" fill="#e11d48" font-size="11" font-weight="900" text-anchor="end">최저가 ${formatWon(minBid)}</text>
           </svg>
         </div>
       `;
@@ -533,7 +536,7 @@
           ? `전세 세팅 시 실투자 0원 (${Math.abs(jeonseGap).toLocaleString()}만 여유)` 
           : `실투자금 약 ${formatWon(jeonseGap)}`;
 
-        // 1. [100% 정상 작동] 위도·경도 다이렉트 카카오 360° 로드뷰 링크
+        // 1. 위도·경도 다이렉트 카카오 360° 로드뷰 링크
         const directRoadviewUrl = `https://map.kakao.com/link/roadview/${item.lat},${item.lng}`;
 
         // 2. 호갱노노 모바일 실거래가 그래프 직링크
@@ -542,11 +545,10 @@
         // 3. 네이버 단지 매물 호가 직링크
         const naverLandUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.cleanName + ' 시세')}`;
 
-        // 4. [판례 오류 원천 차단] 사건번호 경매 공문서 직링크
+        // 4. 대법원 공식 공문서 직링크 (판례 오류 방지: 사건번호 + 경매)
         const courtOfficialUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.caseNo + ' 경매')}`;
 
         card.innerHTML = `
-          <!-- 상단 뱃지 바 -->
           <div class="card-top-bar">
             <span class="grade-badge ${item.grade === 'A' ? 'grade-safe' : 'grade-caution'}">
               ${item.grade === 'A' ? '🟢 A등급 권리안전' : '🟡 B등급 현장점검'}
@@ -558,7 +560,7 @@
             <div class="item-name">${item.aptName}</div>
             <div class="item-meta">${item.court} ｜ 사건번호 ${item.caseNo} ｜ ${item.spec}</div>
 
-            <!-- 사진 대신 시원하게 들어간 현장 360도 로드뷰 다이렉트 배너 -->
+            <!-- 현장 360도 로드뷰 다이렉트 배너 -->
             <a href="${directRoadviewUrl}" class="roadview-banner-btn" target="_blank" rel="noopener noreferrer">
               <span>📍 단지 앞 현장 360° 로드뷰 열기</span>
               <strong>거리뷰 확인 ↗</strong>
@@ -576,7 +578,7 @@
               </div>
               <div class="price-cell">
                 <span>현재 전세 실거래</span>
-                <strong style="color:#93c5fd;">${formatWon(item.jeonse)}</strong>
+                <strong style="color:#2563eb;">${formatWon(item.jeonse)}</strong>
               </div>
               <div class="price-cell">
                 <span>감정가 대비 할인율</span>
@@ -591,7 +593,7 @@
             <!-- 카드 내장 5개년 시계열 실거래 낙폭 SVG 그래프 -->
             ${generateSparkline(item.peak, item.market, item.minBid)}
 
-            <!-- [유료 가치 폭발] 정밀 투자 분석 4대 매트릭스 -->
+            <!-- 정밀 투자 분석 4대 매트릭스 -->
             <div class="pro-metrics-grid">
               <div class="pro-metric-cell">
                 <span>명도 난이도</span>
@@ -599,7 +601,7 @@
               </div>
               <div class="pro-metric-cell">
                 <span>예상 적정 낙찰가</span>
-                <strong style="color:#38bdf8;">${item.targetBidPrice}</strong>
+                <strong style="color:#2563eb;">${item.targetBidPrice}</strong>
               </div>
               <div class="pro-metric-cell">
                 <span>전세가율 (안전도)</span>
@@ -607,7 +609,7 @@
               </div>
               <div class="pro-metric-cell">
                 <span>인수 권리 / 보증금</span>
-                <strong style="color:#10b981;">${item.takeoverRisk}</strong>
+                <strong style="color:#059669;">${item.takeoverRisk}</strong>
               </div>
             </div>
 
@@ -630,7 +632,6 @@
               <div class="doc-body">${item.docSummary}</div>
             </div>
 
-            <!-- [복원 완료] 하단 3단 액션 버튼 -->
             <div class="action-grid">
               <a href="${hogangUrl}" class="btn-action btn-hogang" target="_blank" rel="noopener noreferrer">
                 실거래 차트 ↗

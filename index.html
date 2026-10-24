@@ -3,24 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>STATLAB PRO - 대법원 공공데이터 정량 스크리닝 & 실거래 통계 터미널</title>
+  <title>STATLAB PRO - 경매 입찰 손익분기점 시뮬레이터 & 실전 명도 마스터 터미널</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     :root {
       --bg: #f4f6f9;
       --card-bg: #ffffff;
       --navy-dark: #0f172a;
-      --navy-sub: #1e293b;
       --border: #e2e8f0;
-      --border-sub: #f1f5f9;
       --primary: #1d4ed8;
       --primary-soft: #eff6ff;
       --accent: #059669;
       --accent-soft: #ecfdf5;
       --danger: #e11d48;
       --danger-soft: #fff1f2;
-      --gold: #d97706;
-      --gold-soft: #fffbeb;
       --text-main: #0f172a;
       --text-sub: #475569;
       --text-muted: #94a3b8;
@@ -28,7 +24,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; font-variant-numeric: tabular-nums; }
     body { background-color: var(--bg); color: var(--text-main); padding: 0 0 125px; -webkit-font-smoothing: antialiased; }
     
-    /* 최상단 공공데이터 출처 및 비대리성 고지 바 */
     .top-institutional-bar {
       background: var(--navy-dark);
       color: #cbd5e1;
@@ -36,134 +31,95 @@
       font-weight: 600;
       padding: 8px 14px;
       text-align: center;
-      border-bottom: 1px solid #1e293b;
-      letter-spacing: -0.2px;
     }
     .top-institutional-bar strong { color: #38bdf8; font-weight: 800; }
 
     .container { max-width: 600px; margin: 0 auto; padding: 16px 14px 0; }
 
-    /* 프리미엄 헤더 */
     header { margin-bottom: 14px; }
     .brand-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
     .logo { font-size: 22px; font-weight: 900; color: var(--text-main); letter-spacing: -0.7px; display: flex; align-items: center; gap: 6px; }
     .logo span { color: var(--primary); }
-    .pro-badge { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.4); font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; }
-    .live-sync { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--accent); font-weight: 800; background: var(--accent-soft); border: 1px solid #a7f3d0; padding: 4px 10px; border-radius: 20px; }
-    .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 6px rgba(5, 150, 105, 0.5); }
+    .pro-badge { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.4); font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 4px; }
+    .ver-pill { font-size: 11px; color: var(--accent); font-weight: 800; background: var(--accent-soft); border: 1px solid #a7f3d0; padding: 4px 10px; border-radius: 20px; }
     .sub-title { font-size: 12.5px; color: var(--text-sub); line-height: 1.45; font-weight: 500; }
 
-    /* 상단 법적 면책 고정 배너 */
-    .legal-bar { background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid var(--navy-dark); border-radius: 8px; padding: 10px 12px; margin-bottom: 14px; font-size: 11px; line-height: 1.45; color: var(--text-sub); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+    .legal-bar { background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid var(--navy-dark); border-radius: 8px; padding: 10px 12px; margin-bottom: 16px; font-size: 11px; color: var(--text-sub); display: flex; justify-content: space-between; align-items: center; }
     .legal-btn { background: #f8fafc; border: 1px solid #94a3b8; color: var(--text-main); padding: 4px 9px; border-radius: 5px; font-size: 10.5px; font-weight: 800; cursor: pointer; white-space: nowrap; }
 
-    /* 핵심 요약 대시보드 (네이비 프리미엄 카드) */
-    .summary-dashboard {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    /* [킬러 기능] 웹 실시간 입찰 손익 미니 계산기 */
+    .calc-widget {
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
       color: #ffffff;
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 16px;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+      border-radius: 20px;
+      padding: 20px 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.25);
     }
-    .summary-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #94a3b8; }
-    .summary-top strong { color: #fbbf24; font-weight: 800; }
-    .summary-strip { display: flex; justify-content: space-between; align-items: center; }
-    .summary-item { text-align: center; flex: 1; }
-    .summary-item span { font-size: 11px; color: #94a3b8; display: block; margin-bottom: 4px; font-weight: 600; }
-    .summary-item strong { font-size: 17px; font-weight: 900; color: #ffffff; }
-    .summary-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.12); }
+    .calc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 10px; }
+    .calc-head h2 { font-size: 16px; font-weight: 900; color: #ffffff; }
+    .calc-head span { font-size: 10.5px; color: #fbbf24; background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.4); padding: 2px 8px; border-radius: 12px; font-weight: 800; }
 
-    /* 컨트롤 바 */
-    .controls { display: flex; flex-direction: column; gap: 9px; margin-bottom: 16px; }
-    .search-row { display: flex; gap: 8px; }
-    .search-input { flex: 1; background: var(--card-bg); border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 13px; font-size: 13.5px; color: var(--text-main); outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
-    .search-input:focus { border-color: var(--primary); }
-    .sort-select { background: var(--card-bg); border: 1px solid #cbd5e1; border-radius: 10px; padding: 0 12px; font-size: 12px; font-weight: 700; color: var(--text-main); outline: none; }
-    .tab-row { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
-    .tab-row::-webkit-scrollbar { display: none; }
-    .tab-btn { background: var(--card-bg); color: var(--text-sub); border: 1px solid #cbd5e1; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
-    .tab-btn.active { background: var(--navy-dark); color: #ffffff; border-color: var(--navy-dark); font-weight: 800; box-shadow: 0 3px 10px rgba(15, 23, 42, 0.18); }
-
-    /* [고급 PB 리포트 카드] */
-    .card-list { display: flex; flex-direction: column; gap: 20px; }
-    .item-card { background: var(--card-bg); border: 1px solid #dbe2ea; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06); }
-
-    /* 카드 상단 상태바 */
-    .card-status-bar { background: #f8fafc; border-bottom: 1px solid var(--border); padding: 10px 18px; display: flex; justify-content: space-between; align-items: center; }
-    .badge-group { display: flex; gap: 6px; align-items: center; }
-    .badge-safe { font-size: 10.5px; font-weight: 800; color: #047857; background: #d1fae5; padding: 3px 8px; border-radius: 5px; }
-    .badge-fail { font-size: 10.5px; font-weight: 800; color: var(--danger); background: var(--danger-soft); border: 1px solid #fecdd3; padding: 2px 7px; border-radius: 5px; }
-    .badge-dday { font-size: 10.5px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 3px 8px; border-radius: 5px; }
-
-    .card-inner { padding: 18px; }
-
-    /* 단지 타이틀 & 사건번호 복사 */
-    .card-head { margin-bottom: 14px; }
-    .item-name { font-size: 19px; font-weight: 900; color: var(--text-main); letter-spacing: -0.5px; line-height: 1.3; margin-bottom: 5px; }
-    .item-meta-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-    .item-meta { font-size: 12px; color: var(--text-sub); font-weight: 600; }
-    .btn-copy-case { background: #f1f5f9; border: 1px solid #cbd5e1; color: var(--text-sub); font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
-    .btn-copy-case:active { background: #e2e8f0; }
-
-    /* [핵심 킬러 패널] 최저매각가격 & 단순시세편차 + 보증금 산술치 */
-    .hero-price-panel {
-      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-      border: 1px solid #cbd5e1;
-      border-radius: 14px;
-      padding: 15px;
-      margin-bottom: 14px;
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .input-group label { display: block; font-size: 11px; color: #cbd5e1; margin-bottom: 4px; font-weight: 700; }
+    .input-group input, .input-group select {
+      width: 100%;
+      background: #090d16;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #38bdf8;
+      font-size: 14px;
+      font-weight: 800;
+      outline: none;
     }
-    .hero-price-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 12px; border-bottom: 1px dashed #cbd5e1; margin-bottom: 10px; }
-    .price-main-box span { font-size: 11px; font-weight: 800; color: var(--text-sub); display: block; margin-bottom: 3px; }
-    .price-main-box strong { font-size: 22px; font-weight: 900; color: var(--danger); letter-spacing: -0.7px; }
-    .price-main-box small { font-size: 11px; font-weight: 800; color: #ffffff; background: var(--danger); padding: 2px 6px; border-radius: 4px; margin-left: 5px; vertical-align: middle; }
-    
-    .margin-sub-box { text-align: right; }
-    .margin-sub-box span { font-size: 11px; color: var(--text-sub); display: block; margin-bottom: 3px; font-weight: 800; }
-    .margin-sub-box strong { font-size: 17.5px; font-weight: 900; color: var(--accent); letter-spacing: -0.4px; }
+    .input-group input:focus { border-color: #38bdf8; }
 
-    /* 산술 시뮬레이션 바 (법적 방어 문구 포함) */
-    .cash-plan-row { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-sub); flex-wrap: wrap; gap: 4px; }
-    .cash-pill strong { color: var(--text-main); font-weight: 800; }
+    .calc-results { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+    .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-bottom: 12px; border-bottom: 1px dashed rgba(255,255,255,0.15); margin-bottom: 12px; }
+    .res-item span { font-size: 10.5px; color: #94a3b8; display: block; margin-bottom: 2px; }
+    .res-item strong { font-size: 15px; font-weight: 900; color: #ffffff; }
+    .res-highlight { display: flex; justify-content: space-between; align-items: center; }
+    .res-highlight .label { font-size: 12px; font-weight: 800; color: #fbbf24; }
+    .res-highlight .val { font-size: 20px; font-weight: 900; color: #34d399; }
 
-    /* 증권사 스타일 그라데이션 시계열 차트 */
-    .chart-box { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; background: #ffffff; }
-    .chart-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 11.5px; font-weight: 800; color: var(--text-main); }
-    .chart-top strong { color: var(--danger); font-size: 11px; background: var(--danger-soft); padding: 2px 7px; border-radius: 4px; }
-    .sparkline-svg { width: 100%; height: 56px; display: block; overflow: visible; }
+    .calc-lock-notice { background: rgba(29, 78, 216, 0.25); border: 1px solid #3b82f6; border-radius: 10px; padding: 10px 12px; font-size: 11.5px; color: #e2e8f0; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .calc-lock-notice button { background: #3b82f6; color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; cursor: pointer; white-space: nowrap; }
 
-    /* 4대 핵심 가격 팩트 그리드 */
+    /* 섹션 타이틀 */
+    .sec-title-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .sec-title-bar h3 { font-size: 16px; font-weight: 900; color: var(--text-main); }
+    .sec-title-bar span { font-size: 11px; color: var(--text-sub); font-weight: 700; }
+
+    /* 실사건 시뮬레이션 샘플 카드 */
+    .card-list { display: flex; flex-direction: column; gap: 16px; }
+    .item-card { background: var(--card-bg); border: 1px solid #dbe2ea; border-radius: 18px; overflow: hidden; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05); }
+    .card-status-bar { background: #f8fafc; border-bottom: 1px solid var(--border); padding: 9px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800; }
+    .badge-sample { color: var(--primary); background: var(--primary-soft); padding: 3px 8px; border-radius: 5px; }
+    .btn-load-calc { background: var(--navy-dark); color: #fbbf24; border: none; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; cursor: pointer; }
+
+    .card-inner { padding: 16px; }
+    .item-name { font-size: 17.5px; font-weight: 900; margin-bottom: 4px; }
+    .item-meta { font-size: 11.5px; color: var(--text-sub); margin-bottom: 12px; }
+
     .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-    .fact-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
+    .fact-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 9px; padding: 9px 11px; display: flex; justify-content: space-between; align-items: center; }
     .fact-item span { font-size: 11px; color: var(--text-sub); font-weight: 600; }
     .fact-item strong { font-size: 12.5px; font-weight: 900; color: var(--text-main); }
 
-    /* [법적 철통 방어] 대법원 공문서 원문 표기 대조표 */
-    .rights-check-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; margin-bottom: 14px; }
-    .rights-title { font-size: 11px; font-weight: 800; color: var(--text-sub); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-    .rights-title span.tag-doc { color: var(--primary); font-size: 10.5px; background: var(--primary-soft); padding: 2px 6px; border-radius: 4px; }
-    .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
-    .right-pill { background: #ffffff; border: 1px solid #dbe2ea; border-radius: 6px; padding: 6px 8px; font-size: 11px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 5px; }
-    .right-pill i { color: var(--accent); font-style: normal; font-weight: 900; }
-    .doc-raw-text { font-size: 11px; color: var(--text-sub); border-top: 1px dashed #cbd5e1; padding-top: 7px; line-height: 1.5; }
-    .doc-raw-caveat { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
-
-    /* 3단 정밀 액션 툴바 */
-    .action-grid { display: grid; grid-template-columns: 1.1fr 1fr 1.1fr; gap: 6px; }
-    .btn-act { display: inline-flex; justify-content: center; align-items: center; font-size: 11.5px; font-weight: 800; padding: 11px 0; border-radius: 9px; text-decoration: none; text-align: center; border: 1px solid transparent; transition: transform 0.1s; }
-    .btn-act:active { transform: scale(0.98); }
+    .action-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    .btn-act { display: inline-flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; padding: 10px 0; border-radius: 8px; text-decoration: none; border: 1px solid transparent; }
     .btn-road { background: var(--accent-soft); color: #047857; border-color: #a7f3d0; }
     .btn-chart { background: var(--primary-soft); color: var(--primary); border-color: #bfdbfe; }
-    .btn-court { background: var(--navy-dark); color: #ffffff; }
+    .btn-court { background: #f1f5f9; color: var(--text-main); border-color: #cbd5e1; }
 
-    /* [미끼매물 리스크 0%] 마스터 엑셀 DB 명세 & 클릭랩 동의 섹션 */
+    /* 마스터 엑셀 5종 패키지 소개 & 결제 섹션 */
     .master-lock-section {
       background: #ffffff;
       border: 2px solid var(--navy-dark);
       border-radius: 20px;
       overflow: hidden;
-      margin-top: 24px;
+      margin-top: 26px;
       box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
     }
     .lock-header-banner {
@@ -176,35 +132,16 @@
     .lock-header-title { font-size: 18px; font-weight: 900; line-height: 1.38; margin-bottom: 5px; }
     .lock-header-sub { font-size: 12px; color: #cbd5e1; line-height: 1.45; }
 
-    /* 엑셀 실제 수록 스펙 및 권역 통계 표 (허위매물 시비 완벽 차단) */
-    .spec-preview-wrap { padding: 16px; background: #f8fafc; border-bottom: 1px solid var(--border); }
-    .spec-preview-title { font-size: 12px; font-weight: 800; color: var(--text-main); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-    .spec-preview-title span { font-size: 10.5px; color: var(--primary); background: var(--primary-soft); padding: 2px 7px; border-radius: 4px; }
-    
-    .region-stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
-    .region-stat-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
-    .region-stat-card span { font-size: 11.5px; font-weight: 700; color: var(--text-sub); }
-    .region-stat-card strong { font-size: 13px; font-weight: 900; color: var(--primary); }
-
-    .excel-col-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; }
-    .excel-col-head { font-size: 11px; font-weight: 800; color: var(--text-sub); margin-bottom: 8px; }
-    .col-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .col-tag { font-size: 10.5px; font-weight: 700; color: #334155; background: #f1f5f9; border: 1px solid #cbd5e1; padding: 3px 8px; border-radius: 5px; }
-    .col-tag.pro { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .package-list-wrap { padding: 16px; background: #f8fafc; border-bottom: 1px solid var(--border); }
+    .pkg-item { background: #ffffff; border: 1px solid #dbe2ea; border-radius: 10px; padding: 12px; margin-bottom: 8px; }
+    .pkg-item:last-child { margin-bottom: 0; }
+    .pkg-item strong { display: block; font-size: 13px; font-weight: 900; color: var(--navy-dark); margin-bottom: 3px; }
+    .pkg-item span { font-size: 11.5px; color: var(--text-sub); line-height: 1.45; display: block; }
 
     .lock-cta-body { padding: 18px 16px 20px; background: #ffffff; }
-    
-    /* [핵심 법적 방패] 결제 전 클릭랩(Click-wrap) 필수 동의 체크박스 */
-    .consent-gate-box {
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 14px;
-      text-align: left;
-    }
-    .consent-label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 11.5px; line-height: 1.5; color: #92400e; font-weight: 700; }
-    .consent-label input[type="checkbox"] { width: 17px; height: 17px; margin-top: 2px; accent-color: var(--primary); flex-shrink: 0; cursor: pointer; }
+    .consent-gate-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 12px; margin-bottom: 14px; text-align: left; }
+    .consent-label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 11px; line-height: 1.5; color: #92400e; font-weight: 700; }
+    .consent-label input[type="checkbox"] { width: 17px; height: 17px; margin-top: 2px; accent-color: var(--primary); flex-shrink: 0; }
     
     .btn-unlock-big {
       display: block;
@@ -215,32 +152,24 @@
       font-weight: 900;
       padding: 16px;
       border-radius: 12px;
-      text-decoration: none;
-      text-align: center;
       border: none;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(29, 78, 216, 0.35);
-      letter-spacing: -0.3px;
     }
-    .unlock-sub-note { font-size: 10.5px; color: var(--text-muted); margin-top: 9px; text-align: center; line-height: 1.45; }
+    .unlock-sub-note { font-size: 10.5px; color: var(--text-muted); margin-top: 9px; text-align: center; }
 
-    /* 하단 플로팅 구독 바 */
-    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(15, 23, 42, 0.96); backdrop-filter: blur(10px); border-top: 1px solid #334155; padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 20px rgba(0,0,0,0.15); }
+    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(15, 23, 42, 0.96); backdrop-filter: blur(10px); border-top: 1px solid #334155; padding: 12px 16px; z-index: 900; display: flex; justify-content: space-between; align-items: center; }
     .floating-bar .info span { font-size: 10.5px; color: #38bdf8; font-weight: 700; display: block; }
     .floating-bar .info strong { font-size: 13.5px; color: #ffffff; }
-    .floating-buy-btn { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #0f172a; font-size: 13px; font-weight: 900; padding: 10px 16px; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35); }
+    .floating-buy-btn { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #0f172a; font-size: 13px; font-weight: 900; padding: 10px 16px; border-radius: 8px; border: none; cursor: pointer; }
 
-    /* 토스트 알림 */
-    .toast-msg { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.95); color: #fff; padding: 10px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; display: none; z-index: 3000; box-shadow: 0 4px 15px rgba(0,0,0,0.25); white-space: nowrap; }
+    .toast-msg { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.95); color: #fff; padding: 10px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; display: none; z-index: 3000; white-space: nowrap; }
 
-    /* 사업자 정보 푸터 (전자상거래법 제10조 필수 표기 준수) */
     footer { text-align: center; margin-top: 36px; border-top: 1px solid var(--border); padding-top: 22px; }
-    .biz-box { font-size: 11px; color: var(--text-sub); line-height: 1.8; margin-bottom: 12px; word-break: keep-all; }
-    .biz-box strong { color: var(--text-main); }
+    .biz-box { font-size: 11px; color: var(--text-sub); line-height: 1.8; margin-bottom: 12px; }
     .disclaimer-box { font-size: 10px; color: var(--text-muted); line-height: 1.65; text-align: justify; background: #e2e8f0; padding: 12px; border-radius: 8px; }
 
-    /* 모달 */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; justify-content: center; align-items: center; padding: 16px; backdrop-filter: blur(3px); }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; justify-content: center; align-items: center; padding: 16px; }
     .modal-content { background: #ffffff; border-radius: 14px; max-width: 520px; width: 100%; padding: 22px; max-height: 85vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
     .modal-header h3 { font-size: 15px; font-weight: 900; color: #b45309; }
@@ -251,153 +180,151 @@
 </head>
 <body>
   <div class="top-institutional-bar">
-    공공데이터법 제19조 의거 정량 통계 데이터셋 ｜ <strong>비중개·비자문 순수 데이터 추출물</strong>
+    경매 입찰 손익분기점·세금·명도비 정량 시뮬레이터 ｜ <strong>비중개·비자문 소프트웨어 솔루션</strong>
   </div>
 
   <div class="container">
     <header>
       <div class="brand-bar">
-        <div class="logo">STATLAB <span>PRO</span> <span class="pro-badge">QUANT DB</span></div>
-        <div class="live-sync"><span class="live-dot"></span> 공문서 동기화</div>
+        <div class="logo">STATLAB <span>PRO</span> <span class="pro-badge">CALC PACK</span></div>
+        <div class="ver-pill">2026 세법·LTV 수식 탑재</div>
       </div>
-      <p class="sub-title">대법원 매각물건명세서 텍스트 1차 필터링 & 국토교통부 실거래가 시계열 통계</p>
+      <p class="sub-title">입찰가·취득세·경락대출·명도비 자동 산출 솔루션 & 실전 명도 서식 마스터팩</p>
     </header>
 
     <div class="legal-bar">
-      <span>⚖️ <strong>법적 비대리 고지:</strong> 본 자료는 단순 통계이며 법률자문·매수신청대리가 아닙니다.</span>
+      <span>⚖️ <strong>법적 비대리 고지:</strong> 본 툴은 단순 산술 계산기이며 법률·세무 자문이 아닙니다.</span>
       <button class="legal-btn" onclick="openModal('legalModal')">면책약관 전문</button>
     </div>
 
-    <!-- 프라이빗 뱅킹 스타일 다크 네이비 요약 보드 -->
-    <div class="summary-dashboard">
-      <div class="summary-top">
-        <span>전국 법원 2회 이상 유찰 아파트 공문서 텍스트 대조</span>
-        <strong>서류상 특이사항 82.4% 1차 제외</strong>
+    <!-- [무료 체험 훅] 웹 실시간 입찰 손익 시뮬레이터 -->
+    <div class="calc-widget" id="webCalcBox">
+      <div class="calc-head">
+        <h2>🧮 경매 입찰 손익 & 필요현금 3초 시뮬레이터</h2>
+        <span>실시간 체험판</span>
       </div>
-      <div class="summary-strip">
-        <div class="summary-item"><span>전국 수집 모수</span><strong>2,410건</strong></div>
-        <div class="summary-divider"></div>
-        <div class="summary-item"><span>특이사항 감지 제외</span><strong style="color:#fb7185;">1,988건</strong></div>
-        <div class="summary-divider"></div>
-        <div class="summary-item"><span>1차 서류 통과군</span><strong style="color:#34d399;">422건 추출</strong></div>
+
+      <div class="calc-inputs">
+        <div class="input-group">
+          <label>법원 최저매각가 (만원)</label>
+          <input type="number" id="inMinBid" value="36544" oninput="runWebCalc()">
+        </div>
+        <div class="input-group">
+          <label>나의 목표 입찰가 (만원)</label>
+          <input type="number" id="inTargetBid" value="40500" oninput="runWebCalc()">
+        </div>
+        <div class="input-group">
+          <label>현재 실거래 시세 (만원)</label>
+          <input type="number" id="inMarket" value="55000" oninput="runWebCalc()">
+        </div>
+        <div class="input-group">
+          <label>적용 취득세율 구간</label>
+          <select id="inTaxRate" onchange="runWebCalc()">
+            <option value="0.011">1~2주택 기본 (1.1%)</option>
+            <option value="0.013">85㎡ 초과 (1.3%)</option>
+            <option value="0.088">다주택 중과 (8.8%)</option>
+            <option value="0.134">법인/최고중과 (13.4%)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="res-grid">
+          <div class="res-item">
+            <span>입찰 당일 보증금 (최저가 10%)</span>
+            <strong id="outDeposit">3,654만원</strong>
+          </div>
+          <div class="res-item">
+            <span>경락대출 70% 가정 한도</span>
+            <strong id="outLoan">2억 8,350만</strong>
+          </div>
+          <div class="res-item">
+            <span>취득세+등기+명도비+복비(추정)</span>
+            <strong id="outExtraCost">1,322만원</strong>
+          </div>
+          <div class="res-item">
+            <span>대출 활용 시 내 필요현금</span>
+            <strong id="outCashNeed" style="color:#38bdf8;">1억 3,472만</strong>
+          </div>
+        </div>
+        <div class="res-highlight">
+          <span class="label">★ 비용 공제 후 예상 세전 순수익</span>
+          <span class="val" id="outNetProfit">+ 1억 3,178만</span>
+        </div>
+      </div>
+
+      <div class="calc-lock-notice">
+        <span>🔒 <strong>손익분기 마지노선 입찰 상한선</strong> 및 <strong>월 대출이자·명도합의서 양식</strong>은 엑셀 원본에 수록</span>
+        <button onclick="scrollToLock()">엑셀+서식 받기 ↗</button>
       </div>
     </div>
 
-    <div class="controls">
-      <div class="search-row">
-        <input type="text" id="searchInput" class="search-input" placeholder="아파트 단지명, 관할법원, 사건번호 검색" onkeyup="filterCards()">
-        <select id="sortSelect" class="sort-select" onchange="filterCards()">
-          <option value="default">기본 정렬</option>
-          <option value="gap-high">시세편차 큰순</option>
-          <option value="jeonse-low">전세편차 적은순</option>
-          <option value="rate-low">유찰할인율 높은순</option>
-        </select>
-      </div>
-      
-      <div class="tab-row">
-        <button class="tab-btn active" onclick="setRegion('전체', this)">공개 샘플 (4)</button>
-        <button class="tab-btn" onclick="setRegion('서울', this)">서울 권역</button>
-        <button class="tab-btn" onclick="setRegion('경기', this)">경기/인천</button>
-        <button class="tab-btn" onclick="setRegion('부산', this)">부산/경남</button>
-        <button class="tab-btn" onclick="scrollToLock()">📊 전체 422건 엑셀 명세</button>
-      </div>
+    <!-- 실제 대법원 사건 샘플 시뮬레이션 -->
+    <div class="sec-title-bar">
+      <h3>📊 실제 대법원 경매 사건 시뮬레이션 예시</h3>
+      <span>버튼 클릭 시 위 계산기에 자동 입력</span>
     </div>
-
-    <!-- 공개 샘플 아파트 매물 카드 리스트 -->
     <div class="card-list" id="cardList"></div>
 
-    <!-- [미끼매물 리스크 0% & 클릭랩 동의 탑재] 마스터 엑셀 DB 명세 및 결제 섹션 -->
+    <!-- [핵심 상품] 5대 시트 마스터 엑셀 & 명도 서식 패키지 상세 -->
     <div class="master-lock-section" id="lockSection">
       <div class="lock-header-banner">
-        <span class="lock-header-badge">📁 STATLAB_2026_MASTER.xlsx 정식 라이선스</span>
-        <div class="lock-header-title">전국 1차 공문서 스크리닝 통과 422건<br>원본 로우데이터(XLSX) 전체 다운로드</div>
-        <div class="lock-header-sub">시중 고가 사이트의 복잡한 검색 과정을 엑셀 필터 하나로 단축한 정량 통계 시트입니다.</div>
+        <span class="lock-header-badge">📁 STATLAB_2026_AUCTION_CALCULATOR_PRO.xlsx</span>
+        <div class="lock-header-title">한 번 소장으로 평생 쓰는 경매 입찰 계산기<br>& 실전 명도 서식 5종 마스터 엑셀 패키지</div>
+        <div class="lock-header-sub">복잡한 취득세·법무사비·대출이자·명도비 계산과 내용증명 작성을 엑셀 파일 하나로 끝내세요.</div>
       </div>
 
-      <div class="spec-preview-wrap">
-        <div class="spec-preview-title">
-          <span>📊 엑셀 파일 내 권역별 수록 분포 (총 422건)</span>
-          <span>공공누리 제1유형 기반</span>
+      <div class="package-list-wrap">
+        <div class="pkg-item">
+          <strong>📊 [시트 1~2] 입찰 손익분기점·세금·대출·마지노선 입찰가 자동 계산기</strong>
+          <span>감정가·입찰가만 넣으면 10%/20% 보증금, 주택수별 취득세, 채권할인·법무사비, 경락대출 월 이자, 전세 갭투자금, 절대 넘기면 안 되는 상한 입찰가가 자동 수식으로 계산됩니다.</span>
         </div>
-        <div class="region-stat-grid">
-          <div class="region-stat-card">
-            <span>서울·경기·인천 수도권</span>
-            <strong>148건 수록</strong>
-          </div>
-          <div class="region-stat-card">
-            <span>부산·대구·울산·경상권</span>
-            <strong>132건 수록</strong>
-          </div>
-          <div class="region-stat-card">
-            <span>대전·세종·충청·강원권</span>
-            <strong>78건 수록</strong>
-          </div>
-          <div class="region-stat-card">
-            <span>광주·전라·제주권</span>
-            <strong>64건 수록</strong>
-          </div>
+        <div class="pkg-item">
+          <strong>📋 [시트 3] 관심 경매 물건 다중 비교 시뮬레이터 (원클릭 링크 탑재)</strong>
+          <span>여러 입찰 후보 물건을 한 시트에 나란히 놓고 필요 현금과 수익률을 동시 비교하며, 단지 정문 지도·호갱노노·대법원 사건조회 링크가 연결되어 있습니다.</span>
         </div>
-
-        <div class="excel-col-box">
-          <div class="excel-col-head">📋 다운로드 엑셀(XLSX) 내 수록된 15개 정량 데이터 열(Column) 항목:</div>
-          <div class="col-tags">
-            <span class="col-tag">01. 관할법원</span>
-            <span class="col-tag">02. 사건번호</span>
-            <span class="col-tag">03. 도로명주소·단지명</span>
-            <span class="col-tag">04. 전용면적·층수</span>
-            <span class="col-tag">05. 법원감정평가액</span>
-            <span class="col-tag">06. 최저매각가격</span>
-            <span class="col-tag">07. 유찰횟수·저감률</span>
-            <span class="col-tag pro">08. 국토부 최근실거래가</span>
-            <span class="col-tag pro">09. 실거래-최저가 단순편차</span>
-            <span class="col-tag pro">10. 최근 전세실거래가</span>
-            <span class="col-tag pro">11. 입찰보증금(10%) 산술치</span>
-            <span class="col-tag pro">12. 매각명세서 점유현황 원문</span>
-            <span class="col-tag pro">13. 말소기준권리 표기일자</span>
-            <span class="col-tag">14. 단지 정문 지도 링크</span>
-            <span class="col-tag">15. 대법원 공문서 조회 링크</span>
-          </div>
+        <div class="pkg-item">
+          <strong>🤝 [시트 4] 아파트 평형별 법원 강제집행 비용 vs 적정 이사비 타협 기준표</strong>
+          <span>10평대~50평대별 실제 강제집행 비용(노무비·운반비·보관료)과 점유자에게 제시할 적정 이사비 합의 구간을 한눈에 보여줍니다.</span>
+        </div>
+        <div class="pkg-item">
+          <strong>📝 [시트 5] 복사해서 바로 쓰는 실전 명도 필수 서식 3종 & 임장 체크리스트</strong>
+          <span>① 부동산 인도 요청 내용증명서, ② 명도 및 이사비 지급 합의각서, ③ 명도확인서 표준 양식 원문과 현장 임장 필수 체크리스트 10문항이 수록되어 있습니다.</span>
         </div>
       </div>
 
       <div class="lock-cta-body">
-        <!-- [철통 법적 방어] 결제 전 클릭랩(Click-wrap) 동의 게이트 -->
         <div class="consent-gate-box">
           <label class="consent-label" for="legalConsentCheck">
             <input type="checkbox" id="legalConsentCheck" checked>
-            <span>[필수 동의] 본 엑셀 파일은 공공데이터를 기계적으로 분류한 단순 참고용 통계물이며, 권리 무하자나 투자 수익을 보증하지 않습니다. 입찰 전 대법원 원문 대조 및 현장 답사(임장) 책임은 구매자 본인에게 귀속됨을 확인합니다.</span>
+            <span>[필수 동의] 본 엑셀 파일과 서식은 입찰자의 계산 편의를 위한 단순 산술 시뮬레이터 및 범용 참고 양식이며, 법률·세무 자문이 아닙니다. 개인별 실제 대출 한도 및 세율 확인 책임은 본인에게 귀속되며 디지털 파일 특성상 다운로드 후 환불이 불가함에 동의합니다.</span>
           </label>
         </div>
 
         <button type="button" onclick="proceedToCheckout()" class="btn-unlock-big">
-          동의 후 9,900원에 422건 엑셀 원본 다운로드 ↗
+          동의 후 9,900원에 계산기+명도서식 엑셀 평생 소장하기 ↗
         </button>
-        <p class="unlock-sub-note">※ 전자상거래법 제17조 제2항 제5호에 의거, 디지털 데이터 파일은 다운로드 이후 단순 변심에 의한 청약철회(환불)가 제한됩니다.</p>
+        <p class="unlock-sub-note">※ 1회 결제 시 추가 월 구독료 없이 엑셀 수식 원본(.xlsx)을 평생 무제한 사용하실 수 있습니다.</p>
       </div>
     </div>
 
-    <!-- 사업자 정보 & 법적 면책 푸터 (전자상거래법 제10조 완비) -->
     <footer>
       <div class="biz-box">
         <p><strong>상호명:</strong> 스탯랩 ｜ <strong>대표자:</strong> 장원석</p>
         <p><strong>사업장주소:</strong> 부산 해운대구 구남로18번길 24 (우동, 해운대비치오피스텔) 803-S36호</p>
         <p><strong>고객센터 연락처:</strong> 070-8080-1727 ｜ <strong>사업자등록번호:</strong> 501-14-72213</p>
-        <p><strong>통신판매업신고:</strong> 간이과세자 면제대상 (또는 신고번호 병기) ｜ <strong>이메일:</strong> aom100@kakao.com</p>
-        <p><strong>웹 호스팅:</strong> GitHub Pages ｜ <strong>결제·디지털콘텐츠 유통 호스팅:</strong> (주)아임웹</p>
+        <p><strong>이메일:</strong> aom100@kakao.com ｜ <strong>결제·디지털콘텐츠 유통 호스팅:</strong> (주)아임웹</p>
       </div>
       <div class="disclaimer-box">
         <strong>[법적 책임의 한계 및 비대리 고지]</strong><br>
-        1. STATLAB은 「공공데이터의 제공 및 이용 활성화에 관한 법률」 제19조에 의거하여 대한민국 법원 및 국토교통부의 개방 데이터를 가공해 제공하는 데이터 소프트웨어 사업자입니다.<br>
-        2. 당사는 공인중개사법상 중개행위나 변호사법·민사집행법상 매수신청대리 및 개별 사건에 대한 법률 감정·자문을 일체 수행하지 않습니다.<br>
-        3. 경매 사건은 입찰 당일까지 기일변경, 취하, 미전입 세입자 출현, 체납관리비 발생 등의 변수가 존재하므로, 입찰 당사자는 반드시 입찰 전 법원 매각물건명세서 원본과 현장 임장을 직접 수행해야 하며, 당사는 데이터 오기나 시차로 인한 어떠한 민·형사상 손해배상 책임도 부담하지 않습니다.
+        STATLAB은 부동산 경매 관련 정량 계산용 스프레드시트 템플릿 및 범용 문서 서식을 개발·판매하는 소프트웨어 사업자입니다. 당사는 공인중개사법상 중개행위나 변호사법·민사집행법상 매수신청대리 및 개별 사건에 대한 법률·세무 자문을 일체 수행하지 않으며, 시뮬레이션 수치는 개인별 조건에 따라 실제와 다를 수 있으므로 입찰 결과에 대한 어떠한 민·형사상 책임도 부담하지 않습니다.
       </div>
     </footer>
   </div>
 
-  <!-- 복사 및 안내 토스트 메시지 -->
-  <div id="toastMsg" class="toast-msg">사건번호가 복사되었습니다.</div>
+  <div id="toastMsg" class="toast-msg">계산기에 수치가 반영되었습니다.</div>
 
-  <!-- 8대 법적 면책 모달 -->
+  <!-- 법적 면책 모달 -->
   <div class="modal-overlay" id="legalModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -406,134 +333,150 @@
       </div>
       <div class="clause-block">
         <strong>제1조 (서비스의 정의 및 비대리·비자문 원칙)</strong>
-        STATLAB(이하 '회사')이 제공하는 웹사이트 및 엑셀(XLSX) 데이터는 공개된 공공데이터를 알고리즘으로 정량 추출한 단순 통계 참고자료입니다. 본 서비스는 공인중개사법 제2조의 '중개', 민사집행법 제136조의 '매수신청대리', 변호사법 제109조의 '법률사무 취급'에 일체 해당하지 않으며, 개별 물건의 권리 안전성이나 낙찰을 보증하지 않습니다.
+        STATLAB이 제공하는 웹 시뮬레이터 및 엑셀(XLSX) 파일은 이용자가 직접 수치를 입력하여 산술 결과를 확인하는 '계산용 스프레드시트 템플릿 및 범용 문서 서식'입니다. 공인중개사법상 중개, 민사집행법상 매수신청대리, 변호사법 제109조의 법률사무에 일체 해당하지 않습니다.
       </div>
       <div class="clause-block">
-        <strong>제2조 (공공데이터 출처 및 저작권 적법성)</strong>
-        본 서비스의 원천 데이터는 공공누리(제1유형) 라이선스에 의거 대한민국 법원 법원경매정보 및 국토교통부 실거래가 공개시스템의 개방 정보를 적법하게 수집·정제한 것입니다. 회사는 타 민간 유료 경매업체의 고유 데이터베이스나 사진 저작물을 무단 복제하지 않습니다.
+        <strong>제2조 (세율·대출 산술 가정치의 한계)</strong>
+        시뮬레이터 내 취득세, 등기비용, 중개보수, LTV 대출 한도는 표준 산술 공식에 의한 추정치이며, 개인의 주택 수, 규제지역 여부, DSR 소득 요건 및 법령 개정에 따라 실제 금액과 차이가 발생할 수 있습니다.
       </div>
       <div class="clause-block">
-        <strong>제3조 (공문서 1차 텍스트 필터링의 한계 및 현장 임장 의무)</strong>
-        화면 및 엑셀 내 '1차 통과' 또는 '특이사항 미기재' 표기는 수집 시점의 법원 현황조사서·매각물건명세서상 텍스트만을 기계적으로 대조한 결과입니다. 공문서에 등재되지 않은 미전입 임차인, 점유자 변동, 유치권 주장, 체납 공용관리비, 누수 등 물리적 하자는 반영되지 않으므로, 입찰 전 현장 답사 및 주민센터 전입세대 열람은 전적으로 이용자 본인의 의무입니다.
+        <strong>제3조 (명도 서식 양식의 범용성 고지)</strong>
+        수록된 내용증명서, 합의각서, 명도확인서 양식은 일반적인 명도 절차에서 참고할 수 있는 표준 예시 문안이며, 개별 사건의 특수한 권리관계에 맞춘 법률 대리 작성이 아닙니다.
       </div>
       <div class="clause-block">
-        <strong>제4조 (시세 편차 및 대출 가정치의 비보장성)</strong>
-        표기된 '실거래 단순편차', '전세편차', 'LTV 70% 가정치'는 과거 실거래 통계와 최저매각가격을 단순 가감(뺄셈)한 산술 시뮬레이션 수치일 뿐이며, 미래의 매도 차익이나 금융기관의 실제 대출 승인을 보장하지 않습니다.
-      </div>
-      <div class="clause-block">
-        <strong>제5조 (투자 결과의 자기책임 원칙 및 면책)</strong>
-        경매 입찰 여부 결정, 입찰가 산정, 보증금 납부, 잔금 대출 및 명도 진행 등 모든 법률적·경제적 행위의 최종 책임은 입찰자 본인에게 귀속됩니다. 회사는 정보의 시차(기일변경, 취하, 기낙찰 등)나 누락으로 인해 발생한 직·간접적 손해에 대하여 어떠한 법적 배상 책임도 지지 않습니다.
-      </div>
-      <div class="clause-block">
-        <strong>제6조 (디지털 콘텐츠의 청약철회 제한 및 분쟁해결)</strong>
-        구매한 엑셀 데이터베이스는 결제 즉시 복제 가능한 디지털 파일로 제공되므로, 「전자상거래 등에서의 소비자보호에 관한 법률」 제17조 제2항 제5호 및 동법 시행령 제21조에 따라 파일 다운로드 또는 열람 이후에는 단순 변심에 의한 환불이 불가합니다. 상품의 중대한 결함 시 공정거래위원회 소비자분쟁해결기준에 의거 처리합니다.
+        <strong>제4조 (디지털 콘텐츠 청약철회 제한)</strong>
+        구매한 엑셀 솔루션은 복제 가능한 디지털 파일로 제공되므로, 「전자상거래 등에서의 소비자보호에 관한 법률」 제17조 제2항 제5호에 따라 파일 다운로드 이후에는 단순 변심에 의한 환불이 제한됩니다.
       </div>
     </div>
   </div>
 
-  <!-- 하단 고정 구독 바 -->
   <div class="floating-bar">
     <div class="info">
-      <span>전국 2회 유찰 1차 통과군 422건</span>
-      <strong>마스터 엑셀(XLSX) 정량 통계본</strong>
+      <span>입찰손익 자동계산기 + 실전 명도서식 5종</span>
+      <strong>STATLAB 마스터 엑셀 솔루션 (영구소장)</strong>
     </div>
     <button type="button" onclick="scrollToLock()" class="floating-buy-btn">9,900원 다운로드 ↗</button>
   </div>
 
   <script>
-    // 100% 실제 대법원 사건 기반 + 단정적 법률 보증 용어를 제거한 객관적 공문서 표기 데이터셋
-    const auctionDB = [
+    const sampleDB = [
       {
-        id: 1,
-        region: "서울",
-        court: "서울중앙지방법원",
-        caseNo: "2024타경120614",
-        aptName: "동작 신대방 보라매현대",
-        cleanName: "보라매현대아파트",
-        roadAddress: "서울특별시 동작구 여의대방로24길 7 보라매현대아파트",
-        spec: "전용 162.5㎡ (63평형) ｜ 18층",
-        failCount: "2회 유찰",
-        discountRate: "36%",
-        dday: "기일 진행군",
-        appraisal: 143000,
-        peak: 165000,
-        market: 140000,
-        jeonse: 85000,
-        minBid: 91520,
-        occupancyText: "현황서상 채무자(소유자) 점유 표기",
-        docSummary: "매각물건명세서 원문 대조 결과: 최선순위 설정일자 이후 말소 대상 외 인수 특기사항 미기재 사건 (입찰 당일 최신 공문서 재열람 필수)"
+        aptName: "노원 상계동 상계주공3단지 (32.39㎡)",
+        court: "서울북부지법",
+        caseNo: "2023타경107965",
+        roadAddress: "서울특별시 노원구 동일로215길 48 상계주공아파트",
+        cleanName: "상계주공3단지",
+        appraisal: 55000,
+        minBid: 35200,
+        sampleTarget: 38500,
+        market: 49000
       },
       {
-        id: 2,
-        region: "서울",
-        court: "서울북부지방법원",
-        caseNo: "2025타경13355",
-        aptName: "노원 중계동 중계현대6차",
-        cleanName: "중계현대6차아파트",
-        roadAddress: "서울특별시 노원구 한글비석로 232 중계현대6차아파트",
-        spec: "전용 84.9㎡ (33평형) ｜ 1층",
-        failCount: "유찰 저감",
-        discountRate: "20%",
-        dday: "기일 진행군",
-        appraisal: 73000,
-        peak: 85000,
-        market: 72000,
-        jeonse: 45000,
-        minBid: 58400,
-        occupancyText: "현황서상 소유자 세대 점유 표기",
-        docSummary: "매각물건명세서 원문 대조 결과: 대항력 있는 선순위 임차인 미표기 ｜ 건물·대지권 일괄매각 공시 사건 (현장 관리비 별도 확인 요망)"
-      },
-      {
-        id: 3,
-        region: "경기",
-        court: "의정부지방법원 고양지원",
+        aptName: "일산 주엽 강선마을 14단지 (101.9㎡)",
+        court: "의정부지법 고양지원",
         caseNo: "2023타경79325",
-        aptName: "일산서구 주엽 강선마을 14단지",
-        cleanName: "강선마을14단지두산아파트",
         roadAddress: "경기도 고양시 일산서구 중앙로 1391 강선마을14단지두산아파트",
-        spec: "전용 101.9㎡ (38평형) ｜ 12층",
-        failCount: "2회 유찰",
-        discountRate: "51%",
-        dday: "기일 진행군",
+        cleanName: "강선마을14단지두산아파트",
         appraisal: 67700,
-        peak: 78000,
-        market: 65000,
-        jeonse: 42000,
         minBid: 33173,
-        occupancyText: "명세서상 인수사항 미기재",
-        docSummary: "법원 감정평가액 대비 최저매각가격 -51% 저감 ｜ 최근 전세 실거래 통계(4.2억) 대비 최저가(3.31억) 단순 역전 구간"
+        sampleTarget: 41000,
+        market: 65000
       },
       {
-        id: 4,
-        region: "부산",
-        court: "부산지방법원 동부지원",
+        aptName: "부산 남구 대연 대연청구아파트 (84.9㎡)",
+        court: "부산지법 동부지원",
         caseNo: "2023타경110911",
-        aptName: "부산 남구 대연 대연청구아파트",
-        cleanName: "대연청구아파트",
         roadAddress: "부산광역시 남구 수영로196번길 27 대연청구아파트",
-        spec: "전용 84.9㎡ (33평형) ｜ 12층",
-        failCount: "2회 유찰",
-        discountRate: "36%",
-        dday: "기일 진행군",
+        cleanName: "대연청구아파트",
         appraisal: 57100,
-        peak: 68000,
-        market: 58000,
-        jeonse: 37000,
         minBid: 36544,
-        occupancyText: "현황서상 채무자 점유 표기",
-        docSummary: "공문서상 최선순위 2019-10-22 근저당권 설정 표기 ｜ 토지·건물 일괄매각 임의경매 사건 (입찰 전 법원 원문 최종 대조 필수)"
+        sampleTarget: 40500,
+        market: 55000
       }
     ];
 
-    let currentRegion = '전체';
-
-    function formatWon(val) {
-      if (val >= 10000) {
-        const eok = Math.floor(val / 10000);
-        const man = Math.round(val % 10000);
-        return man > 0 ? `${eok}억 ${man.toLocaleString()}만` : `${eok}억`;
+    function formatWon(manVal) {
+      const rounded = Math.round(manVal);
+      if (Math.abs(rounded) >= 10000) {
+        const sign = rounded < 0 ? "-" : "";
+        const absVal = Math.abs(rounded);
+        const eok = Math.floor(absVal / 10000);
+        const man = absVal % 10000;
+        return man > 0 ? `${sign}${eok}억 ${man.toLocaleString()}만` : `${sign}${eok}억`;
       }
-      return `${Math.round(val).toLocaleString()}만`;
+      return `${rounded.toLocaleString()}만`;
+    }
+
+    function runWebCalc() {
+      const minBid = parseFloat(document.getElementById('inMinBid').value) || 0;
+      const targetBid = parseFloat(document.getElementById('inTargetBid').value) || 0;
+      const market = parseFloat(document.getElementById('inMarket').value) || 0;
+      const taxRate = parseFloat(document.getElementById('inTaxRate').value) || 0.011;
+
+      const deposit10 = Math.round(minBid * 0.1);
+      const loan70 = Math.round(Math.min(targetBid * 0.7, market * 0.7));
+      const acqTax = Math.round(targetBid * taxRate);
+      const legalFee = Math.round(targetBid * 0.003 + 35);
+      const brokerFee = Math.round(market * 0.004);
+      const evictionAndRepair = 500; // 기본 500만 가정
+      const totalExtra = acqTax + legalFee + brokerFee + evictionAndRepair;
+
+      const cashNeed = targetBid - loan70 + totalExtra;
+      const netProfit = market - targetBid - totalExtra;
+
+      document.getElementById('outDeposit').textContent = `${formatWon(deposit10)}원`;
+      document.getElementById('outLoan').textContent = `${formatWon(loan70)}`;
+      document.getElementById('outExtraCost').textContent = `${formatWon(totalExtra)}`;
+      document.getElementById('outCashNeed').textContent = `${formatWon(cashNeed)}`;
+      
+      const profitEl = document.getElementById('outNetProfit');
+      profitEl.textContent = (netProfit >= 0 ? "+ " : "") + formatWon(netProfit);
+      profitEl.style.color = netProfit >= 0 ? "#34d399" : "#fb7185";
+    }
+
+    function loadSampleToCalc(minBid, targetBid, market, name) {
+      document.getElementById('inMinBid').value = minBid;
+      document.getElementById('inTargetBid').value = targetBid;
+      document.getElementById('inMarket').value = market;
+      runWebCalc();
+      document.getElementById('webCalcBox').scrollIntoView({ behavior: 'smooth' });
+      showToast(`🧮 [${name}] 수치가 계산기에 자동 입력되었습니다!`);
+    }
+
+    function renderSamples() {
+      const container = document.getElementById('cardList');
+      sampleDB.forEach(item => {
+        const directRoadviewUrl = `https://m.map.naver.com/search2/search.naver?query=${encodeURIComponent(item.roadAddress)}`;
+        const hogangUrl = `https://hogangnono.com/search?q=${encodeURIComponent(item.cleanName)}`;
+        const courtOfficialUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.caseNo + ' 경매')}`;
+
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <div class="card-status-bar">
+            <span class="badge-sample">📋 실사건 시뮬레이션 예시</span>
+            <button class="btn-load-calc" onclick="loadSampleToCalc(${item.minBid}, ${item.sampleTarget}, ${item.market}, '${item.cleanName}')">
+              👆 이 물건 계산기에 넣어보기
+            </button>
+          </div>
+          <div class="card-inner">
+            <div class="item-name">${item.aptName}</div>
+            <div class="item-meta">${item.court} ｜ 사건번호: <strong>${item.caseNo}</strong></div>
+            <div class="fact-grid">
+              <div class="fact-item"><span>법원 감정가</span><strong>${formatWon(item.appraisal)}</strong></div>
+              <div class="fact-item"><span>최저매각가</span><strong style="color:var(--danger);">${formatWon(item.minBid)}</strong></div>
+              <div class="fact-item"><span>입찰가 가정치</span><strong style="color:var(--primary);">${formatWon(item.sampleTarget)}</strong></div>
+              <div class="fact-item"><span>실거래 시세</span><strong style="color:var(--accent);">${formatWon(item.market)}</strong></div>
+            </div>
+            <div class="action-grid">
+              <a href="${directRoadviewUrl}" class="btn-act btn-road" target="_blank">📍 정문 지도·뷰 ↗</a>
+              <a href="${hogangUrl}" class="btn-act btn-chart" target="_blank">📊 실거래 차트 ↗</a>
+              <a href="${courtOfficialUrl}" class="btn-act btn-court" target="_blank">⚖️ 사건기록 조회 ↗</a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
     }
 
     function showToast(msg) {
@@ -543,17 +486,10 @@
       setTimeout(() => { toast.style.display = 'none'; }, 2400);
     }
 
-    function copyCaseNo(caseNo) {
-      navigator.clipboard.writeText(caseNo).then(() => {
-        showToast(`📋 사건번호 [${caseNo}] 복사 완료!`);
-      });
-    }
-
     function scrollToLock() {
       document.getElementById('lockSection').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // 결제 이동 전 필수 동의 클릭랩 검증 함수
     function proceedToCheckout() {
       const check = document.getElementById('legalConsentCheck');
       if (!check.checked) {
@@ -564,200 +500,14 @@
       window.open('https://jangaom8097508.imweb.me', '_blank');
     }
 
-    function generateSparkline(id, peak, market, minBid) {
-      const maxVal = peak * 1.06;
-      const minVal = minBid * 0.88;
-      const range = maxVal - minVal;
-
-      const getY = (val) => Math.round(44 - ((val - minVal) / range) * 32);
-
-      const yPeak = getY(peak);
-      const yMarket = getY(market);
-      const yBid = getY(minBid);
-
-      const dropPercent = Math.round(((peak - minBid) / peak) * 100);
-
-      return `
-        <div class="chart-box">
-          <div class="chart-top">
-            <span>📉 실거래 최고가 vs 현재 최저매각가 추이</span>
-            <strong>고점 대비 -${dropPercent}% 편차</strong>
-          </div>
-          <svg class="sparkline-svg" viewBox="0 0 320 56" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="grad-${id}" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#e11d48" stop-opacity="0.18"/>
-                <stop offset="100%" stop-color="#e11d48" stop-opacity="0.0"/>
-              </linearGradient>
-            </defs>
-            <polygon points="28,${yPeak} 160,${yMarket} 292,${yBid} 292,54 28,54" fill="url(#grad-${id})" />
-            <line x1="20" y1="16" x2="300" y2="16" stroke="#f1f5f9" stroke-dasharray="2" />
-            <line x1="20" y1="40" x2="300" y2="40" stroke="#f1f5f9" stroke-dasharray="2" />
-            <polyline fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4" points="28,${yPeak} 160,${yMarket}" />
-            <polyline fill="none" stroke="#e11d48" stroke-width="3" points="160,${yMarket} 292,${yBid}" />
-            <circle cx="28" cy="${yPeak}" r="4" fill="#475569" />
-            <text x="28" y="${Math.max(yPeak - 7, 11)}" fill="#64748b" font-size="9.5" font-weight="700">과거고점 ${formatWon(peak)}</text>
-            <circle cx="160" cy="${yMarket}" r="4.5" fill="#059669" />
-            <text x="160" y="${Math.max(yMarket - 7, 11)}" fill="#059669" font-size="9.5" font-weight="800" text-anchor="middle">최근실거래 ${formatWon(market)}</text>
-            <circle cx="292" cy="${yBid}" r="5" fill="#e11d48" />
-            <text x="292" y="${Math.min(yBid + 13, 52)}" fill="#e11d48" font-size="10.5" font-weight="900" text-anchor="end">최저매각가 ${formatWon(minBid)}</text>
-          </svg>
-        </div>
-      `;
-    }
-
-    function setRegion(region, btn) {
-      currentRegion = region;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      filterCards();
-    }
-
-    function filterCards() {
-      const keyword = (document.getElementById('searchInput').value || '').toLowerCase();
-      const sortType = document.getElementById('sortSelect').value;
-
-      let filtered = auctionDB.filter(item => {
-        const matchesRegion = (currentRegion === '전체' || item.region === currentRegion);
-        const matchesSearch = item.aptName.toLowerCase().includes(keyword) || 
-                              item.caseNo.toLowerCase().includes(keyword) || 
-                              item.region.toLowerCase().includes(keyword);
-        return matchesRegion && matchesSearch;
-      });
-
-      if (sortType === 'gap-high') {
-        filtered.sort((a, b) => (b.market - b.minBid) - (a.market - a.minBid));
-      } else if (sortType === 'jeonse-low') {
-        filtered.sort((a, b) => (a.minBid - a.jeonse) - (b.minBid - b.jeonse));
-      } else if (sortType === 'rate-low') {
-        filtered.sort((a, b) => (a.minBid / a.appraisal) - (b.minBid / b.appraisal));
-      }
-
-      renderCards(filtered);
-    }
-
-    function renderCards(data) {
-      const container = document.getElementById('cardList');
-      container.innerHTML = '';
-
-      data.forEach(item => {
-        const priceDiff = item.market - item.minBid; // 단순 시세 편차
-        const deposit10 = Math.round(item.minBid * 0.1); // 최저가 10% 산술치
-        const estLtv70 = Math.round(item.minBid * 0.7); // 단순 LTV 70% 가정치
-        const jeonseGap = item.minBid - item.jeonse;
-        const gapText = jeonseGap <= 0 
-          ? `최저가 < 전세가 (${Math.abs(jeonseGap).toLocaleString()}만 차)` 
-          : `단순편차 ${formatWon(jeonseGap)}`;
-
-        const directRoadviewUrl = `https://m.map.naver.com/search2/search.naver?query=${encodeURIComponent(item.roadAddress)}`;
-        const hogangUrl = `https://hogangnono.com/search?q=${encodeURIComponent(item.cleanName)}`;
-        const courtOfficialUrl = `https://m.search.naver.com/search.naver?query=${encodeURIComponent(item.caseNo + ' 경매')}`;
-
-        const card = document.createElement('div');
-        card.className = 'item-card';
-        card.innerHTML = `
-          <div class="card-status-bar">
-            <div class="badge-group">
-              <span class="badge-safe">🟢 1차 공문서 통과군</span>
-              <span class="badge-fail">${item.failCount} (-${item.discountRate})</span>
-            </div>
-            <span class="badge-dday">${item.dday}</span>
-          </div>
-
-          <div class="card-inner">
-            <div class="card-head">
-              <div class="item-name">${item.aptName}</div>
-              <div class="item-meta-row">
-                <span class="item-meta">${item.court} ｜ <strong>${item.caseNo}</strong> ｜ ${item.spec}</span>
-                <button class="btn-copy-case" onclick="copyCaseNo('${item.caseNo}')">📋 사건번호 복사</button>
-              </div>
-            </div>
-
-            <div class="hero-price-panel">
-              <div class="hero-price-top">
-                <div class="price-main-box">
-                  <span>최저 매각 가격 (감정가 ${formatWon(item.appraisal)})</span>
-                  <strong>${formatWon(item.minBid)}원</strong>
-                  <small>-${item.discountRate}</small>
-                </div>
-                <div class="margin-sub-box">
-                  <span>실거래-최저가 단순편차</span>
-                  <strong>+ ${formatWon(priceDiff)}</strong>
-                </div>
-              </div>
-              <div class="cash-plan-row">
-                <div class="cash-pill">💰 최저가 10% 보증금 산술치: <strong>${formatWon(deposit10)}원</strong></div>
-                <div class="cash-pill">📊 단순 LTV 70% 가정치: <strong>${formatWon(estLtv70)}</strong></div>
-              </div>
-            </div>
-
-            ${generateSparkline(item.id, item.peak, item.market, item.minBid)}
-
-            <div class="fact-grid">
-              <div class="fact-item">
-                <span>최근 실거래 통계</span>
-                <strong>${formatWon(item.market)}</strong>
-              </div>
-              <div class="fact-item">
-                <span>최근 전세 통계</span>
-                <strong>${formatWon(item.jeonse)}</strong>
-              </div>
-              <div class="fact-item">
-                <span>최저가-전세가 편차</span>
-                <strong style="color:var(--primary);">${gapText}</strong>
-              </div>
-              <div class="fact-item">
-                <span>점유현황 표기</span>
-                <strong style="color:var(--accent);">${item.occupancyText}</strong>
-              </div>
-            </div>
-
-            <!-- 대법원 공문서 원문 표기 대조표 (법적 보증이 아닌 문서 텍스트 추출임을 명시) -->
-            <div class="rights-check-box">
-              <div class="rights-title">
-                <span>📄 대법원 매각물건명세서 공문서 표기 대조</span>
-                <span class="tag-doc">문서 텍스트 1차 추출</span>
-              </div>
-              <div class="rights-grid">
-                <div class="right-pill"><i>✔</i> 명세서상 선순위 미표기</div>
-                <div class="right-pill"><i>✔</i> 명세서상 인수특기 없음</div>
-                <div class="right-pill"><i>✔</i> 토지·건물 일괄매각 표기</div>
-                <div class="right-pill"><i>✔</i> 재매각(미납) 이력 없음</div>
-              </div>
-              <div class="doc-raw-text">${item.docSummary}</div>
-              <div class="doc-raw-caveat">* 위 항목은 법원 공문서 기재 텍스트의 유무만을 대조한 것이며, 미등재 권리 및 현장 변수는 입찰자 본인이 직접 확인해야 합니다.</div>
-            </div>
-
-            <div class="action-grid">
-              <a href="${directRoadviewUrl}" class="btn-act btn-road" target="_blank" rel="noopener noreferrer">
-                📍 단지 정문 지도·뷰 ↗
-              </a>
-              <a href="${hogangUrl}" class="btn-act btn-chart" target="_blank" rel="noopener noreferrer">
-                📊 호갱노노 실거래 ↗
-              </a>
-              <a href="${courtOfficialUrl}" class="btn-act btn-court" target="_blank" rel="noopener noreferrer">
-                ⚖️ 대법원 사건검색 ↗
-              </a>
-            </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
-    }
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     window.onclick = function(e) {
-      if (e.target.classList.contains('modal-overlay')) {
-        e.target.style.display = 'none';
-      }
+      if (e.target.classList.contains('modal-overlay')) e.target.style.display = 'none';
     };
 
-    filterCards();
+    runWebCalc();
+    renderSamples();
   </script>
 </body>
 </html>

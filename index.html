@@ -47,7 +47,7 @@
     .legal-bar { background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid var(--navy-dark); border-radius: 8px; padding: 10px 12px; margin-bottom: 16px; font-size: 11px; color: var(--text-sub); display: flex; justify-content: space-between; align-items: center; }
     .legal-btn { background: #f8fafc; border: 1px solid #94a3b8; color: var(--text-main); padding: 4px 9px; border-radius: 5px; font-size: 10.5px; font-weight: 800; cursor: pointer; white-space: nowrap; }
 
-    /* [킬러 기능] 웹 실시간 입찰 손익 미니 계산기 */
+    /* 웹 실시간 입찰 손익 미니 계산기 */
     .calc-widget {
       background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
       color: #ffffff;
@@ -86,12 +86,10 @@
     .calc-lock-notice { background: rgba(29, 78, 216, 0.25); border: 1px solid #3b82f6; border-radius: 10px; padding: 10px 12px; font-size: 11.5px; color: #e2e8f0; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     .calc-lock-notice button { background: #3b82f6; color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; cursor: pointer; white-space: nowrap; }
 
-    /* 섹션 타이틀 */
     .sec-title-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .sec-title-bar h3 { font-size: 16px; font-weight: 900; color: var(--text-main); }
     .sec-title-bar span { font-size: 11px; color: var(--text-sub); font-weight: 700; }
 
-    /* 실사건 시뮬레이션 샘플 카드 */
     .card-list { display: flex; flex-direction: column; gap: 16px; }
     .item-card { background: var(--card-bg); border: 1px solid #dbe2ea; border-radius: 18px; overflow: hidden; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05); }
     .card-status-bar { background: #f8fafc; border-bottom: 1px solid var(--border); padding: 9px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800; }
@@ -113,7 +111,6 @@
     .btn-chart { background: var(--primary-soft); color: var(--primary); border-color: #bfdbfe; }
     .btn-court { background: #f1f5f9; color: var(--text-main); border-color: #cbd5e1; }
 
-    /* 마스터 엑셀 5종 패키지 소개 & 결제 섹션 */
     .master-lock-section {
       background: #ffffff;
       border: 2px solid var(--navy-dark);
@@ -197,7 +194,7 @@
       <button class="legal-btn" onclick="openModal('legalModal')">면책약관 전문</button>
     </div>
 
-    <!-- [무료 체험 훅] 웹 실시간 입찰 손익 시뮬레이터 -->
+    <!-- 웹 실시간 입찰 손익 시뮬레이터 -->
     <div class="calc-widget" id="webCalcBox">
       <div class="calc-head">
         <h2>🧮 경매 입찰 손익 & 필요현금 3초 시뮬레이터</h2>
@@ -266,7 +263,7 @@
     </div>
     <div class="card-list" id="cardList"></div>
 
-    <!-- [핵심 상품] 5대 시트 마스터 엑셀 & 명도 서식 패키지 상세 -->
+    <!-- 5대 시트 마스터 엑셀 & 명도 서식 패키지 상세 -->
     <div class="master-lock-section" id="lockSection">
       <div class="lock-header-banner">
         <span class="lock-header-badge">📁 STATLAB_2026_AUCTION_CALCULATOR_PRO.xlsx</span>
@@ -418,7 +415,7 @@
       const acqTax = Math.round(targetBid * taxRate);
       const legalFee = Math.round(targetBid * 0.003 + 35);
       const brokerFee = Math.round(market * 0.004);
-      const evictionAndRepair = 500; // 기본 500만 가정
+      const evictionAndRepair = 500;
       const totalExtra = acqTax + legalFee + brokerFee + evictionAndRepair;
 
       const cashNeed = targetBid - loan70 + totalExtra;
@@ -497,7 +494,8 @@
         check.focus();
         return;
       }
-      window.open('https://jangaom8097508.imweb.me', '_blank');
+      // ★ 아임웹 156번 상품 구매 페이지로 즉시 직행
+      window.open('https://jangaom8097508.imweb.me/shop_view/?idx=156', '_blank');
     }
 
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
